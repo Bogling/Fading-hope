@@ -1,0 +1,3 @@
+Is this some kind of a cave?
+There is no way to climb back up...
+Maybe there will be exit further?
