@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
 
     public void RefreshLP() {
         lp = 0;
+        lpBar.UpdateLP();
         StartCoroutine(RegenerateLP());
     }
 

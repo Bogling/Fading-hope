@@ -114,11 +114,13 @@
     <Compile Include="Assets\Scripts\Interaction\Lever.cs" />
     <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
     <Compile Include="Assets\Scripts\ChangeAmbientTrigger.cs" />
+    <Compile Include="Assets\Scripts\Interaction\MovingPlatformManual.cs" />
     <Compile Include="Assets\Scripts\Fog\Fog.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DreamDialogueController.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerController.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Dithering\DitheringController.cs" />
+    <Compile Include="Assets\Scripts\Interaction\MovingPlatformRemote.cs" />
     <Compile Include="Assets\Scripts\Interaction\HandOption.cs" />
     <Compile Include="Assets\Scripts\Interaction\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Fog\FogController.cs" />
