@@ -4,7 +4,7 @@ This is test!
 another line
 -> main
 === main ===
-Hello there?
+Hello there? #color:d4821e
     + [Yes]
         ~ choiceMade(0, 0)
         -> chosen("Yes")
@@ -13,7 +13,7 @@ Hello there?
         -> chosen("No")
         
 === chosen(option) ===
-You chose {option}!
+You chose {option}! #color:ffffff
 Start minigame1?
     + [Yes]
         ~ choiceMade(1, 0)

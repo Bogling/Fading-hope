@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, Interactable
 {
-    [SerializeField] private bool isLocked = false;
-    [SerializeField] private Lever[] levers;
-    [SerializeField] private Animator animator;
+    [SerializeField] protected bool isLocked = false;
+    [SerializeField] protected Lever[] levers;
+    [SerializeField] protected Animator animator;
 
     private bool isOpened;
 

@@ -45,4 +45,7 @@ public class sign : MonoBehaviour, Interactable, ITalkable
     public void Unlock() {
         isLocked = false;
     }
+    public void UponExit() {
+        return;
+    }
 }

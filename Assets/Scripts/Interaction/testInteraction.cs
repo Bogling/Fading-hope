@@ -70,4 +70,8 @@ public class testInteraction : MonoBehaviour, Interactable, ITalkable
     public void Unlock() {
         isLocked = false;
     }
+
+    public void UponExit() {
+        return;
+    }
 }

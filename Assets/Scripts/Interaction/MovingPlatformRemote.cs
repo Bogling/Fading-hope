@@ -6,6 +6,7 @@ public class MovingPlatformRemote : MovingPlatform, Interactable
 {
     [SerializeField] private bool isLocked = false;
     [SerializeField] private Lever[] levers;
+    [SerializeField] private bool deactivateLevers;
 
     private bool isActivated;
 
@@ -47,5 +48,12 @@ public class MovingPlatformRemote : MovingPlatform, Interactable
 
     public bool IsOpened() {
         return isActivated;
+    }
+
+    public override void Deactivate() {
+        base.Deactivate();
+        foreach (var lever in levers) {
+            lever.Reset();
+        }
     }
 }

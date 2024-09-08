@@ -9,9 +9,12 @@ public class FearArea : MonoBehaviour
     [SerializeField] private float damage = 10;
     [SerializeField] private float delay = 1;
 
+    [SerializeField] private GameObject player;
+    private bool isPlayerInRange = false;
     private bool isStopped = true;
     private bool isDeactivated = false;
     private GameManager gameManager;
+    
 
     private void Start() {
         gameManager = FindFirstObjectByType<GameManager>();
@@ -21,11 +24,13 @@ public class FearArea : MonoBehaviour
         if (isDeactivated) {
             return;
         }
+        isPlayerInRange = true;
         isStopped = false;
         StartCoroutine(DealDamage());
     }
 
     private void OnTriggerExit() {
+        isPlayerInRange = false;
         StopDamage();
     }
 
@@ -69,5 +74,13 @@ public class FearArea : MonoBehaviour
         isDeactivated = true;
         StopDamage();
         //gameManager.StartHPRegen();
+    }
+
+    public void Activate() {
+        isDeactivated = false;
+        if (isPlayerInRange) {
+            isStopped = false;
+            StartCoroutine(DealDamage());
+        }
     }
 }

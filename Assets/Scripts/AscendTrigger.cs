@@ -38,6 +38,10 @@ public class AscendTrigger : MonoBehaviour, ITalkable
         }
     }
 
+    public void UponExit() {
+        return;
+    }
+
     private async void End() {
         Fader.GetInstance().FadeOut(Color.white, 5f);
         await Task.Delay((int)(5f * 1000));

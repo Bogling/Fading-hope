@@ -13,6 +13,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float Delay;
     [SerializeField] private bool isLooping;
     [SerializeField] private bool deactivateOnArrival;
+    [SerializeField] private int MoveTimesBeforeDeactivation;
     [SerializeField] private Transform StartPosition;
     [SerializeField] private Transform EndPosition;
     [SerializeField] private float Range;
@@ -26,8 +27,10 @@ public class MovingPlatform : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
     public IEnumerator Move() {
-        //yield return new WaitForSeconds(Delay);
-        float counter = 0;
+        //Waiting Initial Delay
+        yield return new WaitForSeconds(Delay);
+        int timesLeft = MoveTimesBeforeDeactivation;
+        float counter;
         if (isLooping) {
             while(true) {
                 //Start Delay
@@ -57,22 +60,23 @@ public class MovingPlatform : MonoBehaviour
             }
         }
         else {
-            //Start Delay
-            yield return new WaitForSeconds(StartSpeed);
-            //Transfer loop
-            while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
-                counter = TravelSpeed * Time.timeScale;
-                rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
-                yield return 0;
-            }
-            counter = 0;
-            while(Vector3.Distance(transform.position, EndPosition.position) > 0) {
-                    Debug.Log(Vector3.Distance(transform.position, EndPosition.position) + "Lerping");
-                    counter += 0.1f * Time.timeScale;
-                    transform.position = Vector3.Lerp(transform.position, EndPosition.position, counter);
+            while (timesLeft >= 0) {
+                //Start Delay
+                yield return new WaitForSeconds(StartSpeed);
+                //Transfer loop
+                while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
+                    counter = TravelSpeed * Time.timeScale;
+                    rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
                     yield return 0;
                 }
-            if (deactivateOnArrival) {
+                counter = 0;
+                while(Vector3.Distance(transform.position, EndPosition.position) > 0) {
+                        Debug.Log(Vector3.Distance(transform.position, EndPosition.position) + "Lerping");
+                        counter += 0.1f * Time.timeScale;
+                        transform.position = Vector3.Lerp(transform.position, EndPosition.position, counter);
+                        yield return 0;
+                    }
+                timesLeft--;
                 rb.AddForce(Vector3.zero, ForceMode.Acceleration);
                 rb.velocity = Vector3.zero;
                 //End Delay
@@ -81,6 +85,8 @@ public class MovingPlatform : MonoBehaviour
                 var temp = StartPosition;
                 StartPosition = EndPosition;
                 EndPosition = temp;
+            }
+            if (deactivateOnArrival) {
                 Deactivate();
             }
             rb.AddForce(Vector3.zero, ForceMode.Acceleration);
@@ -94,7 +100,7 @@ public class MovingPlatform : MonoBehaviour
         StartCoroutine(Move());
     }
 
-    public void Deactivate() {
+    public virtual void Deactivate() {
         animator.SetTrigger("Deactivate");
         StopCoroutine(Move());
     }

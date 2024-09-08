@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.SearchService;
 
 public class DialogueController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class DialogueController : MonoBehaviour
     private string p;
 
     private TextAsset currentInkJSON;
+    private ITalkable currentObject;
 
     private bool choicesPresent = false;
 
@@ -30,8 +32,11 @@ public class DialogueController : MonoBehaviour
     public bool dialogueIsPlaying { get; private set; }
 
     public bool isLocked = false;
-
+    private bool buttonPressed = false;
     private static DialogueController instance;
+
+    private const string COLOR_TAG = "color";
+    private const string IMAGE_TAG = "image";
 
     private void Awake() {
         if (instance != null) {
@@ -59,7 +64,13 @@ private void Update() {
     }
 
     if (PlayerInputController.GetInstance().GetSubmitPressed()) {
-        DisplayNextParagraph(currentInkJSON);
+        if (!buttonPressed) {
+            DisplayNextParagraph(currentInkJSON);
+            buttonPressed = true;
+        }
+    }
+    else {
+        buttonPressed = false;
     }
 }
 
@@ -71,6 +82,7 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
     Cursor.lockState = CursorLockMode.None;
     Cursor.visible = true;
 
+    currentObject = obj;
     currentStory.BindExternalFunction("choiceMade", (int qID, int cID) => {
         obj.OperateChoice(qID, cID);
     });
@@ -86,6 +98,7 @@ private void ExitDialogue() {
     Cursor.visible = false;
 
     currentStory.UnbindExternalFunction("choiceMade");
+    currentObject.UponExit();
 }
 
     private void DisplayNextParagraph(TextAsset inkJSON) {
@@ -97,6 +110,7 @@ private void ExitDialogue() {
                 p = currentStory.Continue();
                 typeTextCoroutine = StartCoroutine(TypeDialogueText(p));
                 DisplayChoices();
+                HandleTags(currentStory.currentTags);
             }
             else if (!choicesPresent) {
                 ExitDialogue();
@@ -108,6 +122,32 @@ private void ExitDialogue() {
         }
     }
 
+    private void HandleTags(List<string> currentTags) {
+        foreach (string tag in currentTags) {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey) {
+                case COLOR_TAG:
+                    Debug.Log("color=" + tagValue);
+                    Color newColor;
+                    ColorUtility.TryParseHtmlString("#" + tagValue, out newColor);
+                    dialogueText.color = newColor;
+                    break;
+                case IMAGE_TAG:
+                    Debug.Log("image=" + tagValue);
+                    break;
+                default:
+                    Debug.Log("No such key");
+                    break;
+            }
+        }
+    }
     
     private IEnumerator TypeDialogueText(string p) {
         isTyping = true;

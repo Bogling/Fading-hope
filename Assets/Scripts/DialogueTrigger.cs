@@ -22,4 +22,8 @@ public class DialogueTrigger : MonoBehaviour, ITalkable
     public void OperateChoice(int qID, int cID) {
         return;
     }
+
+    public void UponExit() {
+        return;
+    }
 }

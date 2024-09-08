@@ -38,4 +38,9 @@ public class Lever : MonoBehaviour, Interactable
     {
         return;
     }
+
+    public void Reset() {
+        animator.SetTrigger("Reset");
+        isActivated = false;
+    }
 }
