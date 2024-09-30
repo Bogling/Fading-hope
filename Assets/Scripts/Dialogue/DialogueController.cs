@@ -26,6 +26,7 @@ public class DialogueController : MonoBehaviour
     private ITalkable currentObject;
 
     private bool choicesPresent = false;
+    private bool isInDelay = false;
 
     private Coroutine typeTextCoroutine;
 
@@ -37,6 +38,7 @@ public class DialogueController : MonoBehaviour
 
     private const string COLOR_TAG = "color";
     private const string IMAGE_TAG = "image";
+    private const string DELAY_TAG = "wait";
 
     private void Awake() {
         if (instance != null) {
@@ -107,6 +109,10 @@ private void ExitDialogue() {
                 if (choicesPresent) {
                     return;
                 }
+                if (isInDelay) {
+                    gameObject.transform.localScale = new Vector3(0, 0, 0);
+                    return;
+                }
                 p = currentStory.Continue();
                 typeTextCoroutine = StartCoroutine(TypeDialogueText(p));
                 DisplayChoices();
@@ -141,6 +147,10 @@ private void ExitDialogue() {
                     break;
                 case IMAGE_TAG:
                     Debug.Log("image=" + tagValue);
+                    break;
+                case DELAY_TAG:
+                    Debug.Log("wait=" + tagValue);
+                    StartCoroutine(Delay(int.Parse(tagValue)));
                     break;
                 default:
                     Debug.Log("No such key");
@@ -201,5 +211,17 @@ private void ExitDialogue() {
         choicesPresent = false;
         DisplayNextParagraph(currentInkJSON);
         Debug.Log(currentStory.variablesState);
+    }
+
+    private IEnumerator Delay(int time) {
+        isInDelay = true;
+        yield return new WaitForSeconds(time);
+        isInDelay = false;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        //DisplayNextParagraph(currentInkJSON);
+    }
+
+    public void forceEndDialogue() {
+        ExitDialogue();
     }
 }

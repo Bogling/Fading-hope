@@ -74,6 +74,7 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
             fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             gameObject.SetActive(false);
+            FindFirstObjectByType<DayEnding>().Unlock();
             fader.FadeIn(Color.black, 1f);
         }
     }

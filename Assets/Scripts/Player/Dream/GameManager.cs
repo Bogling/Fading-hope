@@ -229,4 +229,12 @@ public class GameManager : MonoBehaviour
     public void StopHPRegen() {
         canRegenHP = false;
     }
+
+    public void ChangeMaxMood(int number) {
+        playerData.SetMaxMood(playerData.GetMaxMood() + number);
+    }
+
+    public void DoubtedAnswer() {
+        playerData.doubtedBio = true;
+    }
 }

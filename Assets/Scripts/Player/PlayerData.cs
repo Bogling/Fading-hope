@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 public class PlayerData
 {
     public string currentScene;
@@ -8,6 +11,9 @@ public class PlayerData
 
     public bool hasHP;
     public bool hasLP;
+
+    public int MaxMoodPoints = 5;
+    public bool doubtedBio = false;
 
     public void SetScene(string scene) {
         currentScene = scene;
@@ -22,5 +28,13 @@ public class PlayerData
 
     public int GetCheckPoint() {
         return currentCheckPoint;
+    }
+
+    public int GetMaxMood() {
+        return MaxMoodPoints;
+    }
+
+    public void SetMaxMood(int newMood) {
+        MaxMoodPoints = newMood;
     }
 }
