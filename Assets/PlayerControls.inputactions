@@ -9,7 +9,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "5eb51602-0930-4f8c-a67f-05fa60ade0a8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -28,6 +28,15 @@
                     "type": "Button",
                     "id": "42459d78-0ae7-468e-95e3-9d178e95e42a",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AltAction",
+                    "type": "Button",
+                    "id": "10420897-b892-45fa-a65d-202936fcbae6",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -110,6 +119,17 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32f11b95-5ad1-4dc2-a20d-c1553b1d4504",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "AltAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -121,7 +141,7 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "97c93c45-4bc6-49be-84e2-5a592e74d9ca",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -149,7 +169,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "b9e1a12e-3a98-4c9f-bd4e-2ba7ec0a5f60",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

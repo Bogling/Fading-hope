@@ -44,7 +44,12 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
 
     public void Talk(TextAsset inkJSON)
     {
+        Focus();
         dialogueController.EnterDialogue(inkJSON, this);
+    }
+
+    public void Focus() {
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 0.5f);
     }
 
     public void OperateChoice(int qID, int cID) {

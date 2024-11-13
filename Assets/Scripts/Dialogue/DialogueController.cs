@@ -114,6 +114,10 @@ private void ExitDialogue() {
                     return;
                 }
                 p = currentStory.Continue();
+                if (p == "") {
+                    DisplayNextParagraph(currentInkJSON);
+                    return;
+                }
                 typeTextCoroutine = StartCoroutine(TypeDialogueText(p));
                 DisplayChoices();
                 HandleTags(currentStory.currentTags);
@@ -218,7 +222,7 @@ private void ExitDialogue() {
         yield return new WaitForSeconds(time);
         isInDelay = false;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
-        //DisplayNextParagraph(currentInkJSON);
+        DisplayNextParagraph(currentInkJSON);
     }
 
     public void forceEndDialogue() {

@@ -33,7 +33,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     public void StartMiniGame() {
         //a
         talker.Lock();
-        Interrupt();
+        //Interrupt();
         Talk(StartInkJSON[Random.Range(0, StartInkJSON.Length)]);
         GenerateOption();
         gameObject.SetActive(true);
@@ -69,6 +69,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     private void QuitMiniGame() {
         talker.Unlock();
         gameObject.SetActive(false);
+        talker.Interact();
     }
 
     private void GenerateOption() {
@@ -78,6 +79,10 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     public void Talk(TextAsset inkJSON)
     {
         dialogueController.EnterDialogue(inkJSON, this);
+    }
+
+    public void Focus() {
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
     }
 
     private void Interrupt() {

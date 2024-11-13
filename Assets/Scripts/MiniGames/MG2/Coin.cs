@@ -10,14 +10,17 @@ public class Coin : MonoBehaviour
     void Awake() {
         gameObject.SetActive(false);
         mg2Man = FindFirstObjectByType<MiniGame2Manager>();
+        animator = GetComponent<Animator>();
     }
 
     public void Flip() {
+        gameObject.SetActive(true);
         animator.SetTrigger("flip");
     }
 
     private void EndFlip() {
         currentOption = Random.Range(0, 2) == 1;
         mg2Man.SetOption(currentOption);
+        gameObject.SetActive(false);
     }
 }

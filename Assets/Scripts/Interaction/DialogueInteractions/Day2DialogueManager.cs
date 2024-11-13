@@ -12,15 +12,14 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private Sprite[] sprites;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
-    private MiniGame1Manager mg1;
-    private MiniGame2Manager mg2;
+
+    private bool acceptedMG = false;
     private bool d1end = false;
+    private bool d2end = false;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
-        mg1 = FindFirstObjectByType<MiniGame1Manager>();
-        mg2 = FindFirstObjectByType<MiniGame2Manager>();
     }
 
     private bool isLocked = false;
@@ -36,8 +35,10 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
  
     public void Interact() {
         Debug.Log("Hoba1");
-        Talk(inkJSON[currentInk]);
-        currentInk++;
+        if (IsCurrentlyInteractable()) {
+            Talk(inkJSON[currentInk]);
+            currentInk++;
+        }
     }
 
     public void OnHover() {
@@ -51,6 +52,10 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     public void Talk(TextAsset inkJSON)
     {
         dialogueController.EnterDialogue(inkJSON, this);
+    }
+
+    public void Focus() {
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
     }
 
     public void OperateChoice(int qID, int cID) {
@@ -70,12 +75,31 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes1");
-                        MiniGame1Manager.GetInstance().StartMiniGame();
-                        isLocked = true;
-                        currentInk++;
+                        acceptedMG = true;
                         break;
                     case 1:
                         Debug.Log("Answer is no1");
+                        acceptedMG = false;
+                        break;
+                }
+                break;
+            case 2:
+                switch (cID) {
+                    case 0:
+                        Debug.Log("Answer is yes2");
+                        break;
+                    case 1:
+                        Debug.Log("Answer is no2");
+                        break;
+                }
+                break;
+            case 3:
+                switch (cID) {
+                    case 0:
+                        Debug.Log("Answer is yes2");
+                        break;
+                    case 1:
+                        Debug.Log("Answer is no2");
                         break;
                 }
                 break;
@@ -93,13 +117,41 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     public async void UponExit() {
         if (!d1end) {
             Lock();
-            fader.FadeOut(Color.black, 1f);
+            //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
-            transform.position = position.position;
-            spriteRenderer.sprite = sprites[1];
-            fader.FadeIn(Color.black, 1f);
-            Interact();
+            if (acceptedMG) {
+            //transform.position = position.position;
+                ChangeSprite(1);
+                //fader.FadeIn(Color.black, 1f);
+                MiniGame1Manager.GetInstance().StartMiniGame();
+            }
+            else {
+                fader.FadeIn(Color.black, 1f);
+                await Task.Delay(1000);
+                gameObject.SetActive(false);
+                FindFirstObjectByType<DayEnding>().Unlock();
+                fader.FadeIn(Color.black, 1f);
+            }
             d1end = true;
+        }
+        else if (!d2end) {
+            Lock();
+            //fader.FadeOut(Color.black, 1f);
+            await Task.Delay(1000);
+            if (acceptedMG) {
+            //transform.position = position.position;
+                ChangeSprite(1);
+                //fader.FadeIn(Color.black, 1f);
+                MiniGame2Manager.GetInstance().StartMiniGame();
+            }
+            else {
+                fader.FadeIn(Color.black, 1f);
+                await Task.Delay(1000);
+                gameObject.SetActive(false);
+                FindFirstObjectByType<DayEnding>().Unlock();
+                fader.FadeIn(Color.black, 1f);
+            }
+            d2end = true;
         }
         else {
             fader.FadeOut(Color.black, 1f);
@@ -108,5 +160,9 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
             FindFirstObjectByType<DayEnding>().Unlock();
             fader.FadeIn(Color.black, 1f);
         }
+    }
+
+    public void ChangeSprite(int spriteIndex) {
+        spriteRenderer.sprite = sprites[spriteIndex];
     }
 }

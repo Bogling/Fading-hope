@@ -23,7 +23,7 @@ Oh... Probably it wasn't the best question for you... I am truly sorry #color:d4
 === main1 ===
 Also... #color:d4821e #image:isad
 I am sorry for tresspassing your personal space... #color:d4821e #image:ithought
-And I looked into your bio #color:d4821e #image:ithought
+I looked into your bio #color:d4821e #image:ithought
 Your name is Nial, if you still don't remember, pretty nice name, isn't it? #color:d4821e #image:idefault
     + [Yeah, thanks]
         ~ choiceMade(0, 0)

@@ -34,6 +34,7 @@ public class DreamPlayerInputController : MonoBehaviour
         _playerControls.Dialogue.Submit.canceled += SubmitCancelled;
         _playerControls.Player.HorizontalMovement.performed += HorizontalMovementPerformed;
         _playerControls.Player.Jump.performed += JumpPerformed;
+        _playerControls.Player.AltAction.performed += AltActionPerformed;
         _playerControls.UI.Pause.performed += PausePerformed;
     }
 
@@ -43,12 +44,18 @@ public class DreamPlayerInputController : MonoBehaviour
         _playerControls.Dialogue.Submit.canceled -= SubmitCancelled;
         _playerControls.Player.HorizontalMovement.performed -= HorizontalMovementPerformed;
         _playerControls.Player.Jump.performed -= JumpPerformed;
+        _playerControls.Player.AltAction.performed -= AltActionPerformed;
         _playerControls.UI.Pause.performed -= PausePerformed;
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj) {
         Debug.Log("Inter");
         playerController.interact();
+    }
+
+    private void AltActionPerformed(InputAction.CallbackContext obj) {
+        Debug.Log("Alt");
+        playerController.AltAction();
     }
 
     private void SubmitPerformed(InputAction.CallbackContext obj) {

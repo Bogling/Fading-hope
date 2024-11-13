@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -35,5 +36,23 @@ public class PlayerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    public void LookAtPosition(Vector3 lookPosition, float speed) {
+        StartCoroutine(LookAtTransformCorutine(lookPosition, speed));
+    }
+
+    public void LookAtPosition(Transform lookPosition, float speed) {
+        LookAtPosition(lookPosition.position, speed);
+    }
+
+    public IEnumerator LookAtTransformCorutine(Vector3 lookPosition, float speed) {
+        Vector3 direction = (lookPosition - transform.position).normalized;
+        Quaternion targetRotation = transform.rotation * Quaternion.FromToRotation(transform.forward, direction);
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 1f){
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, speed);
+            transform.localRotation = Quaternion.LookRotation(transform.forward);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

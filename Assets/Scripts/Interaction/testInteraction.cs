@@ -35,6 +35,10 @@ public class testInteraction : MonoBehaviour, Interactable, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void Focus() {
+
+    }
+    
     public void OperateChoice(int qID, int cID) {
         switch (qID) {
             case 0:

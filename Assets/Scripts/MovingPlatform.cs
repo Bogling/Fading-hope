@@ -50,7 +50,7 @@ public class MovingPlatform : MonoBehaviour
                     yield return 0;
                 }
                 rb.AddForce(Vector3.zero, ForceMode.Acceleration);
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 //End Delay
                 yield return new WaitForSeconds(EndSpeed);
                 //transform.position = EndPosition.position;
@@ -78,7 +78,7 @@ public class MovingPlatform : MonoBehaviour
                     }
                 timesLeft--;
                 rb.AddForce(Vector3.zero, ForceMode.Acceleration);
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 //End Delay
                 yield return new WaitForSeconds(EndSpeed);
                 //transform.position = EndPosition.position;
@@ -90,7 +90,7 @@ public class MovingPlatform : MonoBehaviour
                 Deactivate();
             }
             rb.AddForce(Vector3.zero, ForceMode.Acceleration);
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             //transform.position = EndPosition.position;
         }
     }

@@ -22,6 +22,10 @@ public class AscendTrigger : MonoBehaviour, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void Focus() {
+        FindFirstObjectByType<DreamPlayerCam>().LookAtPosition(transform, 2);
+    }
+
     public void OperateChoice(int qID, int cID) {
         switch (qID) {
             case 0:

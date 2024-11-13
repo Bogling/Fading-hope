@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGame2Manager : MonoBehaviour, ITalkable
 {
-    [SerializeField] private testInteraction talker;
+    [SerializeField] private Day2DialogueManager talker;
     [SerializeField] private Coin coin;
     private GameManager gameManager;
 
     [SerializeField] private TextAsset[] StartInkJSON;
     [SerializeField] private TextAsset[] EndInkJSON;
+
+    [SerializeField] private TextAsset[] QuestionInkJSON;
     [SerializeField] private TextAsset[] OnRightInkJSON;
     [SerializeField] private TextAsset[] OnWrongInkJSON;
     [SerializeField] private DialogueController dialogueController;
@@ -19,6 +19,8 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
     private bool isLocked = false;
     private int currentInk = 0;
+
+    private bool coinFlipped = false;
     private static MiniGame2Manager instance;
 
     private bool rightOption;
@@ -42,27 +44,38 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
         //a
         talker.Lock();
         gameObject.SetActive(true);
+        Talk(StartInkJSON[Random.Range(0, StartInkJSON.Length)]);
     }
 
     public void SelectOption(bool option) {
         if (option == rightOption) {
             Debug.Log("++++");
+            Talk(OnRightInkJSON[Random.Range(0, OnRightInkJSON.Length)]);
             EndMiniGame();
         }
         else {
             Debug.Log("----");
+            Talk(OnWrongInkJSON[Random.Range(0, OnWrongInkJSON.Length)]);
             EndMiniGame();
         }
     }
 
     private void EndMiniGame() {
         //b
-        talker.Unlock();
-        gameObject.SetActive(false);
+        if (passedCount < PassCount) {
+            StartMiniGame();
+            passedCount++;
+        }
+        else {
+            Talk(EndInkJSON[Random.Range(0, EndInkJSON.Length)]);
+            passedCount++;
+        }
     }
 
     public void SetOption(bool option) {
         rightOption = option;
+        talker.ChangeSprite(1);
+        Talk(QuestionInkJSON[Random.Range(0, QuestionInkJSON.Length)]);
     }
 
     // Talking Code
@@ -72,29 +85,24 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void Focus() {
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 0.5f);
+    }
+
     public void OperateChoice(int qID, int cID) {
         switch (qID) {
             case 0:
-                switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no");
-                        gameManager.DoubtedAnswer();
-                        break;
-                }
+                SelectOption(System.Convert.ToBoolean(cID));
                 break;
             case 1:
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes1");
-                        MiniGame1Manager.GetInstance().StartMiniGame();
-                        isLocked = true;
-                        //currentInk++;
+                        StartMiniGame();
                         break;
                     case 1:
                         Debug.Log("Answer is no1");
+                        QuitMiniGame();
                         break;
                 }
                 break;
@@ -110,6 +118,17 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
     }
 
     public void UponExit() {
+        if (!coinFlipped) {
+            Lock();
+            talker.ChangeSprite(0);
+            coin.Flip();
+        }
         return;
+    }
+
+    private void QuitMiniGame() {
+        talker.Unlock();
+        gameObject.SetActive(false);
+        talker.Interact();
     }
 }
