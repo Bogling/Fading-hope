@@ -11,4 +11,6 @@ public interface Interactable
 
     // What happens when player stops hovering over interactable
     void OnHoverStop();
+
+    void InteractionCanceled();
 }

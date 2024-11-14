@@ -236,13 +236,12 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
     public void UponExit()
     {
         if (gameEnded) {
+            passedCount++;
             if (passedCount < PassCount) {
                 StartMiniGame();
-                passedCount++;
             }
             else {
                 Talk(MGEndInkJSON[Random.Range(0, MGEndInkJSON.Length)]);
-                passedCount++;
             }
         }
     }

@@ -33,6 +33,10 @@ public class MarkableSlot : MonoBehaviour, Interactable
         }
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public void Mark(bool isPlayer) {
         if (isPlayer) {
             spriteRenderer.sprite = xSprite;

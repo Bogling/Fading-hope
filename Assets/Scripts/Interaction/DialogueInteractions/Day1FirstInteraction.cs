@@ -34,6 +34,10 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
         currentInk++;
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public void OnHover() {
         //Debug.Log("Hovered");
     }

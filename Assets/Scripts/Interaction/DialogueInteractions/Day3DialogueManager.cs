@@ -41,6 +41,10 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
         }
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public void OnHover() {
         //Debug.Log("Hovered");
     }

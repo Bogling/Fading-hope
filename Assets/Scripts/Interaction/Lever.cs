@@ -24,6 +24,10 @@ public class Lever : MonoBehaviour, Interactable
         }
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public bool IsCurrentlyInteractable()
     {
         return isTouchable;

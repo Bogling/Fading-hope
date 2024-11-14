@@ -23,6 +23,10 @@ public class MovingPlatformRemote : MovingPlatform, Interactable
             Activate();
         }
     }
+    
+    public void InteractionCanceled() {
+        return;
+    }
 
     public bool IsCurrentlyInteractable()
     {

@@ -23,6 +23,10 @@ public class Door : MonoBehaviour, Interactable
         }
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public bool IsCurrentlyInteractable()
     {
         return true;

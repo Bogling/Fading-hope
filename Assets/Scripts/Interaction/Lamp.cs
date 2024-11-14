@@ -14,6 +14,10 @@ public class Lamp : MonoBehaviour, Interactable
         Destroy(gameObject);
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public bool IsCurrentlyInteractable()
     {
         return true;

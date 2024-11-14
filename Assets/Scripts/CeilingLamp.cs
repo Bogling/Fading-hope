@@ -48,6 +48,10 @@ public class CeilingLamp : MonoBehaviour, Interactable
         StartCoroutine(LightUp());
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public bool IsCurrentlyInteractable()
     {
         return false;

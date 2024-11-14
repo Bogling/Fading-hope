@@ -28,18 +28,24 @@ public class PlayerInputController : MonoBehaviour
 
     private void OnEnable() {
         _playerControls.Player.Interact.performed += InteractionPerformed;
+        _playerControls.Player.Interact.canceled += InteractionCanceled;
         _playerControls.Dialogue.Submit.performed += SubmitPerformed;
         _playerControls.Dialogue.Submit.canceled += SubmitCancelled;
     }
 
     private void OnDisable() {
         _playerControls.Player.Interact.performed -= InteractionPerformed;
+        _playerControls.Player.Interact.canceled -= InteractionCanceled;
         _playerControls.Dialogue.Submit.performed -= SubmitPerformed;
         _playerControls.Dialogue.Submit.canceled -= SubmitCancelled;
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj) {
         playerController.interact();
+    }
+
+    private void InteractionCanceled(InputAction.CallbackContext obj) {
+        playerController.interactionCancel();
     }
 
     private void SubmitPerformed(InputAction.CallbackContext obj) {

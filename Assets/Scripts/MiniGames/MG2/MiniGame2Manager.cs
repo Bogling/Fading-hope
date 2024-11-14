@@ -62,13 +62,12 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
     private void EndMiniGame() {
         //b
+        passedCount++;
         if (passedCount < PassCount) {
             StartMiniGame();
-            passedCount++;
         }
         else {
             Talk(EndInkJSON[Random.Range(0, EndInkJSON.Length)]);
-            passedCount++;
         }
     }
 

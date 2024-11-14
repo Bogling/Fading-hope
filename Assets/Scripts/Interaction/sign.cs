@@ -21,6 +21,10 @@ public class sign : MonoBehaviour, Interactable, ITalkable
         Talk(inkJSON[currentInk]);
     }
 
+    public void InteractionCanceled() {
+        return;
+    }
+
     public void OnHover() {
         //Debug.Log("Hovered");
     }
