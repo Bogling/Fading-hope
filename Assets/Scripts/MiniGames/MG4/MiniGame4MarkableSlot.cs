@@ -13,6 +13,7 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
     private MiniGame4Manager miniGame4Manager;
     private bool isMarked = false;
     private bool isLocked = false;
+    private bool isInteractable = true;
 
     private bool containsPart = false;
 
@@ -43,14 +44,8 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
                 }
                 return;
             }
-            if (containsPart) {
-                isMarked = true;
-                spriteRenderer.sprite = markedShotSprite;
-            }
-            else {
-                isMarked = true;
-                spriteRenderer.sprite = markedSprite;
-            }
+            Mark(true, false);
+            miniGame4Manager.MakeTurn(true, slotPosition);
         }
     }
 
@@ -62,23 +57,26 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
 
     public void Mark(bool isPlayer, bool isSelectMark) {
         if (isSelectMark) {
-            containsPart = true;
-            isLocked = true;
-            spriteRenderer.sprite = markedSelectSprite;
-            return;
-        }
-
-        if (IsCurrentlyInteractable()) {
-            if (containsPart) {
-                isMarked = true;
-                spriteRenderer.sprite = markedShotSprite;
-                miniGame4Manager.MakeTurn(isPlayer);
+            if (isPlayer) {
+                containsPart = true;
+                isLocked = true;
+                spriteRenderer.sprite = markedSelectSprite;
+                return;
             }
             else {
-                isMarked = true;
-                spriteRenderer.sprite = markedSprite;
-                miniGame4Manager.MakeTurn(isPlayer);
+                containsPart = true;
+                isLocked = true;
+                return;
             }
+        }
+
+        if (containsPart) {
+            isMarked = true;
+            spriteRenderer.sprite = markedShotSprite;
+        }
+        else {
+            isMarked = true;
+            spriteRenderer.sprite = markedSprite;
         }
     }
 
@@ -89,7 +87,7 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
 
     public bool IsCurrentlyInteractable()
     {
-        return !isMarked && miniGame4Manager.IsPlayersTurn();
+        return isInteractable && !isMarked && miniGame4Manager.IsPlayersTurn();
     }
 
     public void OnHover()
@@ -125,8 +123,23 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
         }
     }
 
-    public void Lock() {
-        spriteRenderer.sprite = markedLockedSprite;
+    public void Lock(bool showLock) {
+        if (showLock) {
+            spriteRenderer.sprite = markedLockedSprite;
+        }
         isLocked = true;
+    }
+
+    public void Seal() {
+        isInteractable = false;
+    }
+    
+    public void UnSeal() {
+        isInteractable = true;
+    }
+
+    public void MarkDead() {
+        spriteRenderer.sprite = markedDeadSprite;
+        isMarked = true;
     }
 }

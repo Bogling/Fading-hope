@@ -1,11 +1,15 @@
-using System;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
+
 
 public class MiniGame4Manager : MonoBehaviour
 {
     [SerializeField] private MG4AttackBoard attackBoard;
     [SerializeField] private MG4PlayerBoard playerBoard;
+    [SerializeField] private int passCount;
+
+    private int passedCount;
     private bool isPlayersTurn = true;
     private bool isSelecting = false;
     private SlotPosition currentStartPoint;
@@ -34,8 +38,36 @@ public class MiniGame4Manager : MonoBehaviour
         
     }
 
-    public void MakeTurn(bool isPlayer) {
+    public void StartMiniGame() {
 
+    }
+
+    public void EndMiniGame() {
+        
+    }
+
+    public void QuitMiniGame() {
+        
+    }
+
+    public void MakeTurn(bool isPlayer, SlotPosition slot) {
+        
+        if (isPlayer) {
+            attackBoard.GetSlot(slot).Mark(true, false);
+            attackBoard.ManageShipDamage(slot);
+            StartCoroutine(Think());            
+        }
+        else {
+            playerBoard.GetSlot(slot).Mark(false, false);
+            playerBoard.ManageShipDamage(slot);
+        }
+    }
+
+    public IEnumerator Think() {
+        isPlayersTurn = false;
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        playerBoard.Attack();
+        isPlayersTurn = true;
     }
 
     public bool IsSelecting() {
@@ -66,13 +98,13 @@ public class MiniGame4Manager : MonoBehaviour
                 }
                 selectedSlots = new MiniGame4MarkableSlot[0];
 
-                for (int i = (int)MathF.Min(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i <= (int)MathF.Max(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i++) {
+                for (int i = (int)Mathf.Min(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i <= (int)Mathf.Max(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i++) {
                     if (playerBoard.GetSlot(new SlotPosition(i, currentStartPoint.YIndex)).IsMarked() || playerBoard.GetSlot(new SlotPosition(i, currentStartPoint.YIndex)).IsLocked()) {
                         return;
                     }
                 }
 
-                for (int i = (int)MathF.Min(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i <= (int)MathF.Max(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i++) {
+                for (int i = (int)Mathf.Min(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i <= (int)Mathf.Max(currentStartPoint.XIndex, destinationSlotPosition.XIndex); i++) {
                     selectedSlots = selectedSlots.Append(playerBoard.GetSlot(new SlotPosition(i, currentStartPoint.YIndex))).ToArray();
                     playerBoard.GetSlot(new SlotPosition(i, currentStartPoint.YIndex)).Select();
                 }
@@ -83,13 +115,13 @@ public class MiniGame4Manager : MonoBehaviour
                 }
                 selectedSlots = new MiniGame4MarkableSlot[0];
 
-                for (int i = (int)MathF.Min(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i <= (int)MathF.Max(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i++) {
+                for (int i = (int)Mathf.Min(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i <= (int)Mathf.Max(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i++) {
                     if (playerBoard.GetSlot(new SlotPosition(currentStartPoint.XIndex, i)).IsMarked() || playerBoard.GetSlot(new SlotPosition(currentStartPoint.XIndex, i)).IsLocked()) {
                         return;
                     }
                 }
 
-                for (int i = (int)MathF.Min(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i <= (int)MathF.Max(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i++) {
+                for (int i = (int)Mathf.Min(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i <= (int)Mathf.Max(currentStartPoint.YIndex, destinationSlotPosition.YIndex); i++) {
                     selectedSlots = selectedSlots.Append(playerBoard.GetSlot(new SlotPosition(currentStartPoint.XIndex, i))).ToArray();
                     playerBoard.GetSlot(new SlotPosition(currentStartPoint.XIndex, i)).Select();
                 }
@@ -109,6 +141,18 @@ public class MiniGame4Manager : MonoBehaviour
                 }
 
                 selectedSlots = new MiniGame4MarkableSlot[0];
+            }
+
+            if (playerBoard.CheckIfAllShipsPlaced()) {
+                playerBoard.EndPlacingStage();
+                attackBoard.GenerateShips();
+
+                if (passedCount % 2 == 0) {
+                    isPlayersTurn = true;
+                }
+                else {
+                    StartCoroutine(Think());
+                }
             }
         }
     }
