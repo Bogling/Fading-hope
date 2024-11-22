@@ -92,6 +92,25 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
     DisplayNextParagraph(inkJSON);
 }
 
+
+public void EnterDialogue(TextAsset inkJSON, ITalkable obj, string varName, string var) {
+    currentInkJSON = inkJSON;
+    currentStory = new Story(inkJSON.text);
+    currentStory.variablesState[varName] = var;
+    dialogueIsPlaying = true;
+    gameObject.SetActive(true);
+    Cursor.lockState = CursorLockMode.None;
+    Cursor.visible = true;
+
+    currentObject = obj;
+    currentStory.BindExternalFunction("choiceMade", (int qID, int cID) => {
+        obj.OperateChoice(qID, cID);
+    });
+
+    DisplayNextParagraph(inkJSON);
+}
+
+
 private void ExitDialogue() {
     dialogueIsPlaying = false;
     gameObject.SetActive(false);

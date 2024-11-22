@@ -19,8 +19,11 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        miniGame4Manager = MiniGame4Manager.GetInstance();
         spriteRenderer.sprite = emptySprite;
+    }
+
+    void Start() {
+        miniGame4Manager = MiniGame4Manager.GetInstance();
     }
 
     public bool IsMarked() {
@@ -87,7 +90,7 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
 
     public bool IsCurrentlyInteractable()
     {
-        return isInteractable && !isMarked && miniGame4Manager.IsPlayersTurn();
+        return isInteractable && !isMarked && miniGame4Manager.IsPlayersTurn() && !miniGame4Manager.IsHidden();
     }
 
     public void OnHover()

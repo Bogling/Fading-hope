@@ -3,8 +3,18 @@ using UnityEngine;
 using System.Collections;
 
 
-public class MiniGame4Manager : MonoBehaviour
+public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
 {
+
+
+    [Header("Ink Assets")]
+    [SerializeField] private TextAsset[] StartMinigameInkJSON;
+    [SerializeField] private TextAsset[] OnLoseMinigameInkJSON;
+    [SerializeField] private TextAsset[] OnWinMinigameInkJSON;
+    [SerializeField] private TextAsset[] AttackMinigameInkJSON;
+    [SerializeField] private TextAsset[] EndMinigameInkJSON;
+
+    [Header("Minigame Variables")]
     [SerializeField] private MG4AttackBoard attackBoard;
     [SerializeField] private MG4PlayerBoard playerBoard;
     [SerializeField] private int passCount;
@@ -14,60 +24,117 @@ public class MiniGame4Manager : MonoBehaviour
     private bool isSelecting = false;
     private SlotPosition currentStartPoint;
     private MiniGame4MarkableSlot[] selectedSlots;
+    private bool isThinking = false;
+    private DialogueController dialogueController;
+    private Day3DialogueManager talker;
+    private Animator animator;
+
+    private string[] horizontalPositions = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+    private string[] verticalPositions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    private bool isHidden = false;
+    private bool repeatEnemyTurn = false;
 
     private static MiniGame4Manager instance;
 
     void Awake() {
         instance = this;
         selectedSlots = new MiniGame4MarkableSlot[0];
+        animator = GetComponent<Animator>();
+    }
+
+    void Start() {
+        dialogueController = DialogueController.GetInstance();
+        talker = FindFirstObjectByType<Day3DialogueManager>();
     }
 
     public static MiniGame4Manager GetInstance() { 
         return instance; 
     }
     public bool IsPlayersTurn() { return isPlayersTurn; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool IsHidden() { return isHidden; }
 
     public void StartMiniGame() {
-
+        talker.Lock();
+        gameObject.SetActive(true);
+        ResetMiniGame();
+        Talk(StartMinigameInkJSON[Random.Range(0, StartMinigameInkJSON.Length)]);
     }
 
-    public void EndMiniGame() {
-        
+    public void EndMiniGame(bool isPlayerWin) {
+        if (isPlayerWin) {
+            Talk(OnWinMinigameInkJSON[Random.Range(0, OnWinMinigameInkJSON.Length)]);
+        }
+        else{
+            Talk(OnLoseMinigameInkJSON[Random.Range(0, OnLoseMinigameInkJSON.Length)]);
+        }
+
+        passedCount++;
+        if (passedCount < passCount) {
+            StartMiniGame();
+        }
+        else {
+            Talk(EndMinigameInkJSON[Random.Range(0, EndMinigameInkJSON.Length)]);
+        }
     }
 
     public void QuitMiniGame() {
-        
+        talker.Unlock();
+        gameObject.SetActive(false);
+        talker.Interact();
+    }
+
+    public void ResetMiniGame() {
+        playerBoard.Reset();
+        attackBoard.Reset();
+        playerBoard.StartPlacingStage();
     }
 
     public void MakeTurn(bool isPlayer, SlotPosition slot) {
         
         if (isPlayer) {
             attackBoard.GetSlot(slot).Mark(true, false);
-            attackBoard.ManageShipDamage(slot);
-            StartCoroutine(Think());            
+            if (attackBoard.ManageShipDamage(slot)) {
+                if (attackBoard.AreAnyShipLeft()) {
+                    return;
+                }
+                else {
+                    EndMiniGame(true);
+                }
+            }
+            if (attackBoard.AreAnyShipLeft()) {
+                StartCoroutine(Think());           
+            }
+            else {
+                EndMiniGame(true);
+            } 
         }
         else {
+            TypeTurn(AttackMinigameInkJSON[Random.Range(0, AttackMinigameInkJSON.Length)], slot);
             playerBoard.GetSlot(slot).Mark(false, false);
-            playerBoard.ManageShipDamage(slot);
+            if (playerBoard.ManageShipDamage(slot)) {
+                if (playerBoard.AreAnyShipLeft()) {
+                    repeatEnemyTurn = true;
+                }
+                else {
+                    EndMiniGame(false);
+                }
+            }
+            if (!playerBoard.AreAnyShipLeft()) {
+                EndMiniGame(false);
+            }
         }
     }
 
     public IEnumerator Think() {
+        if (isThinking) {
+            yield break;
+        }
+        isThinking = true;
         isPlayersTurn = false;
         yield return new WaitForSeconds(Random.Range(1, 3));
         playerBoard.Attack();
         isPlayersTurn = true;
+        isThinking = false;
     }
 
     public bool IsSelecting() {
@@ -167,5 +234,78 @@ public class MiniGame4Manager : MonoBehaviour
         else {
             return -1;
         }
+    }
+
+    public void Focus()
+    {
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
+    }
+
+    public void Talk(TextAsset inkJSON)
+    {
+        dialogueController.EnterDialogue(inkJSON, this);
+    }
+
+    private void TypeTurn(TextAsset inkJSON, SlotPosition slotPosition) {
+        string text = horizontalPositions[^(slotPosition.YIndex + 1)] + verticalPositions[^(slotPosition.XIndex + 1)];
+        dialogueController.EnterDialogue(inkJSON, this, "markPoint", text);
+    }
+
+    public void OperateChoice(int qID, int cID)
+    {
+        switch (qID) {
+            case 0:
+                switch (cID) {
+                    case 0:
+                        Debug.Log("Answer is yes");
+                        StartMiniGame();
+                        break;
+                    case 1:
+                        Debug.Log("Answer is no");
+                        QuitMiniGame();
+                        break;
+                }
+                break;
+        }
+    }
+
+    public void UponExit()
+    {
+        if (repeatEnemyTurn) {
+            StartCoroutine(Think());
+            repeatEnemyTurn = false;
+        }
+    }
+
+    public bool IsCurrentlyInteractable()
+    {
+        return true;
+    }
+
+    public void Interact()
+    {
+        if (isHidden) {
+            animator.SetTrigger("Show");
+            isHidden = false;
+        }
+        else {
+            animator.SetTrigger("Hide");
+            isHidden = true;
+        }
+    }
+
+    public void OnHover()
+    {
+        return;
+    }
+
+    public void OnHoverStop()
+    {
+        return;
+    }
+
+    public void InteractionCanceled()
+    {
+        return;
     }
 }

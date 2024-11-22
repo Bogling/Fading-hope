@@ -36,6 +36,9 @@ public class MG4AttackBoard : MonoBehaviour
         threeSlotShips = new List<ThreeSlotShip>();
     }
 
+    public bool AreAnyShipLeft() {
+        return oneSlotShips.Count > 0 || twoSlotShips.Count > 0 || threeSlotShips.Count > 0 || fourSlotShip != null;
+    }
 
 
     public bool IsInPlacingStage() {
@@ -324,39 +327,42 @@ public class MG4AttackBoard : MonoBehaviour
         LockArea(slots);
     }
 
-    public void ManageShipDamage(SlotPosition slotPosition) {
+    public bool ManageShipDamage(SlotPosition slotPosition) {
         foreach(OneSlotShip ship in oneSlotShips) {
             if (ship.ContainsPoint(slotPosition)) {
                 if (!GetSlot(ship.GetPosition()).IsMarked()) {
-                        return;
+                        return true;
                     }
 
                 MarkArea(new SlotPosition[] { ship.GetPosition() });
-                return;
+                oneSlotShips.Remove(ship);
+                return true;
             }
         }
 
-        if (fourSlotShip.ContainsPoint(slotPosition)) {
+        if (fourSlotShip != null && fourSlotShip.ContainsPoint(slotPosition)) {
             foreach (SlotPosition slotpos in fourSlotShip.GetArray()) {
                 if (!GetSlot(slotpos).IsMarked()) {
-                    return;
+                    return true;
                 }
             }
 
             MarkArea(fourSlotShip.GetArray());
-            return;
+            fourSlotShip = null;
+            return true;
         }
 
         foreach(ThreeSlotShip ship in threeSlotShips) {
             if (ship.ContainsPoint(slotPosition)) {
                 foreach (SlotPosition slotpos in ship.GetArray()) {
                     if (!GetSlot(slotpos).IsMarked()) {
-                        return;
+                        return true;
                     }
                 }
 
                 MarkArea(ship.GetArray());
-                return;
+                threeSlotShips.Remove(ship);
+                return true;
             }
         }
 
@@ -364,14 +370,18 @@ public class MG4AttackBoard : MonoBehaviour
             if (ship.ContainsPoint(slotPosition)) {
                 foreach (SlotPosition slotpos in ship.GetArray()) {
                     if (!GetSlot(slotpos).IsMarked()) {
-                        return;
+                        return true;
                     }
                 }
 
                 MarkArea(ship.GetArray());
-                return;
+                twoSlotShips.Remove(ship);
+                return true;
             }
         }
+
+
+        return false;
     }
     
     private void MarkArea(SlotPosition[] slotPositions) {

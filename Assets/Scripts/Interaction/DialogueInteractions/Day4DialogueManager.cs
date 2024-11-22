@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
+public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
 {
     [SerializeField] private TextAsset[] inkJSON;
     [SerializeField] private DialogueController dialogueController;

@@ -26,6 +26,7 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
     private static MiniGame3Manager instance;
     [SerializeField] private Day3DialogueManager talker;
     private bool gameEnded = false;
+    private bool isThinking = false;
 
     void Awake() {
 
@@ -158,6 +159,10 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
         }
     }
     private IEnumerator Think() {
+        if (isThinking) {
+            yield break;
+        }
+        isThinking = true;
         isPlayersTurn = false;
         yield return new WaitForSeconds(1f);
         if (lastMoveXIndex == -1 && lastMoveYIndex == -1) {
@@ -203,6 +208,7 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
         }
 
         isPlayersTurn = true;
+        isThinking = false;
     }
 
     public void Focus()

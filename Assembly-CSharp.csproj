@@ -66,12 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CeilingLamp.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day4DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\Lamp.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG3\MiniGame3Manager.cs" />
     <Compile Include="Assets\Scripts\UI\MMContinueButton.cs" />
     <Compile Include="Assets\Scripts\Player\Reality\PlayerInputController.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG4\MG4AttackBoard.cs" />
     <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MG5\MG5Card.cs" />
     <Compile Include="Assets\Scripts\Interaction\sign.cs" />
     <Compile Include="Assets\Scripts\Dithering\Dithering.cs" />
     <Compile Include="Assets\Scripts\RandomSoundManager.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Scripts\UI\LPBar.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MG5\MiniGame5Manager.cs" />
     <Compile Include="Assets\Scripts\Fog\FogRenderFeature.cs" />
     <Compile Include="Assets\Scripts\UI\Fader.cs" />
     <Compile Include="Assets\Scripts\Player\Reality\PlayerController.cs" />
@@ -152,6 +155,7 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Textures\Sprites\Temporary\README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />

@@ -120,6 +120,15 @@ public class MG4PlayerBoard : MonoBehaviour
         }   
     }
 
+    public void StartPlacingStage() {
+        isInPlacingStage = true;
+
+        foreach (var slots in markableSlots) {
+            foreach (var markableSlot in slots) {
+                markableSlot.UnSeal();
+            }
+        }
+    }
     public void EndPlacingStage() {
         isInPlacingStage = false;
         
@@ -145,6 +154,9 @@ public class MG4PlayerBoard : MonoBehaviour
         fourSlotShip = null;
     }
 
+    public bool AreAnyShipLeft() {
+        return oneSlotShips.Count > 0 || twoSlotShips.Count > 0 || threeSlotShips.Count > 0 || fourSlotShip != null;
+    }
     public void Attack() {
         if (lastShotPosition == null) {
             while (true) {
@@ -156,10 +168,15 @@ public class MG4PlayerBoard : MonoBehaviour
                 MiniGame4Manager.GetInstance().MakeTurn(false, slot);
                 break;
             }
+
+
         }
         else {
             int dir = 0;
             while (true) {
+                if (checkedDirections[0] && checkedDirections[1] && checkedDirections[2] && checkedDirections[3]) {
+                    break;
+                }
                 dir = Random.Range(0, 4);
                 if (checkedDirections[dir] == false) {
                     break;
@@ -188,29 +205,38 @@ public class MG4PlayerBoard : MonoBehaviour
                     MiniGame4Manager.GetInstance().MakeTurn(false, new SlotPosition(slot.XIndex, slot.YIndex - 1));
                     break;
             }
+
+            if (lastShotPosition != null && currentShotPosition == null) {
+                CheckDirections(lastShotPosition.GetSlotPosition());
+            }
+            else if (lastShotPosition != null && currentShotPosition != null) {
+                ConfirmDirection();
+            }
         }
     }
 
-    public void ManageShipDamage(SlotPosition slotPosition) {
+    public bool ManageShipDamage(SlotPosition slotPosition) {
         foreach(OneSlotShip ship in oneSlotShips) {
             if (ship.ContainsPoint(slotPosition)) {
                 if (!GetSlot(ship.GetPosition()).IsMarked()) {
-                        return;
+                        return true;
                     }
 
                 MarkArea(new SlotPosition[] { ship.GetPosition() });
                 checkedDirections = new bool[] {false, false, false, false};
                 lastShotPosition = null;
                 currentShotPosition = null;
-                return;
+                oneSlotShips.Remove(ship);
+                return true;
             }
         }
 
-        if (fourSlotShip.ContainsPoint(slotPosition)) {
+        if (fourSlotShip != null && fourSlotShip.ContainsPoint(slotPosition)) {
 
             if (lastShotPosition != null) {
-                SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), slotPosition));
                 currentShotPosition = GetSlot(slotPosition);
+                CheckDirections(currentShotPosition.GetSlotPosition());
+                SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), slotPosition));
             }
             else {
                 lastShotPosition = GetSlot(slotPosition);
@@ -219,7 +245,7 @@ public class MG4PlayerBoard : MonoBehaviour
             
             foreach (SlotPosition slotpos in fourSlotShip.GetArray()) {
                 if (!GetSlot(slotpos).IsMarked()) {
-                    return;
+                    return true;
                 }
             }
 
@@ -227,14 +253,16 @@ public class MG4PlayerBoard : MonoBehaviour
             checkedDirections = new bool[] {false, false, false, false};
             lastShotPosition = null;
             currentShotPosition = null;
-            return;
+            fourSlotShip = null;
+            return true;
         }
 
         foreach(ThreeSlotShip ship in threeSlotShips) {
             if (ship.ContainsPoint(slotPosition)) {
                 if (lastShotPosition != null) {
-                    SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), slotPosition));
                     currentShotPosition = GetSlot(slotPosition);
+                    CheckDirections(currentShotPosition.GetSlotPosition());
+                    SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), slotPosition));
                 }
                 else {
                     lastShotPosition = GetSlot(slotPosition);
@@ -243,7 +271,7 @@ public class MG4PlayerBoard : MonoBehaviour
             
                 foreach (SlotPosition slotpos in ship.GetArray()) {
                     if (!GetSlot(slotpos).IsMarked()) {
-                        return;
+                        return true;
                     }
                 }
 
@@ -251,15 +279,17 @@ public class MG4PlayerBoard : MonoBehaviour
                 checkedDirections = new bool[] {false, false, false, false};
                 lastShotPosition = null;
                 currentShotPosition = null;
-                return;
+                threeSlotShips.Remove(ship);
+                return true;
             }
         }
 
         foreach(TwoSlotShip ship in twoSlotShips) {
             if (ship.ContainsPoint(slotPosition)) {
                 if (lastShotPosition != null) {
+                    currentShotPosition = GetSlot(slotPosition);
+                    CheckDirections(currentShotPosition.GetSlotPosition());
                     SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), slotPosition));
-                    lastShotPosition = GetSlot(slotPosition);
                 }
                 else {
                     lastShotPosition = GetSlot(slotPosition);
@@ -268,7 +298,7 @@ public class MG4PlayerBoard : MonoBehaviour
 
                 foreach (SlotPosition slotpos in ship.GetArray()) {
                     if (!GetSlot(slotpos).IsMarked()) {
-                        return;
+                        return true;
                     }
                 }
 
@@ -276,48 +306,68 @@ public class MG4PlayerBoard : MonoBehaviour
                 checkedDirections = new bool[] {false, false, false, false};
                 lastShotPosition = null;
                 currentShotPosition = null;
-                return;
+                twoSlotShips.Remove(ship);
+                return true;
             }
         }
 
         if (currentShotPosition != null) {
+            CheckDirections(lastShotPosition.GetSlotPosition());
             SetManualDirection(GetDirection(currentShotPosition.GetSlotPosition(), lastShotPosition.GetSlotPosition()));
             currentShotPosition = null;
         }
+        if (lastShotPosition == null) {
+            checkedDirections = new bool[] {false, false, false, false};
+        }
+
+        return false;
     }
 
     private void CheckDirections(SlotPosition slotPosition) {
         if (slotPosition.XIndex + 1 >= 10 || GetSlot(new SlotPosition(slotPosition.XIndex + 1, slotPosition.YIndex)).IsMarked()) {
             checkedDirections[0] = true;
         }
+        else {
+            checkedDirections[0] = false;
+        }
         if (slotPosition.YIndex + 1 >= 10 || GetSlot(new SlotPosition(slotPosition.XIndex, slotPosition.YIndex + 1)).IsMarked()) {
             checkedDirections[1] = true;
+        }
+        else {
+            checkedDirections[1] = false;
         }
         if (slotPosition.XIndex - 1 < 0 || GetSlot(new SlotPosition(slotPosition.XIndex - 1, slotPosition.YIndex)).IsMarked()) {
             checkedDirections[2] = true;
         }
+        else {
+            checkedDirections[2] = false;
+        }
         if (slotPosition.YIndex - 1 < 0 || GetSlot(new SlotPosition(slotPosition.XIndex, slotPosition.YIndex - 1)).IsMarked()) {
             checkedDirections[3] = true;
+        }
+        else {
+            checkedDirections[3] = false;
         }
     }   
 
     private int GetDirection(SlotPosition a, SlotPosition b) {
-        if (a.XIndex + 1 == b.XIndex) {
+        if (a.YIndex == b.YIndex && b.XIndex > a.XIndex) {
             return 0;
         }
-        else if (a.YIndex + 1 == b.YIndex) {
+        else if (a.XIndex == b.XIndex && b.YIndex > a.YIndex) {
             return 1;
         }
-        else if (a.XIndex - 1 == b.XIndex) {
+        else if (a.YIndex == b.YIndex && b.XIndex < a.XIndex) {
             return 2;
         }
-        else if (a.YIndex - 1 == b.YIndex) {
+        else if (a.XIndex == b.XIndex && b.YIndex < a.YIndex) {
             return 3;
         }
         else {
             return -1;
         }
     }
+
 
     private void SetManualDirection(int dir) {
         switch (dir) {
@@ -333,6 +383,17 @@ public class MG4PlayerBoard : MonoBehaviour
             case 3:
                 checkedDirections = new bool[] {true, true, true, false};
                 break;
+        }
+    }
+
+    private void ConfirmDirection() {
+        CheckDirections(currentShotPosition.GetSlotPosition());
+        if (checkedDirections[GetDirection(lastShotPosition.GetSlotPosition(), currentShotPosition.GetSlotPosition())] == true) {
+            SetManualDirection(GetDirection(currentShotPosition.GetSlotPosition(), lastShotPosition.GetSlotPosition()));
+            currentShotPosition = null;
+        }
+        else {
+            SetManualDirection(GetDirection(lastShotPosition.GetSlotPosition(), currentShotPosition.GetSlotPosition()));
         }
     }
     private void MarkArea(SlotPosition[] slotPositions) {
