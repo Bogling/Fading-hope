@@ -119,9 +119,10 @@
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerRay.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MG6\MiniGame6Manager.cs" />
     <Compile Include="Assets\Scripts\UI\LPBar.cs" />
-    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG5\MiniGame5Manager.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Fog\FogRenderFeature.cs" />
     <Compile Include="Assets\Scripts\UI\Fader.cs" />
     <Compile Include="Assets\Scripts\Player\Reality\PlayerController.cs" />
@@ -147,9 +148,11 @@
     <Compile Include="Assets\Scripts\ChangeAmbientTrigger.cs" />
     <Compile Include="Assets\Scripts\Fog\Fog.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DreamDialogueController.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MG6\MG6Card.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Dithering\DitheringController.cs" />
     <Compile Include="Assets\Scripts\Interaction\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MG6\MG6Deck.cs" />
     <Compile Include="Assets\Scripts\FallingBlock.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -129,7 +129,7 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
             //transform.position = position.position;
                 ChangeSprite(1);
                 //fader.FadeIn(Color.black, 1f);
-                MiniGame3Manager.GetInstance().StartMiniGame();
+                MiniGame5Manager.GetInstance().StartMiniGame();
             }
             else {
                 fader.FadeIn(Color.black, 1f);

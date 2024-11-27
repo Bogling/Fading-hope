@@ -1,0 +1,1 @@
+Now you are guessing #color:d4821e #image:isitdefault
