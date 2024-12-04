@@ -23,6 +23,10 @@ public class PlayerRay : MonoBehaviour
         }
         var obj = raycastHit.collider.gameObject.GetComponent<Interactable>();
         if (obj != null) {
+            if (objectOnRay != null) {
+                objectOnRay.OnHoverStop();
+            }
+
             objectOnRay = obj;
             if (!obj.IsCurrentlyInteractable()) {
                 return;
