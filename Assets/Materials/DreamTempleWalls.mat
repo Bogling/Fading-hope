@@ -73,6 +73,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 1b01bc07e5d5c8546893b5aecde7bcc5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -107,7 +111,7 @@ Material:
     - Boolean_8BBF99CD: 1
     - Boolean_D258FF8E: 0
     - Vector1_21C41D02: 256
-    - Vector1_6F288C5B: 1
+    - Vector1_6F288C5B: 0
     - Vector1_B2CC132F: 16.57
     - Vector1_B9994903: 11
     - Vector1_E8746023: 5
@@ -129,6 +133,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NormalOffset: 1
+    - _NormalStrength: 16
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0

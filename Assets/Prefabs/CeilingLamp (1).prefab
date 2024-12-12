@@ -60,6 +60,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -120,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   delay: 0.2
+  player: {fileID: 0}
 --- !u!1001 &6405232754607791701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,9 +172,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1990968323811559735, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Name
       value: CeilingLamp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Range
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Color.b
+      value: 0.042052336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Color.g
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Color.r
+      value: 0.19177571
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -213,7 +245,7 @@ MonoBehaviour:
   fearArea: {fileID: 4471224392146434972}
 --- !u!95 &5011584045200645395
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -227,6 +259,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

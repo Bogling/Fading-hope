@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9194509242015492025, guid: 2a73186ceb2b64f44922400ad07892cb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -79,9 +83,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a73186ceb2b64f44922400ad07892cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6719804307550389280}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a73186ceb2b64f44922400ad07892cb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2119029751206146861}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a73186ceb2b64f44922400ad07892cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3811073574571698881}
@@ -99,7 +100,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &6719804307550389280
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,35 +114,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2119029751206146861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7577286100063079539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c9f62991a3f44438e636d52473a3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartSpeed: 2
-  TravelSpeed: 0.006
-  EndSpeed: 2
-  Delay: 5
-  isLooping: 0
-  deactivateOnArrival: 1
-  MoveTimesBeforeDeactivation: 0
-  StartPosition: {fileID: 0}
-  EndPosition: {fileID: 0}
-  Range: 0.08
-  animator: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &3811073574571698881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +151,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577286100063079539}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fa41a068710ff6b4eb67e374f6c98185, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

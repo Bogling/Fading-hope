@@ -12,6 +12,8 @@ public class StandingTorch : MonoBehaviour, IDamageable
         if (darkArea != null) {
             darkArea.Deactivate();
         }
+
+        if (GetComponent<Lever>() != null) GetComponent<Lever>().Interact();
     }
 
 }

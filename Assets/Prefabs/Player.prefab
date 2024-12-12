@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1103324664128705592}
   - component: {fileID: 591054903715391729}
   - component: {fileID: 6581130126767780349}
+  - component: {fileID: 9130889860561677249}
+  - component: {fileID: 5447532358185122423}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -80,6 +82,10 @@ MonoBehaviour:
   playerRay: {fileID: 0}
   speed: 3
   groundDrag: 5
+  isJumpLocked: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  airMultiplier: 0
   orientation: {fileID: 603344363535468783}
   playerHeight: 2
   Ground:
@@ -97,6 +103,121 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75458654e549fe40bf6555dabcc61e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &9130889860561677249
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915905593811061332}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d5c00635f83269b4b9a1e6338842749e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5447532358185122423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915905593811061332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb1d2345584cac4caa11eea079dc701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSoundsNames:
+  - DreamTempleWalls (Instance)
+  stepSoundsList:
+  - {fileID: 8300000, guid: 736be896480ec6f40a6867a86097ee39, type: 3}
+  audioSource: {fileID: 9130889860561677249}
+  checkDelay: 0.1
 --- !u!1 &7276098599011411891
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +308,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -219,7 +343,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7398569583140174799}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1143cfd9dcb30c54b85a7d9f4ee17e72, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

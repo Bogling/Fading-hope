@@ -81,7 +81,7 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9194509242015492025, guid: f9c5303e76c969f4d96338e5f8ecc1f5, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
     m_RemovedComponents: []
@@ -108,7 +108,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4206241229878658863
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,6 +122,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -162,7 +163,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976398482566412159}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fa41a068710ff6b4eb67e374f6c98185, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

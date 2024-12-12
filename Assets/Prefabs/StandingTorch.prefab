@@ -41,9 +41,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894093989091610823}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.004070691, g: 0.2160809, b: 0.0030608634, a: 1}
   m_Intensity: 5.5999994
   m_Range: 10
@@ -93,8 +92,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &101444584931145039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6617231606341547660}
   - component: {fileID: 2866613898372819932}
+  - component: {fileID: 4787229451051811834}
+  - component: {fileID: 8686564419330301037}
   m_Layer: 0
   m_Name: StandingTorch
   m_TagString: Untagged
@@ -165,6 +170,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightPoint: {fileID: 1894093989091610823}
+  darkArea: {fileID: 0}
+--- !u!114 &4787229451051811834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809346352782109750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d904be112fd9af4db3a44f445769e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActivated: 0
+  isTouchable: 0
+  sendsSignal: 1
+  signalDestination: {fileID: 0}
+--- !u!65 &8686564419330301037
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809346352782109750}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16433463, y: 1.6852801, z: 0.16295138}
+  m_Center: {x: 0, y: 0.7666789, z: 0}
 --- !u!1 &7991272441061039975
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +266,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

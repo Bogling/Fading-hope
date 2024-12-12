@@ -15,7 +15,9 @@ public class Lever : MonoBehaviour, Interactable
     public void Interact()
     {
         if (!isActivated) {
-            animator.SetTrigger("Pull");
+            if (animator != null) {
+                animator.SetTrigger("Pull");
+            }
             isActivated = true;
 
             if (sendsSignal && signalDestination.GetComponent<Interactable>() != null) {
@@ -46,5 +48,13 @@ public class Lever : MonoBehaviour, Interactable
     public void Reset() {
         animator.SetTrigger("Reset");
         isActivated = false;
+    }
+
+    public void Lock() {
+        isTouchable = false;
+    }
+    
+    public void Unlock() {
+        isTouchable = true;
     }
 }

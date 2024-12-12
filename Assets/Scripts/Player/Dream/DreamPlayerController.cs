@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DreamPlayerController : MonoBehaviour
 {
     [SerializeField] private DreamPlayerRay playerRay;
     private Rigidbody rb;
+    private AudioSource audioSource;
+    private StepSoundManager stepSoundManager;
     [Header("Movement")]
     [SerializeField] private float speed = 11f;
     [SerializeField] private float groundDrag = 11f;
@@ -25,6 +28,8 @@ public class DreamPlayerController : MonoBehaviour
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        audioSource = GetComponent<AudioSource>();
+        stepSoundManager = GetComponent<StepSoundManager>();
         gameManager = FindFirstObjectByType<GameManager>();
     }
 
@@ -78,9 +83,24 @@ public class DreamPlayerController : MonoBehaviour
 
         if (grounded) {
             rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
+            //rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.fixedDeltaTime);
+            //rb.linearVelocity = new Vector3(moveDirection.normalized.x * speed * airMultiplier, rb.linearVelocity.y, moveDirection.normalized.z * speed * airMultiplier);
+            if (moveDirection != Vector3.zero) {
+                stepSoundManager.CheckGround();
+                if (!audioSource.isPlaying) {
+                    audioSource.Play();
+                }
+            }
+            else {
+                audioSource.Stop();
+            }
         }
         else {
             rb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
+            //rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.fixedDeltaTime * airMultiplier);
+            //rb.linearVelocity = new Vector3(moveDirection.normalized.x * speed * airMultiplier, rb.linearVelocity.y, moveDirection.normalized.z * speed * airMultiplier);
+            //rb.p
+            audioSource.Stop();
         }
     }
 

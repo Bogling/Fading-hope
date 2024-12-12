@@ -41,12 +41,11 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6017047601699330875}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.20346205, g: 1, b: 0.1641509, a: 1}
   m_Intensity: 0.01
-  m_Range: 10
+  m_Range: 0.7093963
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -93,8 +92,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &3675989281862651959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +174,7 @@ PrefabInstance:
       value: LightReciever
       objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: 9f3b8ea22edce8346811406c887dbf39, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
     m_RemovedComponents: []
@@ -255,7 +258,7 @@ BoxCollider:
   m_Center: {x: 0.002090454, y: 0.60717773, z: 0.030273438}
 --- !u!95 &1460851415235985400
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -269,6 +272,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
