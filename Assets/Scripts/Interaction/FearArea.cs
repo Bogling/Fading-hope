@@ -10,6 +10,7 @@ public class FearArea : MonoBehaviour
     [SerializeField] private float delay = 1;
 
     [SerializeField] private GameObject player;
+    [SerializeField] private bool isFake = false;
     private bool isPlayerInRange = false;
     private bool isStopped = true;
     private bool isDeactivated = false;
@@ -21,10 +22,10 @@ public class FearArea : MonoBehaviour
     }
     
     private void OnTriggerEnter(Collider other) {
+        isPlayerInRange = true;
         if (isDeactivated) {
             return;
         }
-        isPlayerInRange = true;
         isStopped = false;
         StartCoroutine(DealDamage());
     }
@@ -57,8 +58,8 @@ public class FearArea : MonoBehaviour
                 break;
             }
             gameManager.StopHPRegen();
-            bool temp = gameManager.DealDamage(damage);
-            if (temp) {
+            int temp = gameManager.DealDamage(damage);
+            if (temp == 1 || (temp == 0 && isFake)) {
                 StopDamage();
                 break;
             }

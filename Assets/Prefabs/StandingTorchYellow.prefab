@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -2506254037063441368, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_AdditionalLightsShadowResolutionTier
       value: 0
@@ -56,25 +60,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandingTorchYellow
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050422055867433376, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Range
       value: 3.0596888
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Color.b
-      value: 0.0069419676
+      value: 0.4669811
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Color.g
-      value: 0.03773582
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Color.r
-      value: 0.037483413
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Intensity
-      value: 16
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_RenderMode

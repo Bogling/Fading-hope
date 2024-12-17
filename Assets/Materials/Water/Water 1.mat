@@ -97,9 +97,9 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FlowSpeed: 0.05
+    - _FlowSpeed: 0.02
     - _FoamDensity: 20
-    - _FoamSpeed: 0.1
+    - _FoamSpeed: 0.5
     - _FoamThickness: 7
     - _GlossMapScale: 0
     - _Glossiness: 0

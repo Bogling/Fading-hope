@@ -8,6 +8,7 @@ public class BigGreenCrystal : MonoBehaviour, IDamageable
     [SerializeField] private Door[] doorsToLock;
     [SerializeField] private LightReceiver[] receiversToLock;
     [SerializeField] private Fader fader;
+    [SerializeField] private Color fadeColor;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject[] pointLights;
     [SerializeField] private GameObject DMesh;
@@ -66,12 +67,31 @@ public class BigGreenCrystal : MonoBehaviour, IDamageable
         }
     }
 
-    //public IEnumerator Teleport() {
-    //
-    //}
+    public IEnumerator Teleport() {
+        fader.FadeOut(fadeColor, 1f);
+        yield return new WaitForSeconds(2f);
+        player.transform.position = teleportPoint.transform.position;
+        fader.FadeIn(fadeColor, 2f);
+        yield return new WaitForSeconds(2f);
+    }
 
     public void DealDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        foreach (bool state in GetCrystalStates()) {
+            if (!state) {
+                return;
+            }
+        }
+
+        if (!isActivated) {
+            Activate();
+        }
+    }
+
+    public void Activate() {
+        isActivated = true;
+        AMesh.SetActive(true);
+        DMesh.SetActive(false);
+        StartCoroutine(Teleport());
     }
 }

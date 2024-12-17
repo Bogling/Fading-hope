@@ -17,16 +17,23 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform StartPosition;
     [SerializeField] private Transform EndPosition;
     [SerializeField] private float Range;
+    [SerializeField] private float MaxVelocity;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject player;
 
     private Rigidbody rb;
     private bool isPlayerAttached = false;
+    private bool isMoving = false;
+    private bool isMovingBack = false;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
     }
     public IEnumerator Move() {
+        if (isMoving) {
+            yield break;
+        }
+        isMoving = true;
         //Waiting Initial Delay
         yield return new WaitForSeconds(Delay);
         int timesLeft = MoveTimesBeforeDeactivation;
@@ -39,7 +46,9 @@ public class MovingPlatform : MonoBehaviour
                 while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
                     Debug.Log(Vector3.Distance(transform.position, EndPosition.position));
                     counter = TravelSpeed * Time.timeScale;
-                    rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
+                    if (rb.linearVelocity.magnitude <= MaxVelocity) {
+                        rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
+                    }
                     yield return 0;
                 }
                 counter = 0;
@@ -57,6 +66,7 @@ public class MovingPlatform : MonoBehaviour
                 var temp = StartPosition;
                 StartPosition = EndPosition;
                 EndPosition = temp;
+                isMovingBack = !isMovingBack;
             }
         }
         else {
@@ -66,7 +76,9 @@ public class MovingPlatform : MonoBehaviour
                 //Transfer loop
                 while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
                     counter = TravelSpeed * Time.timeScale;
-                    rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
+                    if (rb.linearVelocity.magnitude <= MaxVelocity) {
+                        rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
+                    }
                     yield return 0;
                 }
                 counter = 0;
@@ -85,12 +97,14 @@ public class MovingPlatform : MonoBehaviour
                 var temp = StartPosition;
                 StartPosition = EndPosition;
                 EndPosition = temp;
+                isMovingBack = !isMovingBack;
             }
             if (deactivateOnArrival) {
                 Deactivate();
             }
             rb.AddForce(Vector3.zero, ForceMode.Acceleration);
             rb.linearVelocity = Vector3.zero;
+            isMoving = false;
             //transform.position = EndPosition.position;
         }
     }
@@ -118,5 +132,9 @@ public class MovingPlatform : MonoBehaviour
         if (isPlayerAttached) {
             player.transform.parent = null;
         }
+    }
+
+    public bool IsMovingBack() {
+        return isMovingBack;
     }
 }

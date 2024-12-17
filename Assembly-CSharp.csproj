@@ -77,11 +77,13 @@
     <Compile Include="Assets\Scripts\Interaction\sign.cs" />
     <Compile Include="Assets\Scripts\Dithering\Dithering.cs" />
     <Compile Include="Assets\Scripts\RandomSoundManager.cs" />
+    <Compile Include="Assets\Scripts\Interaction\SignalRelay.cs" />
     <Compile Include="Assets\Scripts\Triggers\AscendTrigger.cs" />
     <Compile Include="Assets\Scripts\Player\Reality\PlayerRay.cs" />
     <Compile Include="Assets\Scripts\Interaction\TempleDoor.cs" />
     <Compile Include="Assets\Scripts\Pixelation\PixelationRenderFeature.cs" />
     <Compile Include="Assets\Scripts\Interaction\testInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DoorBigManager.cs" />
     <Compile Include="Assets\Scripts\Triggers\PlatformTrigger.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\Triggers\FallingBlock.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Assets\Scripts\UI\HPBar.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\StepSoundManager.cs" />
     <Compile Include="Assets\Ink\Demos\Basic Demo\Scripts\BasicInkExample.cs" />
+    <Compile Include="Assets\Scripts\AI\WaterFightManager.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Triggers\DialogueTrigger.cs" />

@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FearAI : MonoBehaviour
+public class FearAI : MonoBehaviour, IDamageable
 {
     [SerializeField] private Animator animator;
     [SerializeField] private NavMeshAgent agent;
@@ -24,9 +25,12 @@ public class FearAI : MonoBehaviour
     [SerializeField] private AudioSource ambient;
     [SerializeField] private AudioClip chaseClip;
     [SerializeField] private AudioClip labClip;
+    [SerializeField] private GameObject signalDestination;
+    
     private GameManager gameManager;
 
     private bool isWaiting = false;
+    private bool isDead = false;
 
     private void Awake() {
         player = GameObject.Find("PlayerObject").transform;
@@ -40,7 +44,7 @@ public class FearAI : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange) {
             animator.SetBool("IsChasing", false);
-            Patroling();
+            StartCoroutine(Patroling());
             if (ambient.clip == chaseClip) {
                 ambient.clip = labClip;
             }
@@ -63,11 +67,11 @@ public class FearAI : MonoBehaviour
         }
     }
 
-    private async void Patroling() {
+    private IEnumerator Patroling() {
         if (!walkPointSet && !isWaiting) { 
             animator.SetBool("IsPatroling", false);
             isWaiting = true;
-            await Task.Delay(5000);
+            yield return new WaitForSeconds(5);
             isWaiting = false;
             SearchWalkPoint();
         }
@@ -106,5 +110,26 @@ public class FearAI : MonoBehaviour
 
     private void AttackPlayer() {
         gameManager.Respawn(Color.black, 1f, true, true);
+    }
+
+    public void DealDamage(float damage)
+    {
+        Die();
+    }
+
+    public void Die() {
+        isDead = true;
+        animator.SetTrigger("Die");
+        if (signalDestination != null) {
+            signalDestination.GetComponent<Interactable>().Interact();
+        }
+    }
+
+    public bool IsDead() {
+        return isDead;
+    }
+
+    public void SetDestination(GameObject dest) {
+        signalDestination = dest;
     }
 }

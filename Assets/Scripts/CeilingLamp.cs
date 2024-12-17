@@ -14,7 +14,8 @@ public class CeilingLamp : MonoBehaviour, Interactable
     [SerializeField] private FearArea fearArea;
 
     public IEnumerator LightUp() {
-        while (LightTimes != 0) {
+        int temp = LightTimes;
+        while (temp != 0) {
             yield return new WaitForSeconds(TimeToLight);
             Activate();
             yield return new WaitForSeconds(TimeToFade);
@@ -24,7 +25,7 @@ public class CeilingLamp : MonoBehaviour, Interactable
             if (nextLamp != null) {
                 StartCoroutine(nextLamp.LightUp());
             }
-            LightTimes--;
+            temp--;
             yield return new WaitForSeconds(LoopDelay);
         }
     }

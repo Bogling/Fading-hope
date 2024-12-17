@@ -137,24 +137,24 @@ public class GameManager : MonoBehaviour
         return lp == maxLP;
     }
 
-    public bool DealDamage(float damage) {
+    public int DealDamage(float damage) {
         if (hp - damage > 0) {
             Debug.Log(hp);
             hp -= damage;
             Debug.Log(hp);
             hpBar.UpdateHP();
-            return false;
+            return -1;
         }
         else if (hp != 1) {
             hp = 1;
             hpBar.UpdateHP();
-            return false;
+            return 0;
         }
         else {
             hp = 0;
             hpBar.UpdateHP();
             Respawn(Color.black, 1, true, true);
-            return true;
+            return 1;
         }
     }
 
