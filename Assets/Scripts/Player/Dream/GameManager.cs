@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float lpRegenDelay;
 
     private bool canRegenHP;
+    private int isHPRegenBlocked;
     private bool canRegenLP;
     private HPBar hpBar;
     private LPBar lpBar;
@@ -138,16 +139,24 @@ public class GameManager : MonoBehaviour
     }
 
     public int DealDamage(float damage) {
+        StopHPRegen();
+        StopCoroutine("StartHPDelay");
         if (hp - damage > 0) {
             Debug.Log(hp);
             hp -= damage;
             Debug.Log(hp);
             hpBar.UpdateHP();
+            if (isHPRegenBlocked == 0) {
+                StartCoroutine("StartHPDelay");
+            }
             return -1;
         }
         else if (hp != 1) {
             hp = 1;
             hpBar.UpdateHP();
+            if (isHPRegenBlocked == 0) {
+                StartCoroutine("StartHPDelay");
+            }
             return 0;
         }
         else {
@@ -156,6 +165,25 @@ public class GameManager : MonoBehaviour
             Respawn(Color.black, 1, true, true);
             return 1;
         }
+    }
+
+    public void BlockHPRegen() {
+        isHPRegenBlocked++;
+        StopCoroutine("StartHPDelay");
+    }
+
+    public void UnblockHPRegen() {
+        isHPRegenBlocked--;
+        if (isHPRegenBlocked == 0 && hp < maxHP) {
+            StartCoroutine("StartHPDelay");
+        }
+
+    }
+
+    public IEnumerator StartHPDelay() {
+        yield return new WaitForSeconds(hpRegenWaitTime);
+        if (isHPRegenBlocked > 0) {yield break;}
+        StartHPRegen();
     }
 
     /*public async void RegenerateHP() {
@@ -185,11 +213,10 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator RegenerateHP() {
-        yield return new WaitForSeconds(hpRegenWaitTime);
-        if (!canRegenHP) {yield break;}
+        if (!canRegenHP || isHPRegenBlocked > 0) {yield break;}
         while (true) {
             yield return new WaitForSeconds(hpRegenDelay);
-            if (!canRegenHP) {yield break;}
+            if (!canRegenHP || isHPRegenBlocked > 0) {yield break;}
             if (hp < maxHP) {
                 if (hp + maxHP * 5 / 100 <= maxHP) {
                     hp += maxHP * 5 / 100;

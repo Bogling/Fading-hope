@@ -17,6 +17,10 @@ public class FearAI : MonoBehaviour, IDamageable
     [SerializeField] private float walkDistance;
 
     //States
+    [SerializeField] private bool activeAtStart = true;
+    private bool isActive;
+    [SerializeField] private bool useAlternateAttack;
+    [SerializeField] private float alternateAttackDamage;
     [SerializeField] private float sightRange;
     [SerializeField] private float attackRange;
     private bool playerInSightRange, playerInAttackRange;
@@ -38,7 +42,20 @@ public class FearAI : MonoBehaviour, IDamageable
         gameManager = FindFirstObjectByType<GameManager>();
     }
 
+    private void Start() {
+        if (activeAtStart) {
+            isActive = true;
+            gameObject.SetActive(true);
+        }
+        else {
+            isActive = false;
+            gameObject.SetActive(false);
+        }
+    }
+
     private void Update() {
+        if (!isActive) return;
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
@@ -109,6 +126,16 @@ public class FearAI : MonoBehaviour, IDamageable
     }
 
     private void AttackPlayer() {
+        if (useAlternateAttack) {
+            gameManager.DealDamage(alternateAttackDamage);
+            gameObject.SetActive(false);
+            isActive = false;
+        }
+        animator.SetTrigger("Attack");
+        //gameManager.Respawn(Color.black, 1f, true, true);
+    }
+
+    public void KillPlayer() {
         gameManager.Respawn(Color.black, 1f, true, true);
     }
 
@@ -131,5 +158,28 @@ public class FearAI : MonoBehaviour, IDamageable
 
     public void SetDestination(GameObject dest) {
         signalDestination = dest;
+    }
+
+    public void Wake(bool showAnimation) {
+        gameObject.SetActive(true);
+        if (showAnimation) {
+            animator.SetTrigger("Activate");
+        }
+        else {
+            Activate();
+        }
+    }
+
+    public void Disappear() {
+        Deactivate();
+        gameObject.SetActive(false);
+    }
+
+    public void Activate() {
+        isActive = true;
+    }
+
+    public void Deactivate() {
+        isActive = false;
     }
 }

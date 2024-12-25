@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CeilingLamp.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day4DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\AI\TVEvent.cs" />
     <Compile Include="Assets\Scripts\Interaction\Lamp.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG3\MiniGame3Manager.cs" />
     <Compile Include="Assets\Scripts\UI\MMContinueButton.cs" />
@@ -76,9 +77,11 @@
     <Compile Include="Assets\Scripts\MiniGames\MG5\MG5Card.cs" />
     <Compile Include="Assets\Scripts\Interaction\sign.cs" />
     <Compile Include="Assets\Scripts\Dithering\Dithering.cs" />
+    <Compile Include="Assets\Scripts\Interaction\FearHitbox.cs" />
     <Compile Include="Assets\Scripts\RandomSoundManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\SignalRelay.cs" />
     <Compile Include="Assets\Scripts\Triggers\AscendTrigger.cs" />
+    <Compile Include="Assets\Scripts\AI\Day5Event.cs" />
     <Compile Include="Assets\Scripts\Player\Reality\PlayerRay.cs" />
     <Compile Include="Assets\Scripts\Interaction\TempleDoor.cs" />
     <Compile Include="Assets\Scripts\Pixelation\PixelationRenderFeature.cs" />
@@ -98,11 +101,13 @@
     <Compile Include="Assets\Scripts\Interaction\DayEnding.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\Projectile.cs" />
+    <Compile Include="Assets\Scripts\AI\FlashableFearEvent.cs" />
     <Compile Include="Assets\Scripts\Dithering\DitheringRenderFeature.cs" />
     <Compile Include="Assets\Scripts\Interaction\Lever.cs" />
     <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
     <Compile Include="Assets\Scripts\Interaction\GreenCrystal.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\Scripts\Interaction\KylePendant.cs" />
     <Compile Include="Assets\Scripts\Triggers\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Interaction\MovingPlatformManual.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerController.cs" />
@@ -136,6 +141,7 @@
     <Compile Include="Assets\Scripts\Pixelation\Pixelation.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day3DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\StandingTorch.cs" />
+    <Compile Include="Assets\Scripts\AI\Day5Manager.cs" />
     <Compile Include="Assets\Scripts\UI\HPBar.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\StepSoundManager.cs" />
     <Compile Include="Assets\Ink\Demos\Basic Demo\Scripts\BasicInkExample.cs" />
@@ -147,6 +153,7 @@
     <Compile Include="Assets\Scripts\MiniGames\MG4\MiniGame4Manager.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerCam.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
+    <Compile Include="Assets\Scripts\Interaction\ClockManager.cs" />
     <Compile Include="Assets\Scripts\AI\FearAI.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG4\MG4PlayerBoard.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day1FirstInteraction.cs" />

@@ -40,7 +40,7 @@ public class WaterFightManager : MonoBehaviour, Interactable
 
         currentEnemies.Clear();
         currentEnemies.Add(fears[currentStage - 1]);
-        fears[currentStage - 1].gameObject.SetActive(true);
+        fears[currentStage - 1].Wake(true);
         doors[currentStage - 1].Open();
         fears[currentStage - 1].SetDestination(gameObject);
     }

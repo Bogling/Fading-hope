@@ -65,6 +65,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc8e27007f9e93749ac416f390f16058, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8598114515766563504}
+    - targetCorrespondingSourceObject: {fileID: 7968166008144500550, guid: bc8e27007f9e93749ac416f390f16058, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 267043486348157611}
+    - targetCorrespondingSourceObject: {fileID: 7968166008144500550, guid: bc8e27007f9e93749ac416f390f16058, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8220481785263014147}
   m_SourcePrefab: {fileID: 100100000, guid: bc8e27007f9e93749ac416f390f16058, type: 3}
 --- !u!1 &4470125555380884342 stripped
 GameObject:
@@ -90,7 +96,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.4
-  m_BaseOffset: 0
+  m_BaseOffset: 1.65
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &9080524244362691457
@@ -116,13 +122,20 @@ MonoBehaviour:
     m_Bits: 256
   walkPoint: {x: 0, y: 0, z: 0}
   walkDistance: 5
+  activeAtStart: 1
+  useAlternateAttack: 0
+  alternateAttackDamage: 0
   sightRange: 20
   attackRange: 5
   patrolSpeed: 1
   chaseSpeed: 3
+  ambient: {fileID: 0}
+  chaseClip: {fileID: 0}
+  labClip: {fileID: 0}
+  signalDestination: {fileID: 0}
 --- !u!95 &8598114515766563504
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -136,8 +149,48 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6655447888968628577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7968166008144500550, guid: bc8e27007f9e93749ac416f390f16058, type: 3}
+  m_PrefabInstance: {fileID: 3659309196854341159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &267043486348157611
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655447888968628577}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.013156306
+  m_Center: {x: -0.007389006, y: 0.008633462, z: -0.0000000016236902}
+--- !u!114 &8220481785263014147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655447888968628577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b3d23e2951f734eb2806ccf4bae73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fear: {fileID: 9080524244362691457}
