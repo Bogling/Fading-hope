@@ -24,7 +24,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerActions"",
             ""id"": ""7a6df116-8575-457f-b92b-37ac4a99c008"",
             ""actions"": [
                 {
@@ -156,7 +156,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""UI"",
+            ""name"": ""UIActions"",
             ""id"": ""01d02d29-aa35-4326-8c65-e6465e2b62dc"",
             ""actions"": [
                 {
@@ -184,7 +184,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Dialogue"",
+            ""name"": ""DialogueActions"",
             ""id"": ""4b7534cc-1d9c-4060-aa19-6297f0ffc12f"",
             ""actions"": [
                 {
@@ -259,25 +259,25 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_HorizontalMovement = m_Player.FindAction("HorizontalMovement", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_AltAction = m_Player.FindAction("AltAction", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
-        // Dialogue
-        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
-        m_Dialogue_Submit = m_Dialogue.FindAction("Submit", throwIfNotFound: true);
+        // PlayerActions
+        m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActions_HorizontalMovement = m_PlayerActions.FindAction("HorizontalMovement", throwIfNotFound: true);
+        m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerActions_AltAction = m_PlayerActions.FindAction("AltAction", throwIfNotFound: true);
+        // UIActions
+        m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
+        m_UIActions_Pause = m_UIActions.FindAction("Pause", throwIfNotFound: true);
+        // DialogueActions
+        m_DialogueActions = asset.FindActionMap("DialogueActions", throwIfNotFound: true);
+        m_DialogueActions_Submit = m_DialogueActions.FindAction("Submit", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
-        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Dialogue.enabled, "This will cause a leak and performance issues, PlayerControls.Dialogue.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerActions.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerActions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UIActions.enabled, "This will cause a leak and performance issues, PlayerControls.UIActions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DialogueActions.enabled, "This will cause a leak and performance issues, PlayerControls.DialogueActions.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -336,30 +336,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_HorizontalMovement;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_AltAction;
-    public struct PlayerActions
+    // PlayerActions
+    private readonly InputActionMap m_PlayerActions;
+    private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
+    private readonly InputAction m_PlayerActions_Interact;
+    private readonly InputAction m_PlayerActions_HorizontalMovement;
+    private readonly InputAction m_PlayerActions_Jump;
+    private readonly InputAction m_PlayerActions_AltAction;
+    public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
-        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @HorizontalMovement => m_Wrapper.m_Player_HorizontalMovement;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @AltAction => m_Wrapper.m_Player_AltAction;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
+        public InputAction @HorizontalMovement => m_Wrapper.m_PlayerActions_HorizontalMovement;
+        public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
+        public InputAction @AltAction => m_Wrapper.m_PlayerActions_AltAction;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void AddCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActionsActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Add(instance);
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -374,7 +374,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AltAction.canceled += instance.OnAltAction;
         }
 
-        private void UnregisterCallbacks(IPlayerActions instance)
+        private void UnregisterCallbacks(IPlayerActionsActions instance)
         {
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
@@ -390,113 +390,113 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AltAction.canceled -= instance.OnAltAction;
         }
 
-        public void RemoveCallbacks(IPlayerActions instance)
+        public void RemoveCallbacks(IPlayerActionsActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlayerActions instance)
+        public void SetCallbacks(IPlayerActionsActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
 
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Pause;
-    public struct UIActions
+    // UIActions
+    private readonly InputActionMap m_UIActions;
+    private List<IUIActionsActions> m_UIActionsActionsCallbackInterfaces = new List<IUIActionsActions>();
+    private readonly InputAction m_UIActions_Pause;
+    public struct UIActionsActions
     {
         private @PlayerControls m_Wrapper;
-        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_UI_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public UIActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_UIActions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
+        public static implicit operator InputActionMap(UIActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActionsActions instance)
         {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_UIActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsActionsCallbackInterfaces.Add(instance);
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(IUIActions instance)
+        private void UnregisterCallbacks(IUIActionsActions instance)
         {
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(IUIActions instance)
+        public void RemoveCallbacks(IUIActionsActions instance)
         {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_UIActionsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IUIActions instance)
+        public void SetCallbacks(IUIActionsActions instance)
         {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_UIActionsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_UIActionsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public UIActions @UI => new UIActions(this);
+    public UIActionsActions @UIActions => new UIActionsActions(this);
 
-    // Dialogue
-    private readonly InputActionMap m_Dialogue;
-    private List<IDialogueActions> m_DialogueActionsCallbackInterfaces = new List<IDialogueActions>();
-    private readonly InputAction m_Dialogue_Submit;
-    public struct DialogueActions
+    // DialogueActions
+    private readonly InputActionMap m_DialogueActions;
+    private List<IDialogueActionsActions> m_DialogueActionsActionsCallbackInterfaces = new List<IDialogueActionsActions>();
+    private readonly InputAction m_DialogueActions_Submit;
+    public struct DialogueActionsActions
     {
         private @PlayerControls m_Wrapper;
-        public DialogueActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Submit => m_Wrapper.m_Dialogue_Submit;
-        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public DialogueActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Submit => m_Wrapper.m_DialogueActions_Submit;
+        public InputActionMap Get() { return m_Wrapper.m_DialogueActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
-        public void AddCallbacks(IDialogueActions instance)
+        public static implicit operator InputActionMap(DialogueActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IDialogueActionsActions instance)
         {
-            if (instance == null || m_Wrapper.m_DialogueActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_DialogueActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_DialogueActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DialogueActionsActionsCallbackInterfaces.Add(instance);
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
         }
 
-        private void UnregisterCallbacks(IDialogueActions instance)
+        private void UnregisterCallbacks(IDialogueActionsActions instance)
         {
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
         }
 
-        public void RemoveCallbacks(IDialogueActions instance)
+        public void RemoveCallbacks(IDialogueActionsActions instance)
         {
-            if (m_Wrapper.m_DialogueActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_DialogueActionsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IDialogueActions instance)
+        public void SetCallbacks(IDialogueActionsActions instance)
         {
-            foreach (var item in m_Wrapper.m_DialogueActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_DialogueActionsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_DialogueActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_DialogueActionsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public DialogueActions @Dialogue => new DialogueActions(this);
+    public DialogueActionsActions @DialogueActions => new DialogueActionsActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -515,18 +515,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IPlayerActionsActions
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAltAction(InputAction.CallbackContext context);
     }
-    public interface IUIActions
+    public interface IUIActionsActions
     {
         void OnPause(InputAction.CallbackContext context);
     }
-    public interface IDialogueActions
+    public interface IDialogueActionsActions
     {
         void OnSubmit(InputAction.CallbackContext context);
     }

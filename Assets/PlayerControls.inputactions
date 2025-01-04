@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Player",
+            "name": "PlayerActions",
             "id": "7a6df116-8575-457f-b92b-37ac4a99c008",
             "actions": [
                 {
@@ -134,7 +134,7 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "UIActions",
             "id": "01d02d29-aa35-4326-8c65-e6465e2b62dc",
             "actions": [
                 {
@@ -162,7 +162,7 @@
             ]
         },
         {
-            "name": "Dialogue",
+            "name": "DialogueActions",
             "id": "4b7534cc-1d9c-4060-aa19-6297f0ffc12f",
             "actions": [
                 {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 
@@ -14,6 +13,7 @@ public class DreamPlayerCam : MonoBehaviour
 
     private float xRotation;
     private float yRotation;
+    private IEnumerator c;
 
     void Start()
     {
@@ -26,19 +26,27 @@ public class DreamPlayerCam : MonoBehaviour
         if (DreamDialogueController.GetInstance().dialogueIsPlaying) {
             return;
         }
+        if (c != null) {
+            StopCoroutine(c);
+            c = null;
+        }
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Math.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     public void LookAtPosition(Vector3 lookPosition, float speed) {
-        StartCoroutine(LookAtTransformCorutine(lookPosition, speed));
+        if (c != null) {
+            StopCoroutine(c);
+        }
+        c = LookAtTransformCorutine(lookPosition, speed);
+        StartCoroutine(c);
     }
 
     public void LookAtPosition(Transform lookPosition, float speed) {
@@ -46,11 +54,15 @@ public class DreamPlayerCam : MonoBehaviour
     }
 
     public IEnumerator LookAtTransformCorutine(Vector3 lookPosition, float speed) {
-        Vector3 direction = (lookPosition - transform.position).normalized;
-        Quaternion targetRotation = transform.rotation * Quaternion.FromToRotation(transform.forward, direction);
+        Quaternion targetRotation = Quaternion.LookRotation(lookPosition - transform.position);
         while (Quaternion.Angle(transform.rotation, targetRotation) > 1f){
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, speed);
-            transform.localRotation = Quaternion.LookRotation(transform.forward);
+            targetRotation = Quaternion.LookRotation(lookPosition - transform.position);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            xRotation = rotation.eulerAngles.x;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            yRotation = rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
             yield return new WaitForEndOfFrame();
         }
     }

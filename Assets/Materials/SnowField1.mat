@@ -37,7 +37,8 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 2b3b7d0b179748b449e12721ea4fcfa6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _RECEIVE_SHADOWS
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -90,6 +91,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -128,12 +133,13 @@ Material:
     - Boolean_8BBF99CD: 0
     - Boolean_D258FF8E: 0
     - Vector1_21C41D02: 256
-    - Vector1_6F288C5B: 0.4
+    - Vector1_6F288C5B: 10
     - Vector1_B2CC132F: 15
     - Vector1_B9994903: 11
     - Vector1_E8746023: 12
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _BOOLEAN: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Blend: 0
@@ -154,10 +160,13 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NormalOffset: 0.5
+    - _NormalStrength: 8
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RECEIVE_SHADOWS: 1
     - _ReceiveShadows: 1
     - _Size: 1
     - _Smoothness: 0

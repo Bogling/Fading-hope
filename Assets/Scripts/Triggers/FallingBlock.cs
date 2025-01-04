@@ -1,18 +1,25 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class FallingBlock : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private ParticleSystem destroyParticles;
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject == player) {
-            Fall();
+            StartCoroutine(Fall());
         }
     }
 
-    private async void Fall() {
-        await Task.Delay(1000);
-        gameObject.SetActive(false);
+    private IEnumerator Fall() {
+        yield return new WaitForSeconds(2);
+        boxCollider.enabled = false;
+        meshRenderer.enabled = false;
+        destroyParticles.Play();
+        //gameObject.SetActive(false);
     }
 }

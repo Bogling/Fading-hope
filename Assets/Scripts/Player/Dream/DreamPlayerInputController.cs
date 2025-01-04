@@ -29,23 +29,23 @@ public class DreamPlayerInputController : MonoBehaviour
     }
 
     private void OnEnable() {
-        _playerControls.Player.Interact.performed += InteractionPerformed;
-        _playerControls.Dialogue.Submit.performed += SubmitPerformed;
-        _playerControls.Dialogue.Submit.canceled += SubmitCancelled;
-        _playerControls.Player.HorizontalMovement.performed += HorizontalMovementPerformed;
-        _playerControls.Player.Jump.performed += JumpPerformed;
-        _playerControls.Player.AltAction.performed += AltActionPerformed;
-        _playerControls.UI.Pause.performed += PausePerformed;
+        _playerControls.PlayerActions.Interact.performed += InteractionPerformed;
+        _playerControls.DialogueActions.Submit.performed += SubmitPerformed;
+        _playerControls.DialogueActions.Submit.canceled += SubmitCancelled;
+        _playerControls.PlayerActions.HorizontalMovement.performed += HorizontalMovementPerformed;
+        _playerControls.PlayerActions.Jump.performed += JumpPerformed;
+        _playerControls.PlayerActions.AltAction.performed += AltActionPerformed;
+        _playerControls.UIActions.Pause.performed += PausePerformed;
     }
 
     private void OnDisable() {
-        _playerControls.Player.Interact.performed -= InteractionPerformed;
-        _playerControls.Dialogue.Submit.performed -= SubmitPerformed;
-        _playerControls.Dialogue.Submit.canceled -= SubmitCancelled;
-        _playerControls.Player.HorizontalMovement.performed -= HorizontalMovementPerformed;
-        _playerControls.Player.Jump.performed -= JumpPerformed;
-        _playerControls.Player.AltAction.performed -= AltActionPerformed;
-        _playerControls.UI.Pause.performed -= PausePerformed;
+        _playerControls.PlayerActions.Interact.performed -= InteractionPerformed;
+        _playerControls.DialogueActions.Submit.performed -= SubmitPerformed;
+        _playerControls.DialogueActions.Submit.canceled -= SubmitCancelled;
+        _playerControls.PlayerActions.HorizontalMovement.performed -= HorizontalMovementPerformed;
+        _playerControls.PlayerActions.Jump.performed -= JumpPerformed;
+        _playerControls.PlayerActions.AltAction.performed -= AltActionPerformed;
+        _playerControls.UIActions.Pause.performed -= PausePerformed;
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj) {
@@ -90,13 +90,13 @@ public class DreamPlayerInputController : MonoBehaviour
     }
 
     public void DisableInput() {
-        _playerControls.Player.Disable();
+        _playerControls.PlayerActions.Disable();
         playerController.ReceiveHorizontalInput(new Vector2(0f, 0f));
         isInputDisabled = true;
     }
 
     public void EnableInput() {
-        _playerControls.Player.Enable();
+        _playerControls.PlayerActions.Enable();
         isInputDisabled = false;
     }
 }

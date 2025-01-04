@@ -23,14 +23,25 @@ public class DreamPlayerRay : MonoBehaviour
         //RaycastHit raycastHit;
         Physics.Raycast(ray, out raycastHit);
         if (raycastHit.collider == null) {
+            if (objectOnRay != null) {
+                objectOnRay.OnHoverStop();
+                objectOnRay = null;
+            }
             return;
         }
         var obj = raycastHit.collider.gameObject.GetComponent<Interactable>();
         if (obj != null) {
-            objectOnRay = obj;
-            if (!obj.IsCurrentlyInteractable() && raycastHit.distance <= rayLength) {
+            if (!obj.IsCurrentlyInteractable() || raycastHit.distance >= rayLength) {
+                if (obj == objectOnRay) {
+                    objectOnRay.OnHoverStop();
+                    objectOnRay = null;
+                }
                 return;
             }
+            if (objectOnRay != null) {
+                objectOnRay.OnHoverStop();
+            }
+            objectOnRay = obj;
             obj.OnHover();
         }
         else if (objectOnRay != null) {

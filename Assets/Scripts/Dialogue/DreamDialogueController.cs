@@ -78,6 +78,10 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
         obj.OperateChoice(qID, cID);
     });
 
+    currentStory.BindExternalFunction("focusCamera", () => {
+        obj.Focus();
+    });
+
     DisplayNextParagraph(inkJSON);
 }
 
@@ -91,6 +95,7 @@ private void ExitDialogue() {
     playerInput.EnableInput();
 
     currentStory.UnbindExternalFunction("choiceMade");
+    currentStory.UnbindExternalFunction("focusCamera");
 }
 
     private void DisplayNextParagraph(TextAsset inkJSON) {

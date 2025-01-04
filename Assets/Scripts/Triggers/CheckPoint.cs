@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CheckPoint : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private bool withFlashlight;
     [SerializeField] private bool hasHP;
     [SerializeField] private bool hasLP;
+    [SerializeField] private RenderPipelineAsset renderPipelineAsset;
     public int id;
     private GameManager gameManager;
 
@@ -19,6 +21,9 @@ public class CheckPoint : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        if (renderPipelineAsset != null && renderPipelineAsset != GraphicsSettings.defaultRenderPipeline) {
+            GraphicsSettings.defaultRenderPipeline = renderPipelineAsset;
+        }
         gameManager.SetCheckPoint(id, withLamp, withFlashlight, hasHP, hasLP);
         SaveLoadManager.Save();
     }

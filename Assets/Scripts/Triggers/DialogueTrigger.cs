@@ -5,6 +5,7 @@ public class DialogueTrigger : MonoBehaviour, ITalkable
     [SerializeField] private GameObject player;
     [SerializeField] private TextAsset inkJSON;
     [SerializeField] private DreamDialogueController dialogueController;
+    [SerializeField] private Transform focusPoint;
     private bool isTriggered = false;
 
     private void OnTriggerEnter(Collider other) {
@@ -20,7 +21,7 @@ public class DialogueTrigger : MonoBehaviour, ITalkable
     }
 
     public void Focus() {
-        FindFirstObjectByType<DreamPlayerCam>().LookAtPosition(transform, 2);
+        FindFirstObjectByType<DreamPlayerCam>().LookAtPosition(focusPoint, 1.5f);
     }
 
     public void OperateChoice(int qID, int cID) {
