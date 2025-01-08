@@ -2486,7 +2486,7 @@
     "m_ObjectId": "2c2d3959017a4f21a2bd30780ab6f7a1",
     "m_Title": "Texture Sampling",
     "m_Position": {
-        "x": -314.3999938964844,
+        "x": -314.4000244140625,
         "y": 903.2000732421875
     }
 }
@@ -2715,8 +2715,8 @@
     "m_ObjectId": "33decef0521444ab92e41a845e8fa2f3",
     "m_Title": "Affine Mapping",
     "m_Position": {
-        "x": -1878.4000244140625,
-        "y": 583.199951171875
+        "x": -1878.400146484375,
+        "y": 583.2000122070313
     }
 }
 
@@ -2743,8 +2743,8 @@
     "m_ObjectId": "348049c8bb844a46830ddca89706344d",
     "m_Title": "Camera Clipping",
     "m_Position": {
-        "x": -558.3999633789063,
-        "y": -143.2000274658203
+        "x": -558.4000244140625,
+        "y": -143.1999969482422
     }
 }
 
@@ -2858,7 +2858,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CastShadows": true,
+    "m_CastShadows": false,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,
     "m_AdditionalMotionVectorMode": 0,
@@ -2992,7 +2992,7 @@
     "m_ObjectId": "3dc3fa0337df4e2f92d26fab6a07e1d3",
     "m_Title": "Lighting",
     "m_Position": {
-        "x": 709.6002197265625,
+        "x": 709.5999755859375,
         "y": 1363.199951171875
     }
 }
@@ -3691,7 +3691,7 @@
     "m_ObjectId": "60f82c6d604f4b1c9bf34797b6d73537",
     "m_Title": "Not Using Camera or Vertex Jitter",
     "m_Position": {
-        "x": 1633.6002197265625,
+        "x": 1633.599853515625,
         "y": 438.4000244140625
     }
 }
@@ -3749,7 +3749,7 @@
     "m_ObjectId": "63d698cc1bc445c0bcc688ed8963b95f",
     "m_Title": "Regular UVs",
     "m_Position": {
-        "x": -1833.5999755859375,
+        "x": -1833.60009765625,
         "y": 838.4000244140625
     }
 }
@@ -4472,7 +4472,7 @@
     "m_ObjectId": "7c22552c658442c9bdf09181e2e9d324",
     "m_Title": "Diffuse",
     "m_Position": {
-        "x": 1676.0001220703125,
+        "x": 1675.999755859375,
         "y": 944.7999267578125
     }
 }
@@ -4483,8 +4483,8 @@
     "m_ObjectId": "7e117d67598a415ea686530af6365254",
     "m_Title": "Color Precision",
     "m_Position": {
-        "x": 268.800048828125,
-        "y": 652.7999877929688
+        "x": 268.79998779296877,
+        "y": 652.7999267578125
     }
 }
 
@@ -5046,8 +5046,8 @@
     "m_ObjectId": "9a7b978dde654953a17c01dafbbca9c2",
     "m_Title": "Pixelation",
     "m_Position": {
-        "x": -1350.4000244140625,
-        "y": 836.0001220703125
+        "x": -1350.400146484375,
+        "y": 836.0
     }
 }
 
@@ -5345,8 +5345,8 @@
     "m_ObjectId": "a53f471391c04a8890da7210bc114f65",
     "m_Title": "Skybox Color",
     "m_Position": {
-        "x": 2512.800048828125,
-        "y": 1356.7998046875
+        "x": 2512.7998046875,
+        "y": 1356.7999267578125
     }
 }
 
@@ -5574,7 +5574,7 @@
     "m_ObjectId": "ab0b7b0f366941e39cadb664ab78ca72",
     "m_Title": "Using CameraClipping",
     "m_Position": {
-        "x": -165.60000610351563,
+        "x": -165.60003662109376,
         "y": -195.1999969482422
     }
 }
