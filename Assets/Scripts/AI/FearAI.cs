@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,7 @@ public class FearAI : MonoBehaviour, IDamageable
     //Patrol
     [SerializeField] private Vector3 walkPoint;
     bool walkPointSet;
+    bool isPatroling;
     [SerializeField] private float walkDistance;
 
     //States
@@ -62,7 +64,7 @@ public class FearAI : MonoBehaviour, IDamageable
         if (!playerInSightRange && !playerInAttackRange) {
             animator.SetBool("IsChasing", false);
             StartCoroutine(Patroling());
-            if (ambient.clip == chaseClip) {
+            if (ambient.clip == chaseClip && labClip != null) {
                 ambient.clip = labClip;
             }
             if (!ambient.isPlaying) {
@@ -70,7 +72,7 @@ public class FearAI : MonoBehaviour, IDamageable
             }
         }
         else if (playerInSightRange && !playerInAttackRange) {
-            if (ambient.clip != chaseClip) {
+            if (ambient.clip != chaseClip && chaseClip != null) {
                 ambient.clip = chaseClip;
             }
             if (!ambient.isPlaying) {
@@ -85,6 +87,8 @@ public class FearAI : MonoBehaviour, IDamageable
     }
 
     private IEnumerator Patroling() {
+        if (isPatroling) yield break;
+        isPatroling = true;
         if (!walkPointSet && !isWaiting) { 
             animator.SetBool("IsPatroling", false);
             isWaiting = true;
@@ -104,6 +108,7 @@ public class FearAI : MonoBehaviour, IDamageable
         if (distanceToWalkPoint.magnitude < 1f) {
             walkPointSet = false;
         }
+        isPatroling = false;
     }
 
     private void SearchWalkPoint() {
@@ -114,8 +119,14 @@ public class FearAI : MonoBehaviour, IDamageable
 
         NavMeshPath navMeshPath= new NavMeshPath();
         if (Physics.Raycast(walkPoint, -transform.up, 2f, ground) && agent.CalculatePath(walkPoint, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete) {
+            Debug.Log(Physics.Raycast(walkPoint, -transform.up, 2f, ground));
+            Debug.Log(agent.CalculatePath(walkPoint, navMeshPath));
+            Debug.Log(navMeshPath.status == NavMeshPathStatus.PathComplete);
             walkPointSet = true;
         }
+        Debug.Log(Physics.Raycast(walkPoint, -transform.up, 2f, ground));
+        Debug.Log(agent.CalculatePath(walkPoint, navMeshPath));
+        Debug.Log(navMeshPath.status == NavMeshPathStatus.PathComplete);
     }
     
     private void ChasePlayer() {
@@ -128,6 +139,7 @@ public class FearAI : MonoBehaviour, IDamageable
     private void AttackPlayer() {
         if (useAlternateAttack) {
             gameManager.DealDamage(alternateAttackDamage);
+            FindFirstObjectByType<Fader>().AutoFade(Color.black, 1f, 0.5f, 3f);
             gameObject.SetActive(false);
             isActive = false;
         }

@@ -5,7 +5,8 @@ public class DreamPlayerController : MonoBehaviour
 {
     [SerializeField] private DreamPlayerRay playerRay;
     private Rigidbody rb;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource jumpAudioSource;
     private StepSoundManager stepSoundManager;
     [Header("Movement")]
     [SerializeField] private float speed = 11f;
@@ -28,7 +29,7 @@ public class DreamPlayerController : MonoBehaviour
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         stepSoundManager = GetComponent<StepSoundManager>();
         gameManager = FindFirstObjectByType<GameManager>();
     }
@@ -106,7 +107,8 @@ public class DreamPlayerController : MonoBehaviour
 
     private void Jump() {
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
+        stepSoundManager.CheckGround();
+        jumpAudioSource.Play();
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 

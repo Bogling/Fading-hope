@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.SearchService;
 
 public class DreamDialogueController : MonoBehaviour
 {
     [SerializeField] private DreamPlayerInputController playerInput;
-
     [Header("Dialogue UI")]
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private float speed = 10;
@@ -23,17 +23,22 @@ public class DreamDialogueController : MonoBehaviour
     private string p;
 
     private TextAsset currentInkJSON;
+    private ITalkable currentObject;
 
     private bool choicesPresent = false;
+    private bool isInDelay = false;
 
     private Coroutine typeTextCoroutine;
 
     public bool dialogueIsPlaying { get; private set; }
 
     public bool isLocked = false;
-
+    private bool buttonPressed = false;
     private static DreamDialogueController instance;
-    
+
+    private const string COLOR_TAG = "color";
+    private const string IMAGE_TAG = "image";
+    private const string DELAY_TAG = "wait";
 
     private void Awake() {
         if (instance != null) {
@@ -61,7 +66,13 @@ private void Update() {
     }
 
     if (DreamPlayerInputController.GetInstance().GetSubmitPressed()) {
-        DisplayNextParagraph(currentInkJSON);
+        if (!buttonPressed) {
+            DisplayNextParagraph(currentInkJSON);
+            buttonPressed = true;
+        }
+    }
+    else {
+        buttonPressed = false;
     }
 }
 
@@ -74,10 +85,10 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
     Cursor.lockState = CursorLockMode.None;
     Cursor.visible = true;
 
+    currentObject = obj;
     currentStory.BindExternalFunction("choiceMade", (int qID, int cID) => {
         obj.OperateChoice(qID, cID);
     });
-
     currentStory.BindExternalFunction("focusCamera", () => {
         obj.Focus();
     });
@@ -85,17 +96,36 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
     DisplayNextParagraph(inkJSON);
 }
 
+
+public void EnterDialogue(TextAsset inkJSON, ITalkable obj, string varName, string var) {
+    currentInkJSON = inkJSON;
+    currentStory = new Story(inkJSON.text);
+    currentStory.variablesState[varName] = var;
+    dialogueIsPlaying = true;
+    gameObject.SetActive(true);
+    Cursor.lockState = CursorLockMode.None;
+    Cursor.visible = true;
+
+    currentObject = obj;
+    currentStory.BindExternalFunction("choiceMade", (int qID, int cID) => {
+        obj.OperateChoice(qID, cID);
+    });
+
+    DisplayNextParagraph(inkJSON);
+}
+
+
 private void ExitDialogue() {
     dialogueIsPlaying = false;
     gameObject.SetActive(false);
     dialogueText.text = "";
-
     Cursor.lockState = CursorLockMode.Locked;
     Cursor.visible = false;
     playerInput.EnableInput();
 
     currentStory.UnbindExternalFunction("choiceMade");
     currentStory.UnbindExternalFunction("focusCamera");
+    currentObject.UponExit();
 }
 
     private void DisplayNextParagraph(TextAsset inkJSON) {
@@ -104,9 +134,18 @@ private void ExitDialogue() {
                 if (choicesPresent) {
                     return;
                 }
+                if (isInDelay) {
+                    gameObject.transform.localScale = new Vector3(0, 0, 0);
+                    return;
+                }
                 p = currentStory.Continue();
+                if (p == "") {
+                    DisplayNextParagraph(currentInkJSON);
+                    return;
+                }
                 typeTextCoroutine = StartCoroutine(TypeDialogueText(p));
                 DisplayChoices();
+                HandleTags(currentStory.currentTags);
             }
             else if (!choicesPresent) {
                 ExitDialogue();
@@ -118,6 +157,36 @@ private void ExitDialogue() {
         }
     }
 
+    private void HandleTags(List<string> currentTags) {
+        foreach (string tag in currentTags) {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey) {
+                case COLOR_TAG:
+                    Debug.Log("color=" + tagValue);
+                    Color newColor;
+                    ColorUtility.TryParseHtmlString("#" + tagValue, out newColor);
+                    dialogueText.color = newColor;
+                    break;
+                case IMAGE_TAG:
+                    Debug.Log("image=" + tagValue);
+                    break;
+                case DELAY_TAG:
+                    Debug.Log("wait=" + tagValue);
+                    StartCoroutine(Delay(int.Parse(tagValue)));
+                    break;
+                default:
+                    Debug.Log("No such key");
+                    break;
+            }
+        }
+    }
     
     private IEnumerator TypeDialogueText(string p) {
         isTyping = true;
@@ -171,5 +240,17 @@ private void ExitDialogue() {
         choicesPresent = false;
         DisplayNextParagraph(currentInkJSON);
         Debug.Log(currentStory.variablesState);
+    }
+
+    private IEnumerator Delay(int time) {
+        isInDelay = true;
+        yield return new WaitForSeconds(time);
+        isInDelay = false;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        DisplayNextParagraph(currentInkJSON);
+    }
+
+    public void forceEndDialogue() {
+        ExitDialogue();
     }
 }

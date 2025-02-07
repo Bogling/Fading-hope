@@ -124,6 +124,7 @@ MonoBehaviour:
   damage: 1
   delay: 0.2
   player: {fileID: 0}
+  isFake: 0
 --- !u!1001 &6405232754607791701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,23 +187,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Color.b
-      value: 0.042052336
+      value: 0.19704515
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Color.g
-      value: 0.1981132
+      value: 0.8490566
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Color.r
-      value: 0.19177571
+      value: 0.81645596
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Intensity
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

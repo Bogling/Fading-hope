@@ -45,15 +45,16 @@ public class GameManager : MonoBehaviour
         SaveLoadManager.Save();
     }
 
-    public async void Respawn(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
+    public IEnumerator Respawn(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
         if (fadeOut) {
             Fader.GetInstance().FadeOut(faderColor, fadeDuration);
-            await Task.Delay((int)(fadeDuration * 1000));
+            yield return new WaitForSeconds(fadeDuration);
         }
         var points = FindObjectsByType<CheckPoint>(FindObjectsSortMode.InstanceID);
         foreach (var point in points) {
             if (point.id == playerData.GetCheckPoint()) {
                 gameObject.transform.position = point.getPoint().position;
+                gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
                 if (playerData.hasLamp && lamp != null) {
                     lamp.SetActive(true);
                 }
@@ -75,11 +76,52 @@ public class GameManager : MonoBehaviour
                     lpBar.UpdateLP();
                 }
                 break;
+                
             }
         }
         if (fadeIn) {
             Fader.GetInstance().FadeIn(faderColor, fadeDuration);
-            await Task.Delay((int)(fadeDuration * 1000));
+            yield return new WaitForSeconds(fadeDuration);
+        }
+    }
+
+    public IEnumerator Respawn(Color faderColor, float fadeInDuration, bool fadeIn, float fadeOutDuration, bool fadeOut) {
+        if (fadeOut) {
+            Fader.GetInstance().FadeOut(faderColor, fadeOutDuration);
+            yield return new WaitForSeconds(fadeOutDuration);
+        }
+        var points = FindObjectsByType<CheckPoint>(FindObjectsSortMode.InstanceID);
+        foreach (var point in points) {
+            if (point.id == playerData.GetCheckPoint()) {
+                gameObject.transform.position = point.getPoint().position;
+                gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
+                if (playerData.hasLamp && lamp != null) {
+                    lamp.SetActive(true);
+                }
+                else if (lamp != null) {
+                    lamp.SetActive(false);
+                }
+                if (playerData.hasFlashlight && flashlight != null) {
+                    flashlight.SetActive(true);
+                }
+                else if (flashlight != null) {
+                    flashlight.SetActive(false);
+                }
+                if (playerData.hasHP) {
+                    hp = maxHP;
+                    hpBar.UpdateHP();
+                }
+                if (playerData.hasLP) {
+                    lp = maxLP;
+                    lpBar.UpdateLP();
+                }
+                break;
+                
+            }
+        }
+        if (fadeIn) {
+            Fader.GetInstance().FadeIn(faderColor, fadeInDuration);
+            yield return new WaitForSeconds(fadeInDuration);
         }
     }
 
@@ -263,5 +305,45 @@ public class GameManager : MonoBehaviour
 
     public void DoubtedAnswer() {
         playerData.doubtedBio = true;
+    }
+
+    public bool IsCrystal1Activated() {
+        return playerData.activatedCrystal1;
+    }
+
+    public bool IsCrystal2Activated() {
+        return playerData.activatedCrystal2;
+    }
+
+    public bool IsCrystal3Activated() {
+        return playerData.activatedCrystal3;
+    }
+
+    public void ActivatedCrystal1() {
+        playerData.activatedCrystal1 = true;
+    }
+
+    public void ActivatedCrystal2() {
+        playerData.activatedCrystal2 = true;
+    }
+
+    public void ActivatedCrystal3() {
+        playerData.activatedCrystal3 = true;
+    }
+
+    public int GetBigDoorStage() {
+        return playerData.bigDoorStage;
+    }
+
+    public void SetBigDoorStage(int stage) {
+        playerData.bigDoorStage = stage;
+    }
+
+    public void SetKyleSp1Par() {
+        playerData.spokeToKyle1 = true;
+    }
+
+    public bool GetKyleSp1Par() {
+        return playerData.spokeToKyle1;
     }
 }

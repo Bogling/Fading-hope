@@ -65,6 +65,16 @@ public class BigGreenCrystal : MonoBehaviour, IDamageable
                 crystals[i].Activate();
             }
         }
+        if (crystals[0].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal1();
+        }
+        if (crystals[1].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal2();
+        }
+        if (crystals[2].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal3();
+        }
+        SaveLoadManager.Save();
     }
 
     public IEnumerator Teleport() {

@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6565211203037008977, guid: f9c5303e76c969f4d96338e5f8ecc1f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
     - target: {fileID: 9194509242015492025, guid: f9c5303e76c969f4d96338e5f8ecc1f5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -150,6 +154,7 @@ MonoBehaviour:
   StartPosition: {fileID: 0}
   EndPosition: {fileID: 0}
   Range: 0.08
+  MaxVelocity: 0.2
   animator: {fileID: 4206241229878658863}
   player: {fileID: 0}
   isLocked: 0
@@ -196,7 +201,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

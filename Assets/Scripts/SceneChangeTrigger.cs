@@ -20,6 +20,7 @@ public class SceneChangeTrigger : MonoBehaviour
     private IEnumerator ChangeScene() {
         Fader.GetInstance().FadeOut(faderColor, fadeDuration);
         yield return new WaitForSeconds(fadeDuration);
+        
         FindFirstObjectByType<DreamPlayerController>();
         SceneManager.LoadScene(scene);
     }

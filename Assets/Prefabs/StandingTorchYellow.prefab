@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Range
-      value: 3.0596888
+      value: 4.2010612
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Color.b
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_RenderMode
@@ -94,10 +94,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
       propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958438921693756439, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}
+      propertyPath: m_BounceIntensity
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: 9d8b30aaa56f26d40a7e0bf0edab21e4, type: 3}

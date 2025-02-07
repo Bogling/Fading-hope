@@ -9,14 +9,32 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 0d6619db2771bb147bfff04fdf11e9c3
   - enabled: 1
+    path: Assets/Scenes/Day1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/Scenes/Dream1.unity
     guid: 757fa5c4d7868ff40b9aceb55451da5a
+  - enabled: 1
+    path: Assets/Scenes/Day2.unity
+    guid: 07444a43e4605c64a9e3dc580bf530e0
   - enabled: 1
     path: Assets/Scenes/Dream2.unity
     guid: b1851bfeb1bf5ef4880b8ef85a560da6
   - enabled: 1
+    path: Assets/Scenes/Day3.unity
+    guid: 758c6d0e740b62a478dde12a117645d1
+  - enabled: 1
     path: Assets/Scenes/Dream3.unity
     guid: 7bed90dffeb449d4584267a8ae1724bf
+  - enabled: 1
+    path: Assets/Scenes/Day4.unity
+    guid: ce32842db1c8984448b1f4ad219676ed
+  - enabled: 1
+    path: Assets/Scenes/Dream4.unity
+    guid: 9e3a83a2776003f47b70a2214dc98282
+  - enabled: 1
+    path: Assets/Scenes/Day5.unity
+    guid: d5d7c24517e2c46419c37489da3820c5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0febba43750855142ae0c642ef291952, type: 3}
   m_UseUCBPForAssetBundles: 0

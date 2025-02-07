@@ -57,9 +57,9 @@ PrefabInstance:
       value: door2
       objectReference: {fileID: 0}
     - target: {fileID: 5074512353664290214, guid: 092329a44fc4daa4aab37ae25864ca7d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
+      objectReference: {fileID: 2100000, guid: ccc840928aa330f4493a9b36ee473d0e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -130,7 +130,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8415308210448549923
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,6 +144,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

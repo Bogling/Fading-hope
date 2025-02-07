@@ -23,6 +23,12 @@ public class Door : MonoBehaviour, Interactable
         }
     }
 
+    public void InstaOpen() {
+        if (isLocked || isOpened) return;
+        animator.SetTrigger("InstaOpen");
+        isOpened = true;
+    }
+
     public void InteractionCanceled() {
         return;
     }

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever2
       objectReference: {fileID: 0}
+    - target: {fileID: 5074512353664290214, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

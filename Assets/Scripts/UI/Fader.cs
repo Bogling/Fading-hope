@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Fader : MonoBehaviour
@@ -71,5 +72,15 @@ public class Fader : MonoBehaviour
         }
         GetComponent<UnityEngine.UI.Image>().color = color;
         fadingOut = true;
+    }
+
+    public void AutoFade(Color color, float inDuration, float delay, float outDuration) {
+        StartCoroutine(AutoFadeCoroutine(color, inDuration, delay, outDuration));
+    }
+
+    private IEnumerator AutoFadeCoroutine(Color color, float inDuration, float delay, float outDuration) {
+        FadeIn(color, inDuration);
+        yield return new WaitForSeconds(inDuration + delay);
+        FadeOut(color, outDuration);
     }
 }

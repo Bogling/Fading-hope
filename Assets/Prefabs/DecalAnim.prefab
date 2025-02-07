@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8709453731170594870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908076450553177891}
+  - component: {fileID: 1640973653417686073}
+  - component: {fileID: 4449946600486232575}
+  - component: {fileID: 1065862818647315658}
+  - component: {fileID: 3036686410882980113}
+  m_Layer: 0
+  m_Name: DecalAnim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1908076450553177891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709453731170594870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0030365293, y: 0.711477, z: -0.0016645385, w: 0.7027009}
+  m_LocalPosition: {x: 39.587, y: 2.869, z: -81.991}
+  m_LocalScale: {x: 2.4991, y: 2.4991, z: 2.4991}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0.38, y: 90.711, z: 0.114}
+--- !u!114 &1640973653417686073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709453731170594870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9eba0a17b8669c945b285e0621443463, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0.63}
+  m_Size: {x: 2.5, y: 2.5, z: 1.26}
+  m_FadeFactor: 1
+--- !u!114 &4449946600486232575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709453731170594870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad375c30c1d71464e853078e20b35cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animateInRange: 0
+  player: {fileID: 0}
+--- !u!114 &1065862818647315658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709453731170594870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b8e9b0f968bcd41bebc0b358527e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textures:
+  - {fileID: 2800000, guid: 22864bbb38e74a347aafc12854f4c331, type: 3}
+  - {fileID: 2800000, guid: a81dd62197bb74e4389c17e18f48f11b, type: 3}
+  - {fileID: 2800000, guid: 33024fa5d3f211c4f92f9b26d6356f8b, type: 3}
+  - {fileID: 2800000, guid: 68164198161c2c04aaee0723377f5dd4, type: 3}
+  animateFromStart: 1
+  timeForFrame: 0.2
+  idleTexture: {fileID: 2800000, guid: e012dca4f30d24345abb836f988423eb, type: 3}
+--- !u!65 &3036686410882980113
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709453731170594870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.6979759, y: 1, z: 1.8852937}
+  m_Center: {x: -0.8489878, y: -7.10976e-11, z: -0.4426461}

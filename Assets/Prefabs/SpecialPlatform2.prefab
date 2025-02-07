@@ -142,6 +142,7 @@ MonoBehaviour:
   StartPosition: {fileID: 0}
   EndPosition: {fileID: 0}
   Range: 0.08
+  MaxVelocity: 0.2
   animator: {fileID: 6719804307550389280}
   player: {fileID: 0}
 --- !u!65 &4502634654924486565
@@ -184,7 +185,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

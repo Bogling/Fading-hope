@@ -26,6 +26,15 @@ public class Lever : MonoBehaviour, Interactable
         }
     }
 
+    public void PullWithoutSignal() {
+        if (!isActivated) {
+            if (animator != null) {
+                animator.SetTrigger("Pull");
+            }
+            isActivated = true;
+        }
+    }
+
     public void InteractionCanceled() {
         return;
     }
@@ -56,5 +65,9 @@ public class Lever : MonoBehaviour, Interactable
     
     public void Unlock() {
         isTouchable = true;
+    }
+
+    public bool IsActivated() {
+        return isActivated;
     }
 }

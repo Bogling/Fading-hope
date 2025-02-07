@@ -25,7 +25,7 @@ public class Lamp : MonoBehaviour, Interactable
         //lampObject.transform.parent = target.transform;
         //lampObject.transform.position = new Vector3(0, 0, 0);
         gameManager.GiveLamp();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void InteractionCanceled() {

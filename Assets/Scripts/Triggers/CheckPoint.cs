@@ -10,6 +10,7 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private bool hasLP;
     [SerializeField] private RenderPipelineAsset renderPipelineAsset;
     public int id;
+    private bool isTriggered = false;
     private GameManager gameManager;
 
     private void Awake() {
@@ -21,10 +22,15 @@ public class CheckPoint : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (renderPipelineAsset != null && renderPipelineAsset != GraphicsSettings.defaultRenderPipeline) {
-            GraphicsSettings.defaultRenderPipeline = renderPipelineAsset;
+        if (!isTriggered) {
+            if (renderPipelineAsset != null && renderPipelineAsset != GraphicsSettings.defaultRenderPipeline) {
+                GraphicsSettings.defaultRenderPipeline = renderPipelineAsset;
+            }
+            if (gameManager.GetCheckPoint() <= id) {
+                gameManager.SetCheckPoint(id, withLamp, withFlashlight, hasHP, hasLP);
+                SaveLoadManager.Save();
+            }
+            isTriggered = true;
         }
-        gameManager.SetCheckPoint(id, withLamp, withFlashlight, hasHP, hasLP);
-        SaveLoadManager.Save();
     }
 }

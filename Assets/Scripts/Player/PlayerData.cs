@@ -14,6 +14,13 @@ public class PlayerData
 
     public int MaxMoodPoints = 5;
     public bool doubtedBio = false;
+    
+    //level variables
+    public bool activatedCrystal1 = false;
+    public bool activatedCrystal2 = false;
+    public bool activatedCrystal3 = false;
+    public int bigDoorStage = 0;
+    public bool spokeToKyle1 = false;
 
     public void SetScene(string scene) {
         currentScene = scene;

@@ -74,11 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Intensity
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: f92164042c87bca4c9a2505d56ed6834, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

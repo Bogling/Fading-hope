@@ -23,6 +23,7 @@ public class MovingPlatform : MonoBehaviour
 
     private Rigidbody rb;
     private bool isPlayerAttached = false;
+    private bool isMovingPlayer = false;
     private bool isMoving = false;
     private bool isMovingBack = false;
 
@@ -43,8 +44,12 @@ public class MovingPlatform : MonoBehaviour
                 //Start Delay
                 yield return new WaitForSeconds(StartSpeed);
                 //Transfer loop
-                while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
-                    Debug.Log(Vector3.Distance(transform.position, EndPosition.position));
+                while(Vector3.Distance(rb.position, EndPosition.position) > Range) {
+                    if (isPlayerAttached && !isMovingPlayer) {
+                        //player.transform.parent = gameObject.transform;
+                        //isMovingPlayer = true;
+                    }
+                    Debug.Log(Vector3.Distance(rb.position, EndPosition.position));
                     counter = TravelSpeed * Time.timeScale;
                     if (rb.linearVelocity.magnitude <= MaxVelocity) {
                         rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
@@ -52,10 +57,18 @@ public class MovingPlatform : MonoBehaviour
                     yield return 0;
                 }
                 counter = 0;
-                while(Vector3.Distance(transform.position, EndPosition.position) > 0) {
-                    Debug.Log(Vector3.Distance(transform.position, EndPosition.position) + "Lerping");
-                    counter += 1f * Time.timeScale;
-                    transform.position = Vector3.Lerp(transform.position, EndPosition.position, counter);
+                while(Vector3.Distance(rb.position, EndPosition.position) > 0) {
+                    if (isPlayerAttached && !isMovingPlayer) {
+                        //player.transform.parent = gameObject.transform;
+                        //isMovingPlayer = true;
+                    }
+                    Debug.Log(Vector3.Distance(rb.position, EndPosition.position) + "Lerping");
+                    counter += 1f * Time.deltaTime;
+                    rb.position = Vector3.Lerp(rb.position, EndPosition.position, counter);
+                    if (counter > 1) {
+                        rb.position = EndPosition.position;
+                        break;
+                    }
                     yield return 0;
                 }
                 rb.AddForce(Vector3.zero, ForceMode.Acceleration);
@@ -74,23 +87,37 @@ public class MovingPlatform : MonoBehaviour
                 //Start Delay
                 yield return new WaitForSeconds(StartSpeed);
                 //Transfer loop
-                while(Vector3.Distance(transform.position, EndPosition.position) > Range) {
+                while(Vector3.Distance(rb.position, EndPosition.position) > Range) {
                     counter = TravelSpeed * Time.timeScale;
                     if (rb.linearVelocity.magnitude <= MaxVelocity) {
                         rb.AddForce((EndPosition.position - StartPosition.position) * counter, ForceMode.Acceleration);
                     }
+                    if (isPlayerAttached) {
+                        //player.gameObject.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity;
+                    }
                     yield return 0;
                 }
                 counter = 0;
-                while(Vector3.Distance(transform.position, EndPosition.position) > 0) {
-                        Debug.Log(Vector3.Distance(transform.position, EndPosition.position) + "Lerping");
-                        counter += 0.1f * Time.timeScale;
-                        transform.position = Vector3.Lerp(transform.position, EndPosition.position, counter);
+                rb.AddForce(Vector3.zero, ForceMode.Acceleration);
+                rb.linearVelocity = Vector3.zero;
+                //player.gameObject.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity;
+                while(Vector3.Distance(rb.position, EndPosition.position) > 0) {
+                        Debug.Log(Vector3.Distance(rb.position, EndPosition.position) + "Lerping");
+                        counter += 1f * Time.deltaTime;
+                        rb.position = Vector3.Lerp(rb.position, EndPosition.position, counter);
+                        //if (isPlayerAttached) {
+                        //    player.gameObject.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity;
+                        //}
+                        if (counter > 1) {
+                            rb.position = EndPosition.position;
+                            break;
+                        }
                         yield return 0;
                     }
                 timesLeft--;
                 rb.AddForce(Vector3.zero, ForceMode.Acceleration);
                 rb.linearVelocity = Vector3.zero;
+                //player.gameObject.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity;
                 //End Delay
                 yield return new WaitForSeconds(EndSpeed);
                 //transform.position = EndPosition.position;
@@ -123,15 +150,31 @@ public class MovingPlatform : MonoBehaviour
         Debug.Log("collEnter");
         if (other.gameObject == player) {
             Debug.Log("collParent");
+            if (isMoving || isMovingBack) {
+                //player.transform.parent = gameObject.transform;
+                //isMovingPlayer = true;
+            }
             player.transform.parent = gameObject.transform;
+            //StopCoroutine("UnAttachPlayer");
             isPlayerAttached = true;
         }
     }
 
     private void OnCollisionExit(Collision other) {
         if (isPlayerAttached) {
-            player.transform.parent = null;
+            //StartCoroutine("UnAttachPlayer");
+            if (player.transform.parent == gameObject.transform) {
+                player.transform.parent = null;
+            }
+            isPlayerAttached = false;
+            //isMovingPlayer = false;
         }
+    }
+
+    private IEnumerator UnAttachPlayer() {
+        yield return new WaitForSeconds(0.5f);
+        player.transform.parent = null;
+        isPlayerAttached = false;
     }
 
     public bool IsMovingBack() {

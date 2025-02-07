@@ -11,6 +11,9 @@ public class DreamPlayerCam : MonoBehaviour
     [SerializeField]
     private Transform   orientation;
 
+    [SerializeField] private AnimationCurve shakeCurve;
+    [SerializeField] private float shakeTime;
+
     private float xRotation;
     private float yRotation;
     private IEnumerator c;
@@ -59,11 +62,32 @@ public class DreamPlayerCam : MonoBehaviour
             targetRotation = Quaternion.LookRotation(lookPosition - transform.position);
             Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
             xRotation = rotation.eulerAngles.x;
+            if (xRotation > 180) {
+                xRotation -= 360;
+            }
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             yRotation = rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public IEnumerator Shaking() {
+        Vector3 startPosition = transform.localPosition;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < shakeTime) {
+            timeElapsed += Time.deltaTime;
+            float strength = shakeCurve.Evaluate(timeElapsed / shakeTime);
+            transform.localPosition = startPosition + Random.insideUnitSphere * strength;
+            yield return new WaitForEndOfFrame();
+        }
+
+        transform.localPosition = startPosition;
+    }
+
+    public void ShakeScreen() {
+        StartCoroutine(Shaking());
     }
 }
