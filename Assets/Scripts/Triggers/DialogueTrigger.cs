@@ -18,6 +18,9 @@ public class DialogueTrigger : MonoBehaviour, ITalkable
     public void Talk(TextAsset inkJSON)
     {
         dialogueController.EnterDialogue(inkJSON, this);
+        if (focusPoint != null) {
+            Focus();
+        }
     }
 
     public void Focus() {
@@ -29,6 +32,10 @@ public class DialogueTrigger : MonoBehaviour, ITalkable
     }
 
     public void UponExit() {
+        return;
+    }
+
+    public void ChangeSprite(string spriteID) {
         return;
     }
 }

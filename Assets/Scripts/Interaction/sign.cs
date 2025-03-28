@@ -85,4 +85,8 @@ public class sign : MonoBehaviour, Interactable, ITalkable
     public void UponExit() {
         return;
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

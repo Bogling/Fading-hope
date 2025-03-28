@@ -170,6 +170,7 @@ private void ExitDialogue() {
                     break;
                 case IMAGE_TAG:
                     Debug.Log("image=" + tagValue);
+                    currentObject.ChangeSprite(tagValue);
                     break;
                 case DELAY_TAG:
                     Debug.Log("wait=" + tagValue);

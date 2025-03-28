@@ -8,6 +8,7 @@ public class FallingBlock : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private ParticleSystem destroyParticles;
+    [SerializeField] private AudioSource audioSource;
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject == player) {
@@ -20,6 +21,7 @@ public class FallingBlock : MonoBehaviour
         boxCollider.enabled = false;
         meshRenderer.enabled = false;
         destroyParticles.Play();
+        audioSource.Play();
         //gameObject.SetActive(false);
     }
 }

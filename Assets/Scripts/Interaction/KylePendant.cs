@@ -139,4 +139,12 @@ public class KylePendant : MonoBehaviour, Interactable
     public float GetCurrentPower() {
         return currentPower;
     }
+
+    public void SetDepleteRate(float newRate) {
+        depleteRate = newRate;
+    }
+
+    public float GetDepleteRate() {
+        return depleteRate;
+    }
 }

@@ -397,4 +397,8 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
     {
         throw new System.NotImplementedException();
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

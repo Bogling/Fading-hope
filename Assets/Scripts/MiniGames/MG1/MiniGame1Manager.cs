@@ -11,6 +11,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     [SerializeField] private DialogueController dialogueController;
     [SerializeField] private int PassCount = 3;
     private static MiniGame1Manager instance;
+    private SpriteRenderer spriteRenderer;
     private bool rightOption;
     private int passedCount = 0;
 
@@ -27,6 +28,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     void Start()
     {
         gameObject.SetActive(false);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -34,12 +36,19 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
         //a
         talker.Lock();
         //Interrupt();
+        spriteRenderer.sprite = null;
         Talk(StartInkJSON[Random.Range(0, StartInkJSON.Length)]);
         GenerateOption();
         gameObject.SetActive(true);
     }
 
     public void SelectOption(bool option) {
+        if (option) {
+            spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_hands1");
+        }
+        else {
+            spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_hands2");
+        }
         if (option == rightOption) {
             Debug.Log("++++");
             Talk(OnRightInkJSON[Random.Range(0, OnRightInkJSON.Length)]);
@@ -115,5 +124,9 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
 
     public void UponExit() {
         return;
+    }
+
+    public void ChangeSprite(string spriteID) {
+        talker.ChangeSprite(spriteID);
     }
 }

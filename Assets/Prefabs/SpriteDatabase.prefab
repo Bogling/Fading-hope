@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5536704862577670169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130489635324088676}
+  - component: {fileID: 7606909143019591892}
+  m_Layer: 0
+  m_Name: SpriteDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130489635324088676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536704862577670169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.776001, y: -8.521848, z: -61.34046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7606909143019591892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536704862577670169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad254f09f3d21148845eef3dc7fa532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritesDatabaseArray:
+  - ID: idefault
+    image: {fileID: 21300000, guid: 4853e0149bb9afb40946df169affb1b6, type: 3}
+  - ID: icheerful
+    image: {fileID: 21300000, guid: 6afa8b50ad570f3459e8bbe615423519, type: 3}
+  - ID: iblush
+    image: {fileID: 21300000, guid: 49d682a0eb6c8604ba66afc9952955bd, type: 3}
+  - ID: ifalsestate
+    image: {fileID: 21300000, guid: cf8c21e27f098ef479c4beaa879e4088, type: 3}
+  - ID: ifrightened
+    image: {fileID: 21300000, guid: cd04aa06e79c0a04cb3b8024df3e2174, type: 3}
+  - ID: ihappy
+    image: {fileID: 21300000, guid: 9007edb55d28c5d48a382a77aaecbf73, type: 3}
+  - ID: ihide1
+    image: {fileID: 21300000, guid: d48154c6b5d90524c8aa0706117c1571, type: 3}
+  - ID: ihide2
+    image: {fileID: 21300000, guid: dcb78ba4e3a578149b8131524fc64a9c, type: 3}
+  - ID: ihide3_d
+    image: {fileID: 21300000, guid: 7bd7b6035095c694288f2c8aafe9565d, type: 3}
+  - ID: ihide3_n
+    image: {fileID: 21300000, guid: b07e4f9beed947443929e211a2ca1aba, type: 3}
+  - ID: ihide3_y
+    image: {fileID: 21300000, guid: 2e584bc5e86d3ff469b939c6c5237789, type: 3}
+  - ID: iidea
+    image: {fileID: 21300000, guid: 65b3129629185504b9ca4dbf0a476dc3, type: 3}
+  - ID: iquestion
+    image: {fileID: 21300000, guid: d38a2632ac53b4245852c21c66f808e9, type: 3}
+  - ID: isad
+    image: {fileID: 21300000, guid: d751c1d900e791445b24d4782eacbfbc, type: 3}
+  - ID: isadquestion
+    image: {fileID: 21300000, guid: 440c175f370ae934a9bd4d1e8e1e2e14, type: 3}
+  - ID: isblush
+    image: {fileID: 21300000, guid: 79195f6c4456e4c4d8a74ea77ab976ab, type: 3}
+  - ID: ischeerful
+    image: {fileID: 21300000, guid: e38324d71b3ef4446ba620261fd7ff06, type: 3}
+  - ID: isdefault
+    image: {fileID: 21300000, guid: b4a3f2553a6a71241a631914e260d1dd, type: 3}
+  - ID: iser
+    image: {fileID: 21300000, guid: b48e73dcc3fa4b14385eed06e0ba69cf, type: 3}
+  - ID: isfalsestate
+    image: {fileID: 21300000, guid: d389e6e494b336e4899f1cdc97aa53e9, type: 3}
+  - ID: isfrightened
+    image: {fileID: 21300000, guid: f0ec1f37a38a2d745b4cbbc839e9f41d, type: 3}
+  - ID: ishappy
+    image: {fileID: 21300000, guid: 8f569b3762bacb64288627a7f8cf30d8, type: 3}
+  - ID: isholding1
+    image: {fileID: 21300000, guid: 9e15ce5631ca68d4e999639f120b8b26, type: 3}
+  - ID: isholding2
+    image: {fileID: 21300000, guid: 61835a70cd342fd488e14bce9e7e5065, type: 3}
+  - ID: isholding3_d
+    image: {fileID: 21300000, guid: 4eb8ffa231219cb45922f5aa19a0db8f, type: 3}
+  - ID: isholding3_y
+    image: {fileID: 21300000, guid: 95aaea8a9f57392419e1684d34aff90f, type: 3}
+  - ID: isholding3_n
+    image: {fileID: 21300000, guid: 923d5374245fba045af6db5d5e3de5f1, type: 3}
+  - ID: isholdingc1
+    image: {fileID: 21300000, guid: 33319b29566c571459068216b7664947, type: 3}
+  - ID: isholdingc2
+    image: {fileID: 21300000, guid: 53e664a371a578842b385c0f95f60cfa, type: 3}
+  - ID: iside1
+    image: {fileID: 21300000, guid: a169f681515f93b4ba60d28fc11d0426, type: 3}
+  - ID: iside2
+    image: {fileID: 21300000, guid: 2746178504361b74bb432028e3e20db7, type: 3}
+  - ID: iside3
+    image: {fileID: 21300000, guid: d902be6686eed0a4da03d26c7123ac9c, type: 3}
+  - ID: isidea
+    image: {fileID: 21300000, guid: 1319f49a86acc4b43889c59267eedd0f, type: 3}
+  - ID: isquestion
+    image: {fileID: 21300000, guid: 64a36e3f811c19745abd59009aa2f3a6, type: 3}
+  - ID: issad
+    image: {fileID: 21300000, guid: fdfb50a9b843030448146cfb45b56e1d, type: 3}
+  - ID: issadquestion
+    image: {fileID: 21300000, guid: 468d081076de65e4a873bc548fc71cdb, type: 3}
+  - ID: isstate
+    image: {fileID: 21300000, guid: a4c7cf2531e162f4481b0145e839178b, type: 3}
+  - ID: isthought
+    image: {fileID: 21300000, guid: 03960fda2e4244b47ba36d69871c5385, type: 3}
+  - ID: iswink
+    image: {fileID: 21300000, guid: 187e5d7fba366ae4dadee7ba68c48f68, type: 3}
+  - ID: ithought
+    image: {fileID: 21300000, guid: b8ed96745563ab743ad18a349647787e, type: 3}
+  - ID: ithrow1
+    image: {fileID: 21300000, guid: 70eb6e415a31c144daea27971719af83, type: 3}
+  - ID: ithrow2
+    image: {fileID: 21300000, guid: a05b53b871261e1479d747905f6f65e1, type: 3}
+  - ID: ithrow3
+    image: {fileID: 21300000, guid: 4d868f8c25b6aa844b5377f14abdfad1, type: 3}
+  - ID: ithrow4_d
+    image: {fileID: 21300000, guid: 98a8283306bc42b44a62bb7db63d4ea4, type: 3}
+  - ID: ithrow4_y
+    image: {fileID: 21300000, guid: 03d278fe214cd0a43a9dacc2e0bed223, type: 3}
+  - ID: ithrow4_n
+    image: {fileID: 21300000, guid: 6d7fdaa101fa72a43a19c475e3e63b89, type: 3}
+  - ID: iwink
+    image: {fileID: 21300000, guid: 5126aa35094df77449986d0ea310db09, type: 3}
+  - ID: istate
+    image: {fileID: 21300000, guid: c3b3b9ddfed2fe3478d1430c450d050a, type: 3}

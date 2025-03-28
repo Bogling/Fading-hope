@@ -1,0 +1,3 @@
+Isn't it strange...
+That girl aside, I haven't seen a single person for some time.
+Maybe something happened?

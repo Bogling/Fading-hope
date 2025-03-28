@@ -59,7 +59,7 @@
     <UnityVersion>6000.0.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\admin\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.5\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\admin\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\Projectile.cs" />
     <Compile Include="Assets\Scripts\AI\FlashableFearEvent.cs" />
+    <Compile Include="Assets\Scripts\Interaction\LSM.cs" />
     <Compile Include="Assets\Scripts\Dithering\DitheringRenderFeature.cs" />
     <Compile Include="Assets\Scripts\Interaction\Lever.cs" />
     <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
@@ -123,16 +124,21 @@
     <Compile Include="Assets\Scripts\MiniGames\MG1\MiniGame1Manager.cs" />
     <Compile Include="Assets\Scripts\Dream4Manager.cs" />
     <Compile Include="Assets\Scripts\Triggers\KillZone.cs" />
+    <Compile Include="Assets\Scripts\AI\FlashlessFearEvent.cs" />
     <Compile Include="Assets\Scripts\UI\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Interaction\BigGreenCrystal.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG2\MiniGame2Manager.cs" />
     <Compile Include="Assets\Scripts\LightBridge.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day2DialogueManager.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG2\Coin.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\BasicDialogueScript.cs" />
+    <Compile Include="Assets\Scripts\AI\EyesEvent.cs" />
     <Compile Include="Assets\Ink\Demos\Basic Demo\Scripts\QuitGameOnKeypress.cs" />
+    <Compile Include="Assets\Scripts\AI\HandFearEvent.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG4\MiniGame4MarkableSlot.cs" />
     <Compile Include="Assets\Scripts\Interaction\Radio.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerRay.cs" />
+    <Compile Include="Assets\Scripts\AI\LSMBreakEvent.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG6\MiniGame6Manager.cs" />
     <Compile Include="Assets\Scripts\UI\LPBar.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG5\MiniGame5Manager.cs" />
@@ -158,9 +164,11 @@
     <Compile Include="Assets\Scripts\MiniGames\MG3\MarkableSlot.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG4\MiniGame4Manager.cs" />
     <Compile Include="Assets\Scripts\Player\Dream\DreamPlayerCam.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\MiraSpritesData.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\ClockManager.cs" />
     <Compile Include="Assets\Scripts\AI\FearAI.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day2WindowDialogue.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG4\MG4PlayerBoard.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day1FirstInteraction.cs" />
     <Compile Include="Assets\Scripts\Triggers\CloseAnimationDecalTrigger.cs" />
@@ -168,6 +176,7 @@
     <Compile Include="Assets\Scripts\Player\Dream\FlashlightManager.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Kyle1DialogueInteraction.cs" />
+    <Compile Include="Assets\Scripts\Triggers\KyleD2Trigger.cs" />
     <Compile Include="Assets\Scripts\Fog\Fog.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DreamDialogueController.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG6\MG6Card.cs" />

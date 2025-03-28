@@ -39,6 +39,10 @@ public class testInteraction : MonoBehaviour, Interactable, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
+
     public void Focus() {
 
     }

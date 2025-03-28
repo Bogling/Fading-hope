@@ -10,6 +10,8 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private Fader fader;
     [SerializeField] private Transform position;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
 
@@ -20,6 +22,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
+        Lock();
     }
 
     private bool isLocked = false;
@@ -56,6 +59,11 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     public void Talk(TextAsset inkJSON)
     {
         dialogueController.EnterDialogue(inkJSON, this);
+        Focus();
+    }
+
+    public void ChangeSprite(string spriteID) {
+        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
     }
 
     public void Focus() {
@@ -80,6 +88,10 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                     case 0:
                         Debug.Log("Answer is yes1");
                         acceptedMG = true;
+                        var t = audioSource.time;
+                        audioSource.clip = audioClips[0];
+                        audioSource.time = t;
+                        audioSource.Play();
                         break;
                     case 1:
                         Debug.Log("Answer is no1");
@@ -118,6 +130,11 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
         isLocked = false;
     }
 
+    public void Activate() {
+        Unlock();
+        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("idefault");
+    }
+
     public async void UponExit() {
         if (!d1end) {
             Lock();
@@ -125,7 +142,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
             await Task.Delay(1000);
             if (acceptedMG) {
             //transform.position = position.position;
-                ChangeSprite(1);
+                ChangeSprite("ihide");
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame1Manager.GetInstance().StartMiniGame();
             }

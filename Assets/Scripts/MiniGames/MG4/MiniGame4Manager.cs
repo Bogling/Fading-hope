@@ -308,4 +308,8 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     {
         return;
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

@@ -128,4 +128,8 @@ public class Kyle1DialogueInteraction : MonoBehaviour, Interactable, ITalkable
             gameObject.SetActive(false);
         }
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

@@ -124,10 +124,10 @@ Material:
     - _alpha: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.099800624, g: 0.29707012, b: 0.4943396, a: 1}
+    - _Color: {r: 0.029811297, g: 0.11574817, b: 0.19999999, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowDirection_1: {r: 0.1, g: 0.5, b: 0, a: 0}
-    - _FoamColor: {r: 0.24339616, g: 0.4763773, b: 0.5999999, a: 0}
+    - _FoamColor: {r: 0.046671372, g: 0.18529144, b: 0.2603773, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

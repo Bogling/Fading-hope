@@ -9,6 +9,7 @@ public class PlayerInputController : MonoBehaviour
 
     private bool isSubmitPressed = false;
 
+    bool isInputDisabled = false;
     private static PlayerInputController instance;
 
 
@@ -31,6 +32,7 @@ public class PlayerInputController : MonoBehaviour
         _playerControls.PlayerActions.Interact.canceled += InteractionCanceled;
         _playerControls.DialogueActions.Submit.performed += SubmitPerformed;
         _playerControls.DialogueActions.Submit.canceled += SubmitCancelled;
+        _playerControls.UIActions.Pause.performed += PausePerformed;
     }
 
     private void OnDisable() {
@@ -38,6 +40,7 @@ public class PlayerInputController : MonoBehaviour
         _playerControls.PlayerActions.Interact.canceled -= InteractionCanceled;
         _playerControls.DialogueActions.Submit.performed -= SubmitPerformed;
         _playerControls.DialogueActions.Submit.canceled -= SubmitCancelled;
+        _playerControls.UIActions.Pause.performed -= PausePerformed;
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj) {
@@ -59,5 +62,26 @@ public class PlayerInputController : MonoBehaviour
 
     public bool GetSubmitPressed() {
         return isSubmitPressed;
+    }
+
+    private void PausePerformed(InputAction.CallbackContext obj) {
+        if (!isInputDisabled) {
+            PauseMenuManager.GetInstance().Pause();
+            isInputDisabled = true;
+        }
+        else {
+            PauseMenuManager.GetInstance().UnPause();
+            isInputDisabled = false;
+        }
+    }
+
+    public void DisableInput() {
+        _playerControls.PlayerActions.Disable();
+        isInputDisabled = true;
+    }
+
+    public void EnableInput() {
+        _playerControls.PlayerActions.Enable();
+        isInputDisabled = false;
     }
 }

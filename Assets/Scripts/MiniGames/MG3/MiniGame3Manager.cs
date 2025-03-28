@@ -239,6 +239,10 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
+
     public void UponExit()
     {
         if (gameEnded) {

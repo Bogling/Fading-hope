@@ -125,6 +125,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public IEnumerator CallGameOver(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
+        if (fadeOut) {
+            Fader.GetInstance().FadeOut(faderColor, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+        }
+        SceneManager.LoadScene("GameOverScreen");
+        if (fadeIn) {
+            Fader.GetInstance().FadeIn(faderColor, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+        }
+    }
+
     public string GetScene() {
         return playerData.GetScene();
     }

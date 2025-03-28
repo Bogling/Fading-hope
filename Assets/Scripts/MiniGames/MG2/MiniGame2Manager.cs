@@ -130,4 +130,8 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
         gameObject.SetActive(false);
         talker.Interact();
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

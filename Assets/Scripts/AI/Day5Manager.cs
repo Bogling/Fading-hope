@@ -8,6 +8,7 @@ public class Day5Manager : MonoBehaviour
     [SerializeField] private ClockManager clock;
     [SerializeField] private int stagesCount;
     [SerializeField] private float eventStartDelay;
+    [SerializeField] private float eventCheckDelay;
     [SerializeField] private int maxActiveEventsCount;
     private int activeEventsCount = 0;
     [SerializeField] private int maxEventOverallWeight;
@@ -57,6 +58,7 @@ public class Day5Manager : MonoBehaviour
                 else {
                     TriggerEvent(stage, index);
                 }
+                yield return new WaitForSeconds(eventCheckDelay);
             }
         }
     }

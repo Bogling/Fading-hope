@@ -58,6 +58,10 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void ChangeSprite(string spriteID) {
+        return; //TODO: IMplement
+    }
+
     public void Focus() {
         FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
     }

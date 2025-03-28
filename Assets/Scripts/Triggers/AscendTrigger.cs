@@ -22,6 +22,10 @@ public class AscendTrigger : MonoBehaviour, ITalkable
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
+
     public void Focus() {
         FindFirstObjectByType<DreamPlayerCam>().LookAtPosition(transform, 2);
     }

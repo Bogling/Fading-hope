@@ -6,15 +6,22 @@ using UnityEngine;
 public class HPBar : MonoBehaviour
 {
     private TMP_Text text;
-    private GameManager gameManager;
+    protected float hp;
+    protected GameManager gameManager;
     void Start()
     {
         text = GetComponent<TMP_Text>();
         gameManager = FindFirstObjectByType<GameManager>();
-        text.text = gameManager.GetHP().ToString();
+        hp = gameManager.GetHP();
+        if (text != null) {
+            text.text = hp.ToString();
+        }
     }
 
-    public void UpdateHP() {
-        text.text = gameManager.GetHP().ToString();
+    public virtual void UpdateHP() {
+        hp = gameManager.GetHP();
+        if (text != null) {
+            text.text = hp.ToString();
+        }
     }
 }

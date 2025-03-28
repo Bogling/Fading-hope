@@ -297,4 +297,8 @@ public class MiniGame5Manager : MonoBehaviour, ITalkable
     {
         return;
     }
+
+    public void ChangeSprite(string spriteID) {
+        return;
+    }
 }

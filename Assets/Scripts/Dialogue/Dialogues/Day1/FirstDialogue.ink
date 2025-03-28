@@ -1,5 +1,5 @@
 EXTERNAL choiceMade(qID, cID)
-Um... Hello, do you... mind if we talk a bit? #color:d4821e iquestion
+Um... Hello, do you... mind if we talk a bit? #color:d4821e #image:iquestion
 -> main
 === main ===
     + [Why not]

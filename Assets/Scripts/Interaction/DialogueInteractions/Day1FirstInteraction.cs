@@ -12,9 +12,13 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
     private bool d1end = false;
+    [SerializeField] private int fakeAppearLookNeedad;
+    private int lookAwayCount = 0;
+    private bool isLookingAway = false;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Lock();
     }
 
     private bool isLocked = false;
@@ -60,6 +64,10 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
         return;
     }
 
+    public void ChangeSprite(string spriteID) {
+        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
+    }
+
     public void Lock() {
         isLocked = true;
     }
@@ -85,6 +93,29 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
             gameObject.SetActive(false);
             FindFirstObjectByType<DayEnding>().Unlock();
             fader.FadeIn(Color.black, 1f);
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (!isLocked) {
+            return;
+        }
+        
+        if (!GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(FindFirstObjectByType<PlayerCam>().GetComponent<Camera>()), GetComponent<BoxCollider>().bounds)) {
+            if (!isLookingAway) {
+                if (lookAwayCount >= fakeAppearLookNeedad) {
+                    Unlock();
+                    spriteRenderer.sprite = sprites[0];
+                }
+                else {
+                    isLookingAway = true;
+                    lookAwayCount++;
+                }
+            }
+        }
+        else {
+            isLookingAway = false;
         }
     }
 }

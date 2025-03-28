@@ -32,6 +32,7 @@ public class FearAI : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip chaseClip;
     [SerializeField] private AudioClip labClip;
     [SerializeField] private GameObject signalDestination;
+    [SerializeField] private GameObject cameraJoint;
     
     private GameManager gameManager;
 
@@ -142,13 +143,14 @@ public class FearAI : MonoBehaviour, IDamageable
             FindFirstObjectByType<Fader>().AutoFade(Color.black, 1f, 0.5f, 3f);
             gameObject.SetActive(false);
             isActive = false;
+            return;
         }
         animator.SetTrigger("Attack");
         //gameManager.Respawn(Color.black, 1f, true, true);
     }
 
     public void KillPlayer() {
-        gameManager.Respawn(Color.black, 1f, true, true);
+        gameManager.CallGameOver(Color.black, 1f, true, true);
     }
 
     public void DealDamage(float damage)
@@ -193,5 +195,10 @@ public class FearAI : MonoBehaviour, IDamageable
 
     public void Deactivate() {
         isActive = false;
+    }
+
+    public void AttachCamera() {
+        FindFirstObjectByType<DreamPlayerCam>().StopCameraFollow();
+        FindFirstObjectByType<DreamPlayerCam>().gameObject.transform.SetParent(cameraJoint.transform, false);
     }
 }

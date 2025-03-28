@@ -21,6 +21,7 @@ public class PauseMenuManager : MonoBehaviour
             dreamPlayerInputController.DisableInput();
         }
         if (playerInputController != null) {
+            playerInputController.DisableInput();
             // Not implemented
         }
         Cursor.lockState = CursorLockMode.None;
@@ -34,7 +35,7 @@ public class PauseMenuManager : MonoBehaviour
             dreamPlayerInputController.EnableInput();
         }
         if (playerInputController != null) {
-            // Not implemented
+            playerInputController.EnableInput();
         }
         optionsMenu.gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

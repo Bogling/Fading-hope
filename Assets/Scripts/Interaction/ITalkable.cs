@@ -8,4 +8,5 @@ public interface ITalkable
     public void OperateChoice(int qID, int cID);
 
     public void UponExit();
+    public void ChangeSprite(string spriteID);
 }

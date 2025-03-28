@@ -127,7 +127,7 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
             await Task.Delay(1000);
             if (acceptedMG) {
             //transform.position = position.position;
-                ChangeSprite(1);
+                ChangeSprite("idefault");
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame5Manager.GetInstance().StartMiniGame();
             }
@@ -146,7 +146,7 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
             await Task.Delay(1000);
             if (acceptedMG) {
             //transform.position = position.position;
-                ChangeSprite(1);
+                ChangeSprite("idefault");
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame4Manager.GetInstance().StartMiniGame();
             }
@@ -168,7 +168,7 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
         }
     }
 
-    public void ChangeSprite(int spriteIndex) {
-        spriteRenderer.sprite = sprites[spriteIndex];
+    public void ChangeSprite(string spriteID) {
+        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
     }
 }

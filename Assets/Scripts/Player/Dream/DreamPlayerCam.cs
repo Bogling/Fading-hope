@@ -17,6 +17,7 @@ public class DreamPlayerCam : MonoBehaviour
     private float xRotation;
     private float yRotation;
     private IEnumerator c;
+    private bool isFollowingStopped = false;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class DreamPlayerCam : MonoBehaviour
 
     void Update()
     {
+        if (isFollowingStopped) return;
         if (DreamDialogueController.GetInstance().dialogueIsPlaying) {
             return;
         }
@@ -89,5 +91,13 @@ public class DreamPlayerCam : MonoBehaviour
 
     public void ShakeScreen() {
         StartCoroutine(Shaking());
+    }
+
+    public void StopCameraFollow() {
+        isFollowingStopped = true;
+    }
+
+    public void StartCameraFollow() {
+        isFollowingStopped = false;
     }
 }

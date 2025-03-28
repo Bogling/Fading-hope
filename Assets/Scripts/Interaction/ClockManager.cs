@@ -14,8 +14,12 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private float timeSpeed;
     [SerializeField] private TextAsset timeInkJSON;
     [SerializeField] private bool isInteractable;
+    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private Material invisibleMaterial;
+    [SerializeField] private Material outlineMaterial;
     private DialogueController dialogueController;
     private int interval;
+    private bool isHovered = false;
 
     
 
@@ -25,7 +29,9 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
         currentTime = initialTime;
 
         SetRotation();
-        interval = Day5Manager.GetInstance().CountTimeInterval();
+        if (FindFirstObjectByType<Day5Manager>() != null) {
+            interval = Day5Manager.GetInstance().CountTimeInterval();
+        }
     }
 
     private List<float> GetRotationFromTime(List<int> time) {
@@ -108,19 +114,26 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     public void Interact()
     {
         if (IsCurrentlyInteractable()) {
-            StartClock(); // <--- Delete this
             Talk(timeInkJSON);
         }
     }
 
     public void OnHover()
     {
-        return;
+        if (!isHovered) {
+            isHovered = true;
+            var matArray = meshRenderer.materials;
+            matArray[0] = outlineMaterial;
+            meshRenderer.materials = matArray;
+        }
     }
 
     public void OnHoverStop()
     {
-        return;
+        isHovered = false;
+        var matArray = meshRenderer.materials;
+        matArray[0] = invisibleMaterial;
+        meshRenderer.materials = matArray;
     }
 
     public void InteractionCanceled()
@@ -137,6 +150,7 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     {
         string text = (currentTime[0] % 12 == 0 ? 12 : currentTime[0] % 12) + ":" + currentTime[1] + " " + (currentTime[0] >= 12 ? "PM" : "AM");
         dialogueController.EnterDialogue(inkJSON, this, "time", text);
+        Focus();
     }
 
     public void OperateChoice(int qID, int cID)
@@ -146,6 +160,10 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
 
     public void UponExit()
     {
+        return;
+    }
+
+    public void ChangeSprite(string spriteID) {
         return;
     }
 }

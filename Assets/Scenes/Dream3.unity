@@ -4476,6 +4476,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1699072310}
+  resColor: {r: 1, g: 1, b: 1, a: 1}
+  fadeInDuration: 3
+  fadeIn: 0
+  fadeOutDuration: 3
+  fadeOut: 0
 --- !u!65 &2092884687
 BoxCollider:
   m_ObjectHideFlags: 0
