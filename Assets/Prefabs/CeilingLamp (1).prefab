@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47580bcd5c2b2814899fed89c82ca566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 4
   delay: 0.2
   player: {fileID: 0}
   isFake: 0

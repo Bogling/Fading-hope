@@ -8,6 +8,9 @@ public class WaterFightManager : MonoBehaviour, Interactable
     [SerializeField] private Door exitDoor;
     [SerializeField] private float waveDelay;
     [SerializeField] private FearAI[] fears;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip fClip;
+    [SerializeField] private AudioClip defClip;
     private List<FearAI> currentEnemies = new List<FearAI>();
     private int currentStage = 0;
 
@@ -22,6 +25,8 @@ public class WaterFightManager : MonoBehaviour, Interactable
     public IEnumerator StartWave() {
         if (currentStage == 0) {
             exitDoor.Close();
+            audioSource.clip = fClip;
+            audioSource.Play();
         }
 
         foreach (var enemy in currentEnemies) {
@@ -35,6 +40,8 @@ public class WaterFightManager : MonoBehaviour, Interactable
 
         if (currentStage >= 7) {
             exitDoor.Open();
+            audioSource.clip = defClip; 
+            audioSource.Play();
             yield break;
         }
 

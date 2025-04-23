@@ -1,0 +1,1 @@
+It seems like you won this time. #color:d4821e #image:isholding3_y #sound:0

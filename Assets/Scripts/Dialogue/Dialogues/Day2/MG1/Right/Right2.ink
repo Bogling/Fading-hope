@@ -1,0 +1,1 @@
+You guessed right! #color:d4821e #image:ihide3_y #sound:0

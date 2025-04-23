@@ -1,1 +1,1 @@
-Warning! A lot of melted snow ahead!
+Warning! A lot of melted snow ahead! #color:ffffff

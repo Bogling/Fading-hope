@@ -1,0 +1,1 @@
+This time my luck was stronger than yours #color:d4821e #image:ishappy #sound:0

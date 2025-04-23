@@ -59,10 +59,8 @@ public class EyesEvent : Day5Event
         //animator.SetTrigger("Activate");
         meshRenderer.enabled = true;
         emissionMeshRenderer.enabled = true;
-        if (!isActive) {
-            Activate();
-        }
-        else {
+        Activate();
+        if (isActive) {
             currentEyesNumber++;
             meshRenderer.materials = new Material[] {materials[currentEyesNumber]};
             emissionMeshRenderer.materials = new Material[] {emissionMaterials[currentEyesNumber]};
@@ -71,14 +69,18 @@ public class EyesEvent : Day5Event
 
     public void Activate() {
         if (!isAppeared) {
-            gameManager.BlockHPRegen();
             isAppeared = true;
             Day5Manager.GetInstance().OnEventEnded(EventWeight);
             meshRenderer.materials = new Material[] {materials[0]};
             emissionMeshRenderer.materials = new Material[] {emissionMaterials[0]};
         }
-        isActive = true;
-        StartCoroutine(ManageDamage());
+        else {
+            if (currentEyesNumber == 0) {
+                gameManager.BlockHPRegen();
+                isActive = true;
+                StartCoroutine(ManageDamage());
+            }
+        }
     }
 
     public void Deactivate() {
@@ -122,11 +124,17 @@ public class EyesEvent : Day5Event
         currentEyesNumber--;
         meshRenderer.materials = new Material[] {materials[currentEyesNumber]};
         emissionMeshRenderer.materials = new Material[] {emissionMaterials[currentEyesNumber]};
+        isWaiting = false;
         if (currentEyesNumber == 0) {
             Deactivate();
         }
         else {
             Day5Manager.GetInstance().OnEventEnded(EventWeight);
         }
+    }
+
+    public override void Enrage()
+    {
+        return;
     }
 }

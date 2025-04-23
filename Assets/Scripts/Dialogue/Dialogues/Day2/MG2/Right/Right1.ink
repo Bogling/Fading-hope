@@ -1,1 +1,1 @@
-And you are right! #color:d4821e #image:icheerful
+And you are right! #color:d4821e #image:ithrow4_y

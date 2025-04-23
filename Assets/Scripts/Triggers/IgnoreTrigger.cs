@@ -6,7 +6,9 @@ public class IgnoreTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject == player) {
-            FindFirstObjectByType<Kyle1DialogueInteraction>().CheckIgnored();
+            if (FindFirstObjectByType<Kyle1DialogueInteraction>() != null) {
+                FindFirstObjectByType<Kyle1DialogueInteraction>().CheckIgnored();
+            }
         }
     }
 }

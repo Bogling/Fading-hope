@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FearArea : MonoBehaviour
@@ -54,10 +53,14 @@ public class FearArea : MonoBehaviour
     private IEnumerator DealDamage() {
         while (true) {
             if (isStopped) {
-                gameManager.StartHPRegen();
+                //gameManager.StartHPRegen();
                 break;
             }
-            gameManager.StopHPRegen();
+            //gameManager.StopHPRegen();
+            if (gameManager.GetHP() - damage <= 0 && isFake) {
+                StopDamage();
+                break;
+            }
             int temp = gameManager.DealDamage(damage);
             if (temp == 1 || (temp == 0 && isFake)) {
                 StopDamage();

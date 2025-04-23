@@ -65,16 +65,16 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherHighlighter.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherDatabaseBase.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherAdapter.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherWindow.cs" />
+    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherDatabase.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\Searcher.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherTreeUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherHighlighter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherControl.cs" />
+    <Compile Include="Library\PackageCache\com.unity.searcher\Editor\Searcher\SearcherTreeUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.searcher\Editor\Unity.Searcher.Editor.asmdef" />
@@ -567,10 +567,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -597,18 +593,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

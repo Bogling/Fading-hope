@@ -24,7 +24,10 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
     private static MiniGame2Manager instance;
 
     private bool rightOption;
-
+    private bool pendingCoin = false;
+    private bool coinLocked = false;
+    private bool isStarting = false;
+    private bool dend = false;
     public static MiniGame2Manager GetInstance() {
         return instance;
     }
@@ -51,19 +54,19 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
         if (option == rightOption) {
             Debug.Log("++++");
             Talk(OnRightInkJSON[Random.Range(0, OnRightInkJSON.Length)]);
-            EndMiniGame();
         }
         else {
             Debug.Log("----");
             Talk(OnWrongInkJSON[Random.Range(0, OnWrongInkJSON.Length)]);
-            EndMiniGame();
         }
+        pendingCoin = false;
     }
 
     private void EndMiniGame() {
         //b
         passedCount++;
         if (passedCount < PassCount) {
+            dend = false;
             StartMiniGame();
         }
         else {
@@ -73,7 +76,7 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
     public void SetOption(bool option) {
         rightOption = option;
-        talker.ChangeSprite(1);
+        //ChangeSprite("ithrow3");
         Talk(QuestionInkJSON[Random.Range(0, QuestionInkJSON.Length)]);
     }
 
@@ -105,6 +108,10 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
                         break;
                 }
                 break;
+            case 2:
+                coinLocked = false;
+                ChangeSprite("ithrow2");
+                break;
         }
     }
 
@@ -117,10 +124,18 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
     }
 
     public void UponExit() {
-        if (!coinFlipped) {
+        if (isStarting) {
+            EndMiniGame();
+            isStarting = false;
+        }
+
+        if (!coinFlipped && !pendingCoin && !coinLocked && !isStarting) {
             Lock();
-            talker.ChangeSprite(0);
+            //talker.ChangeSprite(0);
             coin.Flip();
+            //ChangeSprite("ithrow2");
+            pendingCoin = true;
+            coinLocked = true;
         }
         return;
     }
@@ -132,6 +147,28 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
     }
 
     public void ChangeSprite(string spriteID) {
+        if (spriteID == "ithrow4_n" || spriteID == "ithrow4_y") {
+            isStarting = true;
+        }
+        if (spriteID == "ithrow4_n") {
+            if (rightOption) {
+                spriteID = "ithrow4_n2";
+            }
+            else {
+                spriteID = "ithrow4_n1";
+            }
+        }
+        else if (spriteID == "ithrow4_y") {
+            if (rightOption) {
+                spriteID = "ithrow4_y2";
+            }
+            else {
+                spriteID = "ithrow4_y1";
+            }
+        }
+        talker.ChangeSprite(spriteID);
         return;
     }
+
+
 }

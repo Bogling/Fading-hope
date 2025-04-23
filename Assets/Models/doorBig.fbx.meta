@@ -89,11 +89,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Open
-      takeName: Armature|Open
+      name: Armature|DoorOpen
+      takeName: Armature|DoorOpen
       internalID: 8564959035966527887
       firstFrame: 0
-      lastFrame: 0
+      lastFrame: 320
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

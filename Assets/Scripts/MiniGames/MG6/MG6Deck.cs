@@ -173,6 +173,9 @@ public class MG6Deck : MonoBehaviour
     }
 
     public void Reset() {
+        foreach(MG6Card card in cards) {
+            card.DestroyCard();
+        }
         cards.Clear();
         selectedCard = null;
         canMakeSelection = false;
@@ -232,6 +235,10 @@ public class MG6Deck : MonoBehaviour
     // ===================================== AI =========================================== //
 
     public IEnumerator FindPairs() {
+        if (!ContainsPairs()) {
+            MiniGame6Manager.GetInstance().FinishSelectionStage(false);
+            yield break;
+        }
         yield return new WaitForSeconds(1f);
         while (ContainsPairs()) {
             foreach (MG6Card card in cards) {
@@ -245,6 +252,7 @@ public class MG6Deck : MonoBehaviour
                 }
             }
         }
+        
     }
 
     private MG6Card FindPair(MG6Card card) {
@@ -261,6 +269,9 @@ public class MG6Deck : MonoBehaviour
         int randomIndex;
         while (true) {
             randomIndex = Random.Range(0, cards.Count);
+            if (cards.Count == 1) {
+                break;
+            }
             if (cards[randomIndex] == selectedCard) { continue; }
             break;
         }

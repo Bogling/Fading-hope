@@ -1,0 +1,1 @@
+Let's get started! #color:d4821e #image:ischeerful #sound:0

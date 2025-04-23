@@ -34,11 +34,14 @@ public class DreamDialogueController : MonoBehaviour
 
     public bool isLocked = false;
     private bool buttonPressed = false;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
     private static DreamDialogueController instance;
 
     private const string COLOR_TAG = "color";
     private const string IMAGE_TAG = "image";
     private const string DELAY_TAG = "wait";
+    private const string SOUND_TAG = "sound";
 
     private void Awake() {
         if (instance != null) {
@@ -181,6 +184,15 @@ private void ExitDialogue() {
                     Debug.Log("wait=" + tagValue);
                     StartCoroutine(Delay(int.Parse(tagValue)));
                     break;
+                case SOUND_TAG:
+                    Debug.Log("sound=" + tagValue);
+                    if (tagValue == "null") {
+                        audioSource.clip = null;
+                    }
+                    else {
+                        audioSource.clip = audioClips[int.Parse(tagValue)];
+                    }
+                    break;
                 default:
                     Debug.Log("No such key");
                     break;
@@ -197,7 +209,10 @@ private void ExitDialogue() {
         foreach (char c in p.ToCharArray()) {
             maxVisibleChars++;
             dialogueText.maxVisibleCharacters = maxVisibleChars;
-
+            audioSource.Stop();
+            audioSource.pitch = Random.Range(0.7f, 1.3f);
+            audioSource.Play();
+            
             yield return new WaitForSeconds(MAX_TYPE_TIME / speed);
         }
 

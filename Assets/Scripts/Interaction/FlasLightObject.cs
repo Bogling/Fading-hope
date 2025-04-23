@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FlasLightObject : MonoBehaviour, Interactable
@@ -15,7 +16,7 @@ public class FlasLightObject : MonoBehaviour, Interactable
 
     public void InteractionCanceled()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public bool IsCurrentlyInteractable()

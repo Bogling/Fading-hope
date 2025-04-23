@@ -9,6 +9,8 @@ public class Dream4Manager : MonoBehaviour
     [SerializeField] private List<CheckPointDoorStruct> doorsToOpenList;
     [SerializeField] private List<CheckPointLeverStruct> leverList;
     [SerializeField] private List<CheckPointMapStruct> mapPiecesList;
+    [SerializeField] private List<CheckPointAmbientStruct> ambientList;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private BigGreenCrystal bigGreenCrystal;
     [SerializeField] private List<GreenCrystal> greenCrystals;
     [SerializeField] private Door crystal1Door;
@@ -19,8 +21,11 @@ public class Dream4Manager : MonoBehaviour
     [SerializeField] private Door waterLabDoor1;
     [SerializeField] private LightReceiver bigDoorReceiver2;
     [SerializeField] private Door waterLabDoor2;
-    void Start()
+    private void Start()
     {
+    }
+
+    public void StartDream4() {
         int checkPoint = FindFirstObjectByType<GameManager>().GetCheckPoint();
 
         // Close and lock all doors past checkpoint
@@ -28,6 +33,10 @@ public class Dream4Manager : MonoBehaviour
             if (doorStruct.checkPointIndex <= checkPoint) {
                 doorStruct.door.Close();
                 doorStruct.door.Lock();
+                if (doorStruct.door.GetType() == typeof(TempleDoor)) {
+                    TempleDoor t = (TempleDoor)doorStruct.door;
+                    t.MakeUnlightable();
+                }
             }
         }
 
@@ -56,11 +65,22 @@ public class Dream4Manager : MonoBehaviour
             for (int i = mapPieces.checkPointIndexStart; i <= mapPieces.checkPointIndexEnd; i++) {
                 if (checkPoint == i) {
                     isPointValid = true;
+                    mapPieces.mapPiece.SetActive(true);
                     break;
                 }
             }
             if (!isPointValid) {
                 mapPieces.mapPiece.SetActive(false);
+            }
+        }
+
+        foreach(CheckPointAmbientStruct ambientStruct in ambientList) {
+            for (int i = ambientStruct.checkPointIndexStart; i <= ambientStruct.checkPointIndexEnd; i++) {
+                if (checkPoint == i) {
+                    audioSource.clip = ambientStruct.audioClip;
+                    audioSource.Play();
+                    break;
+                }
             }
         }
 
@@ -109,7 +129,7 @@ public class Dream4Manager : MonoBehaviour
                 break;
         }
     }
-}
+    }
 
 [Serializable]
 public struct CheckPointDoorStruct {
@@ -134,5 +154,6 @@ public struct CheckPointMapStruct {
 [Serializable]
 public struct CheckPointAmbientStruct {
     public AudioClip audioClip;
-    public int checkPointIndex;
+    public int checkPointIndexStart;
+    public int checkPointIndexEnd;
 }

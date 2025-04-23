@@ -69,37 +69,37 @@
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\RayTracingResources.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\ComputeRayTracingBackend.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Hardware\HardwareRayTracingShader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\StringIDs.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\Sampling\SamplingResources.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\HlbvhBuilder.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\BlockAllocator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\IRayTracingBackend.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\BackendHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Hardware\HardwareRayTracingAccelStruct.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\BLASPositionsPool.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\GeometryPool\GeometryPoolDefs.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\RayTracingContext.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\AccelStructAdapter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\TerrainToMesh.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\AccelStructInstances.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\Common.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\ComputeRayTracingShader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\StringIDs.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\GeometryPool\GeometryPool.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\IRayTracingShader.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\RestructureBvh.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\BlockAllocator.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\GraphicsHelpers.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\ComputeRayTracingAccelStruct.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\IRayTracingAccelStruct.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\Utils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\IRayTracingBackend.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\Utilities\BackendHelpers.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Hardware\HardwareRayTracingAccelStruct.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\UnifiedRayTracingException.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\Scan.cs" />
-    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\RadeonRaysAPI.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\RadeonRaysAPI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\BLASPositionsPool.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\RadixSort.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\HlbvhTopLevelBuilder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\GeometryPool\GeometryPoolDefs.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\RayTracingContext.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\AccelStructAdapter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\TerrainToMesh.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\Sampling\SobolData.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\BvhCheck.cs" />
     <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Hardware\HardwareRayTracingBackend.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\AccelStructInstances.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\RadeonRays\Common.cs" />
+    <Compile Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Compute\ComputeRayTracingShader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.rendering.light-transport\Runtime\UnifiedRayTracing\Common\GeometryPool\GeometryPoolDefs.cs.hlsl" />
@@ -614,10 +614,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -644,18 +640,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

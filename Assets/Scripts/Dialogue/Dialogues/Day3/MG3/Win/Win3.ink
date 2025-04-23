@@ -1,0 +1,1 @@
+And I lost. #color:d4821e #image:isdefault #sound:0

@@ -1,0 +1,1 @@
+You are lucky! #color:d4821e #image:ithrow4_y

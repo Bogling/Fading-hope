@@ -16,6 +16,7 @@ public class HandFearEvent : Day5Event, Interactable
     [SerializeField] private float downDist;
     [SerializeField] private Transform upPosition;
     [SerializeField] private Transform downPosition;
+    [SerializeField] private AudioSource audioSource;
     private GameManager gameManager;
     private bool isWaiting = false;
     private bool isMovingUp = false;
@@ -56,11 +57,17 @@ public class HandFearEvent : Day5Event, Interactable
 
     public void Activate() {
         isActive = true;
+        if (audioSource != null) {
+            audioSource.Play();
+        }
         StartCoroutine(ManageDamage());
     }
 
     public void Deactivate() {
         StartCoroutine(EventRest());
+        if (audioSource != null) {
+            audioSource.Stop();
+        }
         isActive = false;
         EndEvent();
     }
@@ -134,5 +141,10 @@ public class HandFearEvent : Day5Event, Interactable
                 yield return new WaitForSeconds(upSpeed);
             }
         }
+    }
+
+    public override void Enrage()
+    {
+        return;
     }
 }

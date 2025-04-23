@@ -141,3 +141,19 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 5126aa35094df77449986d0ea310db09, type: 3}
   - ID: istate
     image: {fileID: 21300000, guid: c3b3b9ddfed2fe3478d1430c450d050a, type: 3}
+  - ID: ihide3_l2
+    image: {fileID: 21300000, guid: 4e7ef6f7b9beb004cb6210280209a646, type: 3}
+  - ID: ihide3_r2
+    image: {fileID: 21300000, guid: a4a47bd8720fb8c489d35e69bd1376bb, type: 3}
+  - ID: ihide3_r1
+    image: {fileID: 21300000, guid: 887142f4f4ce7294e8ad21a2dcbff9c5, type: 3}
+  - ID: ihide3_l1
+    image: {fileID: 21300000, guid: af8004c7ac7303b49b51cd2492b163a9, type: 3}
+  - ID: ithrow4_y1
+    image: {fileID: 21300000, guid: 1506698c3cd41ae449f3ab02530d1549, type: 3}
+  - ID: ithrow4_y2
+    image: {fileID: 21300000, guid: 19c4037c4ec1570488a13a13c25ead86, type: 3}
+  - ID: ithrow4_n1
+    image: {fileID: 21300000, guid: 73b41d0d1a79a5d4b92565afe58d3446, type: 3}
+  - ID: ithrow4_n2
+    image: {fileID: 21300000, guid: 203562f31fb306549bcf9c577ee81aa0, type: 3}

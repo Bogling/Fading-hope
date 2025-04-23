@@ -68,14 +68,14 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\VignetteConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\PPv2ConversionIndexers.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\ColorGradingConverter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\PPv2Converter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\DepthOfFieldConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\ChromaticAberrationConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\PropertyConversions.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\PostProcessEffectSettingsConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\MotionBlurConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\BloomConverter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\PPv2Converter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\GrainConverter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\DepthOfFieldConverter.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Editor\Converter\PPv2\EffectConverters\LensDistortionConverter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -566,10 +566,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -596,18 +592,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

@@ -18,7 +18,7 @@ public class DialogueController : MonoBehaviour
 
     private TextMeshProUGUI[] choicesText;
     private Story currentStory;
-
+    [SerializeField] private float delayStartTime = 0.1f;
     private bool isTyping;
     private string p;
 
@@ -34,11 +34,15 @@ public class DialogueController : MonoBehaviour
 
     public bool isLocked = false;
     private bool buttonPressed = false;
+    private bool isNewDialogPending = false;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
     private static DialogueController instance;
 
     private const string COLOR_TAG = "color";
     private const string IMAGE_TAG = "image";
     private const string DELAY_TAG = "wait";
+    private const string SOUND_TAG = "sound";
 
     private void Awake() {
         if (instance != null) {
@@ -77,6 +81,10 @@ private void Update() {
 }
 
 public void EnterDialogue(TextAsset inkJSON, ITalkable obj) {
+    if (dialogueIsPlaying) {
+        StartCoroutine(DelayStart(inkJSON, obj));
+        return;
+    }
     currentInkJSON = inkJSON;
     currentStory = new Story(inkJSON.text);
     dialogueIsPlaying = true;
@@ -113,16 +121,25 @@ public void EnterDialogue(TextAsset inkJSON, ITalkable obj, string varName, stri
 
 private void ExitDialogue() {
     dialogueIsPlaying = false;
-    gameObject.SetActive(false);
-    dialogueText.text = "";
-    Cursor.lockState = CursorLockMode.Locked;
-    Cursor.visible = false;
+    if (!isNewDialogPending) {
+        gameObject.SetActive(false);
+    
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    else {
+        dialogueText.text = "";
+    }
 
     currentStory.UnbindExternalFunction("choiceMade");
     currentObject.UponExit();
 }
 
     private void DisplayNextParagraph(TextAsset inkJSON) {
+        if (Cursor.lockState == CursorLockMode.Locked || Cursor.visible == false) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         if (!isTyping) {
             if (currentStory.canContinue) {
                 if (choicesPresent) {
@@ -176,6 +193,15 @@ private void ExitDialogue() {
                     Debug.Log("wait=" + tagValue);
                     StartCoroutine(Delay(int.Parse(tagValue)));
                     break;
+                case SOUND_TAG:
+                    Debug.Log("sound=" + tagValue);
+                    if (tagValue == "null") {
+                        audioSource.clip = null;
+                    }
+                    else {
+                        audioSource.clip = audioClips[int.Parse(tagValue)];
+                    }
+                    break;
                 default:
                     Debug.Log("No such key");
                     break;
@@ -192,6 +218,9 @@ private void ExitDialogue() {
         foreach (char c in p.ToCharArray()) {
             maxVisibleChars++;
             dialogueText.maxVisibleCharacters = maxVisibleChars;
+            audioSource.Stop();
+            audioSource.pitch = Random.Range(0.7f, 1.3f);
+            audioSource.Play();
 
             yield return new WaitForSeconds(MAX_TYPE_TIME / speed);
         }
@@ -247,5 +276,18 @@ private void ExitDialogue() {
 
     public void forceEndDialogue() {
         ExitDialogue();
+    }
+
+    private IEnumerator DelayStart(TextAsset inkJSON, ITalkable obj) {
+        isNewDialogPending = true;
+        while (dialogueIsPlaying) {
+            yield return new WaitForSeconds(delayStartTime);
+        }
+        EnterDialogue(inkJSON, obj);
+        isNewDialogPending = false;
+    }
+
+    public bool IsDialogPending() {
+        return isNewDialogPending;  
     }
 }

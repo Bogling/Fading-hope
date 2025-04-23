@@ -1,0 +1,3 @@
+It is darker today... #color:ffffff #sound:1
+Interesting, is it possible that somebody just climbs this high from the other side just to say hi to somebody in here?
+What am I thinking about...

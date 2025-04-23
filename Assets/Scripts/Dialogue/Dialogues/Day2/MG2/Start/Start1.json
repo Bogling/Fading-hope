@@ -1,1 +1,1 @@
-﻿{"inkVersion":21,"root":[["^Over here. ","#","^color:d4821e ","/#","#","^image:ihide1 ","/#","#","^wait:5","/#","\n","^Which one? ","#","^color:d4821e ","/#","#","^image:ihide2","/#","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":21,"root":[["^Here we go. ","#","^color:d4821e ","/#","#","^image:ithrow1","/#","\n","ev",2,0,{"x()":"choiceMade","exArgs":2},"pop","/ev","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}

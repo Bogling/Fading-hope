@@ -6,14 +6,13 @@ public class DoorBigManager : MonoBehaviour, IDamageable, Interactable
     [SerializeField] private int startingStage;
     private BoxCollider boxCollider;
     private bool isOpened = false;
-    private Animator animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private LightReceiver lightReceiver1;
     [SerializeField] private LightReceiver lightReceiver2;
     
     private int activeStage = 0;
 
     private void Start() {
-        animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider>();
         foreach (var ring in activeRings) {
             ring.SetActive(false);

@@ -1,1 +1,1 @@
-Now you are guessing #color:d4821e #image:isitdefault
+Now you are guessing #color:d4821e #image:isdefault #sound:0

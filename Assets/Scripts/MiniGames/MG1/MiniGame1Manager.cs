@@ -16,6 +16,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     private int passedCount = 0;
 
     private bool isLocked = false;
+    private int currentImg = 0;
 
     public static MiniGame1Manager GetInstance() {
         return instance;
@@ -29,6 +30,7 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
     {
         gameObject.SetActive(false);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = null;
     }
 
 
@@ -36,7 +38,6 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
         //a
         talker.Lock();
         //Interrupt();
-        spriteRenderer.sprite = null;
         Talk(StartInkJSON[Random.Range(0, StartInkJSON.Length)]);
         GenerateOption();
         gameObject.SetActive(true);
@@ -44,10 +45,20 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
 
     public void SelectOption(bool option) {
         if (option) {
-            spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_hands1");
+            if (option == rightOption) {
+                currentImg = 1;
+            }
+            else {
+                currentImg = 2;
+            }
         }
         else {
-            spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_hands2");
+            if (option == rightOption) {
+                currentImg = 3;
+            }
+            else {
+                currentImg = 4;
+            }
         }
         if (option == rightOption) {
             Debug.Log("++++");
@@ -128,5 +139,26 @@ public class MiniGame1Manager : MonoBehaviour, ITalkable
 
     public void ChangeSprite(string spriteID) {
         talker.ChangeSprite(spriteID);
+        switch (currentImg) {
+            case 0:
+                spriteRenderer.sprite = null;
+                break;
+            case 1:
+                spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_l2");
+                currentImg = 0;
+                break;
+            case 2:
+                spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_l1");
+                currentImg = 0;
+                break;
+            case 3:
+                spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_r2");
+                currentImg = 0;
+                break;
+            case 4:
+                spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("ihide3_r1");
+                currentImg = 0;
+                break;
+        }
     }
 }

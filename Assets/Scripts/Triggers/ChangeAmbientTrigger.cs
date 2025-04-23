@@ -10,16 +10,26 @@ public class ChangeAmbientTrigger : MonoBehaviour
     [SerializeField] private float fadeInStep = 0.01f;
     [SerializeField] private float fadeOutStep = 0.01f;
     [SerializeField] private float finalVolume = 1f;
+    [SerializeField] private bool isContinuatiion = false;
     private bool isTriggered = false;
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject == player && !isTriggered) {
             StopCoroutine("FadeAmbient");
             if (isInstant) {
                 bool toPlay = false;
-                if (!ambient.clip == audioClip) {
-                    ambient.Stop();
-                    ambient.clip = audioClip;
-                    toPlay = true;
+                if (ambient.clip != audioClip) {
+                    if (isContinuatiion) {
+                        var t = ambient.time;
+                        ambient.Stop();
+                        ambient.clip = audioClip;
+                        ambient.time = t;
+                        toPlay = true;
+                    }
+                    else {
+                        ambient.Stop();
+                        ambient.clip = audioClip;
+                        toPlay = true;
+                    }
                 }
                 if (audioClip != null) {
                     ambient.volume = finalVolume;
@@ -45,9 +55,18 @@ public class ChangeAmbientTrigger : MonoBehaviour
         }
         bool toPlay = false;
         if (!ambient.clip == audioClip) {
-            ambient.Stop();
-            ambient.clip = audioClip;
-            toPlay = true;
+            if (isContinuatiion) {
+                var t = ambient.time;
+                ambient.Stop();
+                ambient.clip = audioClip;
+                ambient.time = t;
+                toPlay = true;
+                }
+            else {
+                ambient.Stop();
+                ambient.clip = audioClip;
+                toPlay = true;
+            }
         }
         if (audioClip != null && toPlay) {
             ambient.Play();

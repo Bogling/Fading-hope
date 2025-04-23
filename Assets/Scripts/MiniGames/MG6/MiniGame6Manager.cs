@@ -75,7 +75,7 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
         cardsD = new List<MG6Card>((cardsCount - 1) / 4);
         cardsC = new List<MG6Card>((cardsCount - 1) / 4);
         cardsS = new List<MG6Card>(((cardsCount - 1) / 4) + 1);
-        StartMiniGame();
+        talker = FindFirstObjectByType<Day4DialogueManager>();
     }
 
     public static MiniGame6Manager GetInstance() { return instance; }
@@ -213,6 +213,7 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
         if (playerDeck.ContainsPairs()) {
             StartCoroutine(playerDeck.ShowDeck());
         }
+        
         StartCoroutine(enemyDeck.FindPairs());
     }
 
@@ -271,15 +272,11 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
             playerDeck.RemoveCard(card);
             enemyDeck.AddCard(card);
 
-            if (playerDeck.HasQueen()) {
-                if (card.GetIndex() == 10) {
-                    Talk(enemyWrongSelectionInkJSON[Random.Range(0, enemyWrongSelectionInkJSON.Length - 1)]);
-                }
-                else {
-                    if (Random.Range(0, 4) == 1) {
-                        Talk(enemyNormalSelectionInkJSON[Random.Range(0, enemyNormalSelectionInkJSON.Length - 1)]);
-                    }
-                }
+            if (card.GetIndex() == 10) {
+                Talk(enemyWrongSelectionInkJSON[Random.Range(0, enemyWrongSelectionInkJSON.Length - 1)]);
+            }
+            else if (playerDeck.HasQueen()) {
+                Talk(enemyNormalSelectionInkJSON[Random.Range(0, enemyNormalSelectionInkJSON.Length - 1)]);
             }
 
             enemyDeck.ShuffleDeck();
@@ -288,15 +285,11 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
             enemyDeck.RemoveCard(card);
             playerDeck.AddCard(card);
 
-            if (enemyDeck.HasQueen()) {
-                if (card.GetIndex() == 10) {
-                    Talk(playerWrongSelectionInkJSON[Random.Range(0, playerWrongSelectionInkJSON.Length - 1)]);
-                }
-                else {
-                    if (Random.Range(0, 8) == 1) {
-                        Talk(playerNormalSelectionInkJSON[Random.Range(0, playerNormalSelectionInkJSON.Length - 1)]);
-                    }
-                }
+            if (card.GetIndex() == 10) {
+                Talk(playerWrongSelectionInkJSON[Random.Range(0, playerWrongSelectionInkJSON.Length - 1)]);
+            }
+            else if (enemyDeck.HasQueen()) {
+                Talk(playerNormalSelectionInkJSON[Random.Range(0, playerNormalSelectionInkJSON.Length - 1)]);
             }
         }
         
@@ -340,6 +333,12 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
         playerDeck.HideDeck();
         GenerateCards();
         StartCoroutine(AssignDecks());
+        if (playerDeck.HasQueen()) {
+            Talk(playerUnluckInkJSON[Random.Range(0, playerUnluckInkJSON.Length - 1)]);
+        }
+        else {
+            Talk(playerLuckInkJSON[Random.Range(0, playerLuckInkJSON.Length - 1)]);
+        }
     }
 
     private void EndMiniGame(bool playerWins) {
@@ -360,7 +359,9 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
     }
 
     private void QuitMiniGame() {
-
+        talker.Unlock();
+        gameObject.SetActive(false);
+        talker.Interact();
     }
 
     public void Focus()
@@ -395,10 +396,10 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
 
     public void UponExit()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void ChangeSprite(string spriteID) {
-        return;
+        talker.ChangeSprite(spriteID);
     }
 }

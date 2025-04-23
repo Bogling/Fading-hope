@@ -8,6 +8,7 @@ public class LSMBreakEvent : Day5Event, Interactable
     [SerializeField] private float delay;
     [SerializeField] private float checkDelay;
     [SerializeField] private float restTime;
+    [SerializeField] private AudioSource audioSource;
     private GameManager gameManager;
     private int repairChance = 1;
 
@@ -85,11 +86,13 @@ public class LSMBreakEvent : Day5Event, Interactable
 
     public void Activate() {
         isActive = true;
+        audioSource.Play();
         lsm.BreakLSM();
         StartCoroutine(ManageDamage());
     }
     public void Deactivate() {
         StartCoroutine(EventRest());
+        audioSource.Stop();
         isActive = false;
         EndEvent();
     }
@@ -102,5 +105,10 @@ public class LSMBreakEvent : Day5Event, Interactable
             gameManager.DealDamage(damage);
             yield return new WaitForSeconds(delay);
         }
+    }
+
+    public override void Enrage()
+    {
+        return;
     }
 }

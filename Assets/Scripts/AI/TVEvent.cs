@@ -9,6 +9,7 @@ public class TVEvent : Day5Event
     [SerializeField] private KylePendant pendant;
     [SerializeField] private float timeToLeave;
     [SerializeField] private float restTime;
+    [SerializeField] private AudioSource audioSource;
     private GameManager gameManager;
     private PlayerCam playerCam;
     private Animator animator;
@@ -35,10 +36,12 @@ public class TVEvent : Day5Event
 
     public void Activate() {
         isActive = true;
+        audioSource.Play();
         StartCoroutine(ManageDamage());
     }
 
     private IEnumerator ManageDamage() {
+        StartCoroutine("OnNotInSight");
         while (true) {
             if (!isActive) {
                 yield break;
@@ -67,6 +70,7 @@ public class TVEvent : Day5Event
 
     public void Deactivate() {
         StartCoroutine(EventRest());
+        audioSource.Stop();
         isActive = false;
         EndEvent();
     }
@@ -85,5 +89,10 @@ public class TVEvent : Day5Event
     public override bool IsResting()
     {
         return isResting;
+    }
+
+    public override void Enrage()
+    {
+        return;
     }
 }

@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     public async void NewGame() {
         Fader.GetInstance().FadeOut(Color.black, fadeTime);
         await Task.Delay((int)(fadeTime * 1000));
+        SaveLoadManager.ResetData();
         SceneManager.LoadScene(NGScene);
     }
 

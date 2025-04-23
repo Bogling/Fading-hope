@@ -1,2 +1,1 @@
-Over here. #color:d4821e #image:ihide1 #wait:5
-Which one? #color:d4821e #image:ihide2
+Let's start the game #color:d4821e #image:isdefault #sound:0

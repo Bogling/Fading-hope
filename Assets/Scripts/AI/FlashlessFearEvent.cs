@@ -17,6 +17,7 @@ public class FlashlessFearEvent : Day5Event
     [SerializeField] private float downDist;
     [SerializeField] private Transform upPosition;
     [SerializeField] private Transform downPosition;
+    [SerializeField] private AudioSource audioSource;
     private GameManager gameManager;
     private bool isWaiting = false;
     private bool isMovingUp = false;
@@ -57,11 +58,17 @@ public class FlashlessFearEvent : Day5Event
 
     public void Activate() {
         isActive = true;
+        if (audioSource != null) {
+            audioSource.Play();
+        }
         StartCoroutine(ManageDamage());
     }
 
     public void Deactivate() {
         StartCoroutine(EventRest());
+        if (audioSource != null) {
+            audioSource.Stop();
+        }
         isActive = false;
         EndEvent();
     }
@@ -122,5 +129,10 @@ public class FlashlessFearEvent : Day5Event
         isWaiting = true;
         yield return new WaitForSeconds(timeToLeave);
         Deactivate();
+    }
+
+    public override void Enrage()
+    {
+        return;
     }
 }

@@ -133,6 +133,7 @@ public class MG4AttackBoard : MonoBehaviour
         foreach (var slots in markableSlots) {
             foreach (var markableSlot in slots) {
                 markableSlot.ResetMark();
+                markableSlot.UnLock();
             }
         }
 

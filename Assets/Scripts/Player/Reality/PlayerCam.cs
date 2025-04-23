@@ -30,13 +30,22 @@ public class PlayerCam : MonoBehaviour
             return;
         }
         if (c != null) {
-            StopCoroutine(c);
-            c = null;
+            if (FindFirstObjectByType<DialogueController>() != null) {
+                if (!FindFirstObjectByType<DialogueController>().IsDialogPending()) {
+                    StopCoroutine(c);
+                    c = null;
+                }
+            }
+            else {
+                StopCoroutine(c);
+                c = null;
+            }
         }
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
+        yRotation = Mathf.Clamp(yRotation, 60f, 300f);
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -46,7 +55,8 @@ public class PlayerCam : MonoBehaviour
 
     public void LookAtPosition(Vector3 lookPosition, float speed) {
         if (c != null) {
-            StopCoroutine(c);
+            StopCoroutine("LookAtTransformCorutine");
+            c = null;
         }
         c = LookAtTransformCorutine(lookPosition, speed);
         StartCoroutine(c);

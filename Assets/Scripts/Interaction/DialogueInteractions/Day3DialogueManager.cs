@@ -10,6 +10,10 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private Fader fader;
     [SerializeField] private Transform position;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private Transform focusPos;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+    private float tempT = 0f;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
 
@@ -20,6 +24,9 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
+        Interact();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private bool isLocked = false;
@@ -56,30 +63,20 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
     public void Talk(TextAsset inkJSON)
     {
         dialogueController.EnterDialogue(inkJSON, this);
+        Focus();
     }
 
     public void ChangeSprite(string spriteID) {
-        return; //TODO: IMplement
+        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
     }
 
     public void Focus() {
-        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(focusPos, 2);
     }
 
     public void OperateChoice(int qID, int cID) {
-        /*switch (qID) {
+        switch (qID) {
             case 0:
-                switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no");
-                        gameManager.DoubtedAnswer();
-                        break;
-                }
-                break;
-            case 1:
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes1");
@@ -91,27 +88,23 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
                         break;
                 }
                 break;
-            case 2:
+            case 1:
                 switch (cID) {
                     case 0:
-                        Debug.Log("Answer is yes2");
+                        tempT = audioSource.time;
+                        audioSource.Stop();
                         break;
                     case 1:
-                        Debug.Log("Answer is no2");
+                        audioSource.time = tempT;
+                        audioSource.Play();
+                        break;
+                    case 2:
+                        audioSource.clip = audioClip;
+                        audioSource.Play();
                         break;
                 }
                 break;
-            case 3:
-                switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes2");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no2");
-                        break;
-                }
-                break;
-        }*/
+        }
     }
 
     public void Lock() {
@@ -123,15 +116,13 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public async void UponExit() {
-        // TEMPORARY || DELETE LATER //
-        acceptedMG = true;
         if (!d1end) {
             Lock();
             //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             if (acceptedMG) {
             //transform.position = position.position;
-                ChangeSprite(1);
+                //ChangeSprite(1);
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame3Manager.GetInstance().StartMiniGame();
             }
@@ -139,6 +130,8 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
                 fader.FadeIn(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
+                FindFirstObjectByType<DayEnding>().ChangeNextLevel("Day4");
+                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 2);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
             }
@@ -150,7 +143,7 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
             await Task.Delay(1000);
             if (acceptedMG) {
             //transform.position = position.position;
-                ChangeSprite(1);
+                //ChangeSprite(1);
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame4Manager.GetInstance().StartMiniGame();
             }
@@ -158,6 +151,8 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
                 fader.FadeIn(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
+                FindFirstObjectByType<DayEnding>().ChangeNextLevel("Day4");
+                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 2);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
             }
@@ -167,12 +162,9 @@ public class Day3DialogueManager : MonoBehaviour, Interactable, ITalkable
             fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             gameObject.SetActive(false);
+            FindFirstObjectByType<ClockManager>().SetTime(18, 20, 0);
             FindFirstObjectByType<DayEnding>().Unlock();
             fader.FadeIn(Color.black, 1f);
         }
-    }
-
-    public void ChangeSprite(int spriteIndex) {
-        spriteRenderer.sprite = sprites[spriteIndex];
     }
 }

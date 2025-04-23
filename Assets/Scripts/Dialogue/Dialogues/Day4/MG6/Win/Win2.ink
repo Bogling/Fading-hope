@@ -1,0 +1,1 @@
+I had zero chance, aren't I?  #color:d4821e #image:isholdingc1 #sound:0

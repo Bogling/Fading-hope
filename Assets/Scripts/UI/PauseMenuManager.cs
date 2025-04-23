@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,12 @@ public class PauseMenuManager : MonoBehaviour
             playerInputController.DisableInput();
             // Not implemented
         }
+        var s = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioSource in s) {
+            if (audioSource.isPlaying) {
+                audioSource.Pause();
+            }
+        }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameObject.SetActive(true);
@@ -38,6 +45,12 @@ public class PauseMenuManager : MonoBehaviour
             playerInputController.EnableInput();
         }
         optionsMenu.gameObject.SetActive(false);
+        var s = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        foreach (AudioSource audioSource in s) {
+            if (!audioSource.isPlaying && audioSource.time > 0.0f) {
+                audioSource.UnPause();
+            }
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameObject.SetActive(false);

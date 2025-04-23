@@ -1,0 +1,1 @@
+I'm lucky this time. #color:d4821e #image:isholdingc1 #sound:0

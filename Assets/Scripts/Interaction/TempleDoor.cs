@@ -24,4 +24,8 @@ public class TempleDoor : Door, IDamageable
         isActivated = false;
         ActivationIndicator.SetActive(false);
     }
+
+    public void MakeUnlightable() {
+        isLightable = false;
+    }
 }

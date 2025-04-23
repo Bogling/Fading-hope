@@ -66,28 +66,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\StreamCompressionModel.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeStream.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringFormatMethods.gen.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedList.gen.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringParseMethods.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeNotBurstCompatible.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelHashMapExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeStream.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\BitField.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringParseMethods.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeText.gen.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DoubleRewindableAllocators.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeQueue.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\xxHash3.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UTF8ArrayUnsafeUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DebugView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\ListExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeArrayExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeParallelHashSetExtensions.gen.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeNotBurstCompatible.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeList.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeHashSet.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeParallelHashMap.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeHashMap.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\xxHash3.StreamingState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeList.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringMethods.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelHashSetExtensions.gen.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedString.gen.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeHashSet.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeAtomicCounter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeParallelHashSet.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeSort.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeQueue.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DataStreamWriter.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Unicode.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DataStreamReader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\IJobFilter.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelMultiHashMap.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeBitArray.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\AllocatorManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeReference.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringAppendMethods.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeRingQueue.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringFormat.gen.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\ConcurrentMask.cs" />
@@ -100,40 +121,19 @@
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\IJobParallelForBatch.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeBitArray.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\EarlyInitHelpers.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\GenerateTestsForBurstCompatibilityAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\IJobParallelForDefer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UIntFloat.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeStream.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringFormatMethods.gen.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeNotBurstCompatible.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelHashMapExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeStream.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\xxHash3.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UTF8ArrayUnsafeUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DebugView.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\ListExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeHashSet.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeList.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelHashSetExtensions.gen.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeHashSet.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeAtomicCounter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeParallelHashSet.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeQueue.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DataStreamReader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\IJobFilter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelMultiHashMap.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeReference.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringAppendMethods.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeUtilityEx.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeAppendBuffer.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\RewindableAllocator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\GenerateTestsForBurstCompatibilityAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\RegisterGenericJobTypeAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\AutoFreeAllocator.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\DataStreamExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeParallelHashMap.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\FixedStringInternalMethods.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\Jobs\IJobParallelForDefer.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeParallelMultiHashMap.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\NativeHashMap.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UIntFloat.cs" />
     <Compile Include="Library\PackageCache\com.unity.collections\Unity.Collections\UnsafeText.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -616,10 +616,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -646,18 +642,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

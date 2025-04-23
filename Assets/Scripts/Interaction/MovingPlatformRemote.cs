@@ -30,7 +30,7 @@ public class MovingPlatformRemote : MovingPlatform, Interactable
 
     public bool IsCurrentlyInteractable()
     {
-        return true;
+        return false;
     }
 
     public void OnHover()

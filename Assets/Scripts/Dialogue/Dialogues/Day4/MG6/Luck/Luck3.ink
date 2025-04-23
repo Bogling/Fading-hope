@@ -1,0 +1,1 @@
+Not a very good start for me. #color:d4821e #image:isholdingc1 #sound:0

@@ -46,12 +46,19 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
         return rotations;
     }
 
+    public void SetTime(int hour, int minute, int second) {
+        currentTime[0] = hour;
+        currentTime[1] = minute;
+        currentTime[2] = second;
+        SetRotation();
+    }
+
     private void SetRotation() {
         List<float> rotations = GetRotationFromTime(currentTime);
 
-        arrowS.transform.localEulerAngles = new Vector3(rotations[2] - 90, 0, 90);
-        arrowM.transform.localEulerAngles = new Vector3(rotations[1] - 90, 0, 90);
-        arrowH.transform.localEulerAngles = new Vector3(rotations[0] - 90, 0, 90);
+        arrowS.transform.localEulerAngles = new Vector3(-rotations[2] - 90, 0, 90);
+        arrowM.transform.localEulerAngles = new Vector3(-rotations[1] - 90, 0, 90);
+        arrowH.transform.localEulerAngles = new Vector3(-rotations[0] - 90, 0, 90);
     }
 
     public void StartClock() {
@@ -103,7 +110,7 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public void StopClock() {
-
+        Day5Manager.GetInstance().EndDay();
     }
 
     public bool IsCurrentlyInteractable()

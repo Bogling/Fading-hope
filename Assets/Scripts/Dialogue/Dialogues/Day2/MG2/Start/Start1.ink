@@ -1,2 +1,3 @@
-Over here. #color:d4821e #image:ihide1 #wait:5
-Which one? #color:d4821e #image:ihide2
+EXTERNAL choiceMade(qID, cID)
+Here we go. #color:d4821e #image:ithrow1
+~ choiceMade(2, 0)

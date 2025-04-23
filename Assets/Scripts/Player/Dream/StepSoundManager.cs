@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StepSoundManager : MonoBehaviour
@@ -22,7 +21,7 @@ public class StepSoundManager : MonoBehaviour
     public void CheckGround() {
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit raycastHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out raycastHit)) {
+        if (Physics.Raycast(transform.position, Vector3.down, out raycastHit, 2)) {
             if (raycastHit.collider == null || raycastHit.collider.gameObject.GetComponent<MeshRenderer>() == null) {
                 return;
             }

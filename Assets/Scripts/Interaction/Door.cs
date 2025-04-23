@@ -7,6 +7,14 @@ public class Door : MonoBehaviour, Interactable
     [SerializeField] protected Animator animator;
 
     private bool isOpened;
+    [SerializeField] private SkinnedMeshRenderer[] meshRenderer;
+    [SerializeField] private int[] outlineIndexes;
+    [SerializeField] private Material invisibleMaterial;
+    [SerializeField] private Material outlineMaterial;
+    [SerializeField] private AudioClip doorOpenClip;
+    [SerializeField] private AudioClip doorCloseClip;
+    [SerializeField] private AudioSource audioSource;
+    private bool isHovered = false;
 
 
     public void Interact()
@@ -40,22 +48,39 @@ public class Door : MonoBehaviour, Interactable
 
     public void OnHover()
     {
-        return;
+        if (!isHovered && IsCurrentlyInteractable()) {
+            isHovered = true;
+            for (int i = 0; i < meshRenderer.Length; i++) {
+                var matArray = meshRenderer[i].materials;
+                matArray[outlineIndexes[i]] = outlineMaterial;
+                meshRenderer[i].materials = matArray;
+            }
+        }
     }
 
     public void OnHoverStop()
     {
-        return;
+        isHovered = false;
+        if (!gameObject.activeInHierarchy) return;
+        for (int i = 0; i < meshRenderer.Length; i++) {
+            var matArray = meshRenderer[i].materials;
+            matArray[outlineIndexes[i]] = invisibleMaterial;
+            meshRenderer[i].materials = matArray;
+        }
     }
 
     public void Open() {
         animator.SetTrigger("Open");
         isOpened = true;
+        audioSource.clip = doorOpenClip;
+        audioSource.Play();
     }
 
     public void Close() {
         animator.SetTrigger("Close");
         isOpened = false;
+        audioSource.clip = doorCloseClip;
+        audioSource.Play();
     }
 
     public void Lock() {

@@ -84,4 +84,16 @@ public class PlayerInputController : MonoBehaviour
         _playerControls.PlayerActions.Enable();
         isInputDisabled = false;
     }
+
+    public void FullDisable() {
+        _playerControls.PlayerActions.Disable();
+        _playerControls.UIActions.Disable();
+        _playerControls.DialogueActions.Disable();
+    }
+
+    public void FullEnable() {
+        _playerControls.PlayerActions.Enable();
+        _playerControls.UIActions.Enable();
+        _playerControls.DialogueActions.Enable();
+    }
 }

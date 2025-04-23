@@ -33,6 +33,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     private string[] verticalPositions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     private bool isHidden = false;
     private bool repeatEnemyTurn = false;
+    private bool isEnding = false;
 
     private static MiniGame4Manager instance;
 
@@ -45,6 +46,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     void Start() {
         dialogueController = DialogueController.GetInstance();
         talker = FindFirstObjectByType<Day3DialogueManager>();
+        gameObject.SetActive(false);
     }
 
     public static MiniGame4Manager GetInstance() { 
@@ -61,6 +63,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     }
 
     public void EndMiniGame(bool isPlayerWin) {
+        isEnding = true;
         if (isPlayerWin) {
             Talk(OnWinMinigameInkJSON[Random.Range(0, OnWinMinigameInkJSON.Length)]);
         }
@@ -68,6 +71,13 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
             Talk(OnLoseMinigameInkJSON[Random.Range(0, OnLoseMinigameInkJSON.Length)]);
         }
 
+        StartCoroutine(EndHandler());
+    }
+
+    private IEnumerator EndHandler() {
+        while (isEnding) {
+            yield return new WaitForSeconds(0.1f);
+        }
         passedCount++;
         if (passedCount < passCount) {
             StartMiniGame();
@@ -75,6 +85,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
         else {
             Talk(EndMinigameInkJSON[Random.Range(0, EndMinigameInkJSON.Length)]);
         }
+        isEnding = false;
     }
 
     public void QuitMiniGame() {
@@ -90,7 +101,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     }
 
     public void MakeTurn(bool isPlayer, SlotPosition slot) {
-        
+        if (isEnding) return;
         if (isPlayer) {
             attackBoard.GetSlot(slot).Mark(true, false);
             if (attackBoard.ManageShipDamage(slot)) {
@@ -99,6 +110,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
                 }
                 else {
                     EndMiniGame(true);
+                    return;
                 }
             }
             if (attackBoard.AreAnyShipLeft()) {
@@ -106,6 +118,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
             }
             else {
                 EndMiniGame(true);
+                return;
             } 
         }
         else {
@@ -117,16 +130,18 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
                 }
                 else {
                     EndMiniGame(false);
+                    return;
                 }
             }
             if (!playerBoard.AreAnyShipLeft()) {
                 EndMiniGame(false);
+                return;
             }
         }
     }
 
     public IEnumerator Think() {
-        if (isThinking) {
+        if (isThinking || isEnding) {
             yield break;
         }
         isThinking = true;
@@ -258,6 +273,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes");
+                        isEnding = false;
                         StartMiniGame();
                         break;
                     case 1:
@@ -271,6 +287,10 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
 
     public void UponExit()
     {
+        if (isEnding) {
+            isEnding = false;
+            return;
+        }
         if (repeatEnemyTurn) {
             StartCoroutine(Think());
             repeatEnemyTurn = false;
@@ -310,6 +330,6 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     }
 
     public void ChangeSprite(string spriteID) {
-        return;
+        talker.ChangeSprite(spriteID);
     }
 }

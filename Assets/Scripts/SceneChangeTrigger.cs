@@ -21,7 +21,18 @@ public class SceneChangeTrigger : MonoBehaviour
         Fader.GetInstance().FadeOut(faderColor, fadeDuration);
         yield return new WaitForSeconds(fadeDuration);
         
-        FindFirstObjectByType<DreamPlayerController>();
+        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullDisable();
+        }
+        else if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullDisable();
+        }
         SceneManager.LoadScene(scene);
+        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullEnable();
+        }
+        else if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullEnable();
+        }
     }
 }

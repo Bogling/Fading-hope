@@ -10,6 +10,7 @@ public class FlashableFearEvent : Day5Event
     [SerializeField] private float timeToLeave;
     [SerializeField] private float restTime;
     [SerializeField] private float neededPower = 1f;
+    [SerializeField] private AudioSource audioSource;
     private GameManager gameManager;
     private PlayerRay playerRay;
     private Animator animator;
@@ -53,11 +54,17 @@ public class FlashableFearEvent : Day5Event
 
     public void Activate() {
         isActive = true;
+        if (audioSource != null) {
+            audioSource.Play();
+        }
         StartCoroutine(ManageDamage());
     }
 
     public void Deactivate() {
         StartCoroutine(EventRest());
+        if (audioSource != null) {
+            audioSource.Stop();
+        }
         isActive = false;
         EndEvent();
     }
@@ -96,5 +103,10 @@ public class FlashableFearEvent : Day5Event
         yield return new WaitForSeconds(timeToLeave);
         animator.SetTrigger("Deactivate");
         Deactivate();
+    }
+
+    public override void Enrage()
+    {
+        animator.SetBool("Enrage", true);
     }
 }

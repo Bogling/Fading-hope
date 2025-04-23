@@ -65,63 +65,63 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\ScreenSpaceReflections.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\Spline.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Bloom.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\DepthOfField.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\ChromaticAberration.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\TemporalAntialiasing.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\PropertySheet.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\WaveformMonitor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\TextureFormatUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\ColorUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Fog.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessResources.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\HaltonSeq.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessLayer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Vignette.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\LensDistortion.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessRenderContext.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\RuntimeUtilities.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\MaxAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\MultiScaleVO.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\PostProcessEffectRendererExtensions.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\DisplayNameAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\LogHistogram.cs" />
-    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\ScalableAO.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\TargetPool.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\HableCurve.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessProfile.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessBundle.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\PropertySheet.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\WaveformMonitor.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\LightMeterMonitor.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\MeshUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\HistogramMonitor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\TextureFormatUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\PostProcessAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\ColorGrading.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\ColorUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\Monitor.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\SubpixelMorphologicalAntialiasing.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Fog.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\AutoExposure.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\FastApproximateAntialiasing.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessResources.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\HaltonSeq.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessLayer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Vignette.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\PropertySheetFactory.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\LensDistortion.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\MotionBlur.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessVolume.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessRenderContext.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\RuntimeUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessDebug.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Monitors\VectorscopeMonitor.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessDebugLayer.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\MinMaxAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\MaxAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Dithering.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\MultiScaleVO.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessEffectSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessEffectRenderer.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\PostProcessEffectRendererExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\ParameterOverride.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\Grain.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\DisplayNameAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\XRSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Effects\AmbientOcclusion.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\ShaderIDs.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\PostProcessEvent.cs" />
     <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\TextureLerper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Utils\LogHistogram.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.postprocessing\PostProcessing\Runtime\Unity.Postprocessing.Runtime.asmdef" />
@@ -603,10 +603,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -633,18 +629,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

@@ -65,23 +65,23 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ink\Editor\Core\Ink Settings\InkSettings.cs" />
-    <Compile Include="Assets\Ink\Editor\Tools\Player Window\InkPlayerWindow.cs" />
-    <Compile Include="Assets\Ink\Editor\Core\Ink Library\InkLibrary.cs" />
-    <Compile Include="Assets\Ink\Editor\Core\Ink Library\InkFile.cs" />
-    <Compile Include="Assets\Ink\Editor\Tools\Ink Inspector\DefaultAssetInspector.cs" />
-    <Compile Include="Assets\Ink\Editor\Core\InkEditorUtils.cs" />
-    <Compile Include="Assets\Ink\Editor\Tools\File Icons\InkBrowserIcons.cs" />
-    <Compile Include="Assets\Ink\Editor\Tools\Build Validation\InkPreBuildValidationCheck.cs" />
     <Compile Include="Assets\Ink\Editor\Core\Compiler\InkCompiler.cs" />
     <Compile Include="Assets\Ink\Editor\Core\Compiler\Auto Compiler\InkPostProcessor.cs" />
     <Compile Include="Assets\Ink\Editor\Core\Ink Settings\InkSettingsEditor.cs" />
+    <Compile Include="Assets\Ink\Editor\Core\Ink Settings\InkSettings.cs" />
     <Compile Include="Assets\Ink\Editor\Tools\Player Window\InkHistoryContentItem.cs" />
+    <Compile Include="Assets\Ink\Editor\Tools\Player Window\InkPlayerWindow.cs" />
     <Compile Include="Assets\Ink\Editor\Tools\Ink Inspector\DefaultAssetEditor.cs" />
     <Compile Include="Assets\Ink\Editor\Core\Compiler\UnityInkFileHandler.cs" />
+    <Compile Include="Assets\Ink\Editor\Core\Ink Library\InkLibrary.cs" />
+    <Compile Include="Assets\Ink\Editor\Core\Ink Library\InkFile.cs" />
     <Compile Include="Assets\Ink\Editor\Tools\Ink Inspector\InkInspector.cs" />
+    <Compile Include="Assets\Ink\Editor\Tools\Ink Inspector\DefaultAssetInspector.cs" />
+    <Compile Include="Assets\Ink\Editor\Core\InkEditorUtils.cs" />
     <Compile Include="Assets\Ink\Editor\Core\Ink Library\InkCompilerLog.cs" />
+    <Compile Include="Assets\Ink\Editor\Tools\File Icons\InkBrowserIcons.cs" />
     <Compile Include="Assets\Ink\Editor\Tools\Startup Window\InkUnityIntegrationStartupWindow.cs" />
+    <Compile Include="Assets\Ink\Editor\Tools\Build Validation\InkPreBuildValidationCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Ink\Editor\InkEditor.asmdef" />
@@ -572,10 +572,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -602,18 +598,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

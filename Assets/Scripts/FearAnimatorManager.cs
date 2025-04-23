@@ -14,4 +14,8 @@ public class FearAnimatorManager : MonoBehaviour
     public void KillPlayer() {
         fearAI.KillPlayer();
     }
+
+    public void AttachCamera() {
+        fearAI.AttachCamera();
+    }
 }

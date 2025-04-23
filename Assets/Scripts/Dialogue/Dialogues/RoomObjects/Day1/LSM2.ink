@@ -1,1 +1,1 @@
-Guess my pulse is normal.
+Guess my pulse is normal. #color:ffffff #sound:1

@@ -664,10 +664,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -694,18 +690,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
@@ -1238,8 +1222,8 @@
     <ProjectReference Include="Unity.ShaderGraph.Editor.csproj" />
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
     <ProjectReference Include="UnityEngine.UI.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.csproj" />
     <ProjectReference Include="Unity.Multiplayer.Center.Editor.csproj" />
@@ -1251,31 +1235,24 @@
     <ProjectReference Include="Unity.ProBuilder.Editor.csproj" />
     <ProjectReference Include="Unity.ProBuilder.AddOns.Editor.csproj" />
     <ProjectReference Include="Unity.Rendering.LightTransport.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
     <ProjectReference Include="Unity.ProBuilder.AssetIdRemapUtility.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
     <ProjectReference Include="InkEditor.csproj" />
     <ProjectReference Include="Unity.Collections.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj" />
     <ProjectReference Include="Unity.Multiplayer.Center.Common.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Updater.csproj" />
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj" />
     <ProjectReference Include="Unity.Postprocessing.Editor.csproj" />
     <ProjectReference Include="Unity.TextMeshPro.csproj" />
     <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj" />
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.csproj" />
     <ProjectReference Include="Unity.Mathematics.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj" />
     <ProjectReference Include="Unity.ProBuilder.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.csproj" />
     <ProjectReference Include="Unity.Postprocessing.Runtime.csproj" />
     <ProjectReference Include="Unity.2D.Sprite.Editor.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
@@ -1284,7 +1261,6 @@
     <ProjectReference Include="Unity.Burst.csproj" />
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj" />
     <ProjectReference Include="Unity.Rendering.LightTransport.Runtime.csproj" />
     <ProjectReference Include="Unity.InputSystem.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />

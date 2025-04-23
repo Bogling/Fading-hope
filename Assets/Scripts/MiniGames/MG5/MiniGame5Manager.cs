@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MiniGame5Manager : MonoBehaviour, ITalkable
@@ -299,6 +298,6 @@ public class MiniGame5Manager : MonoBehaviour, ITalkable
     }
 
     public void ChangeSprite(string spriteID) {
-        return;
+        talker.ChangeSprite(spriteID);
     }
 }

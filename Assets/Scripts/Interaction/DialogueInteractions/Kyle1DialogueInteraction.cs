@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Kyle1DialogueInteraction : MonoBehaviour, Interactable, ITalkable
@@ -76,6 +75,7 @@ public class Kyle1DialogueInteraction : MonoBehaviour, Interactable, ITalkable
         }
         if (dialogueEnded) {
             if (!GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(playerCam.GetComponent<Camera>()), GetComponent<BoxCollider>().bounds)) {
+                FindFirstObjectByType<GameManager>().SetKyleSp1Par();
                 gameObject.SetActive(false);
             }
         }
@@ -124,7 +124,7 @@ public class Kyle1DialogueInteraction : MonoBehaviour, Interactable, ITalkable
     }
 
     public void CheckIgnored() {
-        if (FindFirstObjectByType<GameManager>().GetKyleSp1Par()) {
+        if (!FindFirstObjectByType<GameManager>().GetKyleSp1Par()) {
             gameObject.SetActive(false);
         }
     }

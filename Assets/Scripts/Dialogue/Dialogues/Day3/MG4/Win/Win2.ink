@@ -1,0 +1,1 @@
+Oh, I lost #color:d4821e #image:isholding3_y #sound:0

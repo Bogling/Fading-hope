@@ -15,13 +15,14 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField] private AudioSource turnOffClip;
     [SerializeField] private AudioSource flashClip;
     private bool isOn = true;
+    private bool isLocked = false;
 
     private void Start() {
         gameManager = FindFirstObjectByType<GameManager>();
     }
 
     public void Flash() {
-        if (!gameManager.isLPFull()) {return;}
+        if (!gameManager.isLPFull() || isLocked) {return;}
         Debug.Log("Flash");
         animator.SetTrigger("Flash");
         gameManager.RefreshLP();
@@ -49,5 +50,12 @@ public class FlashlightManager : MonoBehaviour
             isOn = true;
         }
     }
-    
+
+    public void Lock() {
+        isLocked = true;
+    }
+
+    public void Unlock() {
+        isLocked = false;
+    }    
 }

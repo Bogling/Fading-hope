@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,6 +30,7 @@ public class FearAI : MonoBehaviour, IDamageable
     [SerializeField] private AudioSource ambient;
     [SerializeField] private AudioClip chaseClip;
     [SerializeField] private AudioClip labClip;
+    [SerializeField] private AudioClip killClip;
     [SerializeField] private GameObject signalDestination;
     [SerializeField] private GameObject cameraJoint;
     
@@ -38,6 +38,7 @@ public class FearAI : MonoBehaviour, IDamageable
 
     private bool isWaiting = false;
     private bool isDead = false;
+    private bool isAttacking = false;
 
     private void Awake() {
         player = GameObject.Find("PlayerObject").transform;
@@ -57,7 +58,7 @@ public class FearAI : MonoBehaviour, IDamageable
     }
 
     private void Update() {
-        if (!isActive) return;
+        if (!isActive || isAttacking) return;
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
@@ -65,18 +66,18 @@ public class FearAI : MonoBehaviour, IDamageable
         if (!playerInSightRange && !playerInAttackRange) {
             animator.SetBool("IsChasing", false);
             StartCoroutine(Patroling());
-            if (ambient.clip == chaseClip && labClip != null) {
+            if (ambient != null && ambient.clip == chaseClip && labClip != null) {
                 ambient.clip = labClip;
             }
-            if (!ambient.isPlaying) {
+            if (ambient != null && !ambient.isPlaying) {
                 ambient.Play();
             }
         }
         else if (playerInSightRange && !playerInAttackRange) {
-            if (ambient.clip != chaseClip && chaseClip != null) {
+            if (ambient != null && ambient.clip != chaseClip && chaseClip != null) {
                 ambient.clip = chaseClip;
             }
-            if (!ambient.isPlaying) {
+            if (ambient != null && !ambient.isPlaying) {
                 ambient.Play();
             }
             
@@ -141,16 +142,17 @@ public class FearAI : MonoBehaviour, IDamageable
         if (useAlternateAttack) {
             gameManager.DealDamage(alternateAttackDamage);
             FindFirstObjectByType<Fader>().AutoFade(Color.black, 1f, 0.5f, 3f);
-            gameObject.SetActive(false);
+            Die();
             isActive = false;
             return;
         }
         animator.SetTrigger("Attack");
+        isAttacking = true;
         //gameManager.Respawn(Color.black, 1f, true, true);
     }
 
     public void KillPlayer() {
-        gameManager.CallGameOver(Color.black, 1f, true, true);
+        StartCoroutine(gameManager.CallGameOver(Color.black, 1f, true, true));
     }
 
     public void DealDamage(float damage)
@@ -160,6 +162,9 @@ public class FearAI : MonoBehaviour, IDamageable
 
     public void Die() {
         isDead = true;
+        isActive = false;
+        agent.speed = 0;
+        agent.SetDestination(transform.position);
         animator.SetTrigger("Die");
         if (signalDestination != null) {
             signalDestination.GetComponent<Interactable>().Interact();
@@ -199,6 +204,10 @@ public class FearAI : MonoBehaviour, IDamageable
 
     public void AttachCamera() {
         FindFirstObjectByType<DreamPlayerCam>().StopCameraFollow();
-        FindFirstObjectByType<DreamPlayerCam>().gameObject.transform.SetParent(cameraJoint.transform, false);
+        FindFirstObjectByType<DreamPlayerCam>().gameObject.transform.SetParent(cameraJoint.transform, true);
+        FindFirstObjectByType<DreamPlayerCam>().gameObject.transform.localPosition = Vector3.zero;
+        FindFirstObjectByType<DreamPlayerCam>().gameObject.transform.localEulerAngles = Vector3.zero;
+        ambient.clip = killClip;
+        ambient.Play();
     }
 }

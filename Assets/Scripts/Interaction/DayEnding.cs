@@ -25,11 +25,27 @@ public class DayEnding : MonoBehaviour
         Fader.GetInstance().FadeOut(faderColor, fadeDuration);
         notifier.SetActive(false);
         await Task.Delay((int)(fadeDuration * 1000));
+        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullDisable();
+        }
+        else if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullDisable();
+        }
         SceneManager.LoadScene(nextLevel);
+        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullEnable();
+        }
+        else if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullEnable();
+        }
     }
 
     public void Unlock() {
         isLocked = false;
         notifier.SetActive(true);
+    }
+
+    public void ChangeNextLevel(string newLevel) {
+        nextLevel = newLevel;
     }
 }

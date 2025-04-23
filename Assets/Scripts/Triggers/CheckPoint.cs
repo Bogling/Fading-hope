@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class CheckPoint : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private bool hasHP;
     [SerializeField] private bool hasLP;
     [SerializeField] private RenderPipelineAsset renderPipelineAsset;
+    [SerializeField] private bool isAutoCheckpoint = false;
     public int id;
     private bool isTriggered = false;
     private GameManager gameManager;
@@ -21,13 +23,18 @@ public class CheckPoint : MonoBehaviour
         return point;
     }
 
+    private void Start() {
+        if (!isTriggered && isAutoCheckpoint) {
+            OnTriggerEnter(null);
+        }
+    }
     private void OnTriggerEnter(Collider other) {
         if (!isTriggered) {
             if (renderPipelineAsset != null && renderPipelineAsset != GraphicsSettings.defaultRenderPipeline) {
                 GraphicsSettings.defaultRenderPipeline = renderPipelineAsset;
             }
-            if (gameManager.GetCheckPoint() <= id) {
-                gameManager.SetCheckPoint(id, withLamp, withFlashlight, hasHP, hasLP);
+            if (gameManager.GetCheckPoint() <= id || gameManager.GetScene() != SceneManager.GetActiveScene().name) {
+                gameManager.SetCheckPoint(id, SceneManager.GetActiveScene().name, withLamp, withFlashlight, hasHP, hasLP);
                 SaveLoadManager.Save();
             }
             isTriggered = true;

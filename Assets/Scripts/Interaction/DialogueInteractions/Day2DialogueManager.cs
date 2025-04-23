@@ -88,10 +88,6 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                     case 0:
                         Debug.Log("Answer is yes1");
                         acceptedMG = true;
-                        var t = audioSource.time;
-                        audioSource.clip = audioClips[0];
-                        audioSource.time = t;
-                        audioSource.Play();
                         break;
                     case 1:
                         Debug.Log("Answer is no1");
@@ -133,17 +129,16 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     public void Activate() {
         Unlock();
         spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("idefault");
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
     }
 
     public async void UponExit() {
         if (!d1end) {
             Lock();
-            //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             if (acceptedMG) {
-            //transform.position = position.position;
                 ChangeSprite("ihide");
-                //fader.FadeIn(Color.black, 1f);
                 MiniGame1Manager.GetInstance().StartMiniGame();
             }
             else {
@@ -152,18 +147,23 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 gameObject.SetActive(false);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
+                var t = audioSource.time;
+                audioSource.clip = audioClips[0];
+                audioSource.time = t;
+                audioSource.Play();
+                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 2);
             }
             d1end = true;
         }
         else if (!d2end) {
             Lock();
-            //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             if (acceptedMG) {
-            //transform.position = position.position;
-                ChangeSprite(1);
-                //fader.FadeIn(Color.black, 1f);
                 MiniGame2Manager.GetInstance().StartMiniGame();
+                var t = audioSource.time;
+                audioSource.clip = audioClips[2];
+                audioSource.time = t;
+                audioSource.Play();
             }
             else {
                 fader.FadeIn(Color.black, 1f);
@@ -171,12 +171,18 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 gameObject.SetActive(false);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
+                var t = audioSource.time;
+                audioSource.clip = audioClips[0];
+                audioSource.time = t;
+                audioSource.Play();
+                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 1);
             }
             d2end = true;
         }
         else {
             fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
+            FindFirstObjectByType<ClockManager>().SetTime(15, 20, 0);
             gameObject.SetActive(false);
             FindFirstObjectByType<DayEnding>().Unlock();
             fader.FadeIn(Color.black, 1f);

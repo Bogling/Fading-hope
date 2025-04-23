@@ -53,9 +53,17 @@ PrefabInstance:
       value: Lever2
       objectReference: {fileID: 0}
     - target: {fileID: 5074512353664290214, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074512353664290214, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2c93cb0cd5e14b14eb7f64f0a53999c4, type: 2}
+    - target: {fileID: 5074512353664290214, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 216507ca24b408a49ab8659d6ee99cad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -69,6 +77,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3910137778890118111}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3857037850789597255}
   m_SourcePrefab: {fileID: 100100000, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
 --- !u!1 &2725494795916270418 stripped
 GameObject:
@@ -134,3 +145,112 @@ MonoBehaviour:
   isTouchable: 1
   sendsSignal: 0
   signalDestination: {fileID: 0}
+  meshRenderer:
+  - {fileID: 8034356709284850597}
+  outlineIndexes: 01000000
+  invisibleMaterial: {fileID: 2100000, guid: b64662de050639b469d3660978781e58, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 216507ca24b408a49ab8659d6ee99cad, type: 2}
+  pullClip: {fileID: 8300000, guid: 691801d92959a134ea20158dcedb4b1f, type: 3}
+  audioSource: {fileID: 3857037850789597255}
+--- !u!82 &3857037850789597255
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725494795916270418}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d5c00635f83269b4b9a1e6338842749e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!137 &8034356709284850597 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5074512353664290214, guid: 779e64f783a9dcb4f817db6a9998a99d, type: 3}
+  m_PrefabInstance: {fileID: 2959866346131613187}
+  m_PrefabAsset: {fileID: 0}

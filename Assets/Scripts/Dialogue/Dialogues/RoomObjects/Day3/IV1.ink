@@ -1,0 +1,3 @@
+She wasn't lying... I can see that there is a new one #color:ffffff #sound:1
+Guess I got lucky?
+But why are those nurses that unreliable...

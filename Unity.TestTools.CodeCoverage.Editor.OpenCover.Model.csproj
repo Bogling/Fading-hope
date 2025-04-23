@@ -65,21 +65,21 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.25f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\CoverageSession.cs" />
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SkippedEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\TrackedMethod.cs" />
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SummarySkippedEntity.cs" />
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\BranchPoint.cs" />
-    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\IDocumentReference.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\InstrumentationPoint.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\CoverageSession.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\Class.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SkippedEntity.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\Method.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\File.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\TrackedMethod.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\Module.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SummarySkippedEntity.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\HelperExtensions.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\Summary.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SequencePoint.cs" />
     <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\SkippedMethod.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\BranchPoint.cs" />
+    <Compile Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\IDocumentReference.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.testtools.codecoverage\Editor\CoverageFormats\OpenCover\Model\Model.asmdef" />
@@ -569,10 +569,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -599,18 +595,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

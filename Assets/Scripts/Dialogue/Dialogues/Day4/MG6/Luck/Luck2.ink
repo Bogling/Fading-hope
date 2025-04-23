@@ -1,0 +1,1 @@
+Uuh, I got the queen. #color:d4821e #image:isholdingc1 #sound:0

@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRay: {fileID: 0}
+  audioSource: {fileID: 0}
+  jumpAudioSource: {fileID: 0}
   speed: 3
   groundDrag: 5
   isJumpLocked: 0
@@ -216,7 +218,9 @@ MonoBehaviour:
   - DreamTempleWalls (Instance)
   stepSoundsList:
   - {fileID: 8300000, guid: 736be896480ec6f40a6867a86097ee39, type: 3}
+  waterStepSound: {fileID: 0}
   audioSource: {fileID: 9130889860561677249}
+  jumpAudioSource: {fileID: 0}
   checkDelay: 0.1
 --- !u!1 &7276098599011411891
 GameObject:
@@ -314,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b64662de050639b469d3660978781e58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

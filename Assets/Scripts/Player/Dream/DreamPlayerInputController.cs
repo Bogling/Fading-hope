@@ -30,6 +30,7 @@ public class DreamPlayerInputController : MonoBehaviour
 
     private void OnEnable() {
         _playerControls.PlayerActions.Interact.performed += InteractionPerformed;
+        _playerControls.PlayerActions.Interact.canceled += InteractionCanceled;
         _playerControls.DialogueActions.Submit.performed += SubmitPerformed;
         _playerControls.DialogueActions.Submit.canceled += SubmitCancelled;
         _playerControls.PlayerActions.HorizontalMovement.performed += HorizontalMovementPerformed;
@@ -40,6 +41,7 @@ public class DreamPlayerInputController : MonoBehaviour
 
     private void OnDisable() {
         _playerControls.PlayerActions.Interact.performed -= InteractionPerformed;
+        _playerControls.PlayerActions.Interact.canceled -= InteractionCanceled;
         _playerControls.DialogueActions.Submit.performed -= SubmitPerformed;
         _playerControls.DialogueActions.Submit.canceled -= SubmitCancelled;
         _playerControls.PlayerActions.HorizontalMovement.performed -= HorizontalMovementPerformed;
@@ -51,6 +53,10 @@ public class DreamPlayerInputController : MonoBehaviour
     private void InteractionPerformed(InputAction.CallbackContext obj) {
         Debug.Log("Inter");
         playerController.interact();
+    }
+
+    private void InteractionCanceled(InputAction.CallbackContext obj) {
+        playerController.interactionCancel();
     }
 
     private void AltActionPerformed(InputAction.CallbackContext obj) {
@@ -98,5 +104,17 @@ public class DreamPlayerInputController : MonoBehaviour
     public void EnableInput() {
         _playerControls.PlayerActions.Enable();
         isInputDisabled = false;
+    }
+
+    public void FullDisable() {
+        _playerControls.PlayerActions.Disable();
+        _playerControls.UIActions.Disable();
+        _playerControls.DialogueActions.Disable();
+    }
+
+    public void FullEnable() {
+        _playerControls.PlayerActions.Enable();
+        _playerControls.UIActions.Enable();
+        _playerControls.DialogueActions.Enable();
     }
 }

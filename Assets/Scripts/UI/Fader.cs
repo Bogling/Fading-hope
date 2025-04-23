@@ -79,8 +79,8 @@ public class Fader : MonoBehaviour
     }
 
     private IEnumerator AutoFadeCoroutine(Color color, float inDuration, float delay, float outDuration) {
-        FadeIn(color, inDuration);
+        FadeOut(color, inDuration);
         yield return new WaitForSeconds(inDuration + delay);
-        FadeOut(color, outDuration);
+        FadeIn(color, outDuration);
     }
 }

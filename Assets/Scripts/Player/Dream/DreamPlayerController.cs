@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DreamPlayerController : MonoBehaviour
@@ -25,6 +24,7 @@ public class DreamPlayerController : MonoBehaviour
     private Vector2 horizontalInput;
     private Vector3 moveDirection;
     private bool grounded;
+    private Interactable currentInteractable;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -53,11 +53,19 @@ public class DreamPlayerController : MonoBehaviour
         Debug.Log("IntStart");
         if (playerRay.objectOnRay != null && playerRay.isInRange() && playerRay.objectOnRay.IsCurrentlyInteractable() && !DreamDialogueController.GetInstance().dialogueIsPlaying) {
             playerRay.objectOnRay.Interact();
+            currentInteractable = playerRay.objectOnRay;
             Debug.Log("InteractDef");
         }
         else if (!DreamDialogueController.GetInstance().dialogueIsPlaying && gameManager.GetData().hasFlashlight) {
             Debug.Log("InteractFlash");
             FindFirstObjectByType<FlashlightManager>().Flash();
+        }
+    }
+
+    public void interactionCancel() {
+        if (currentInteractable != null) {
+            currentInteractable.InteractionCanceled();
+            currentInteractable = null;
         }
     }
 

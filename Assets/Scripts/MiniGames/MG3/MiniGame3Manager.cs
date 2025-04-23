@@ -27,6 +27,7 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
     [SerializeField] private Day3DialogueManager talker;
     private bool gameEnded = false;
     private bool isThinking = false;
+    private bool isEnding = false;
 
     void Awake() {
 
@@ -57,7 +58,9 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
     }
 
     public void MakeTurn(bool isPlayer, int moveXIndex, int moveYIndex) {
-        CheckForCombination(isPlayer);
+        if (CheckForCombination(isPlayer)) {
+            return;
+        }
         lastMoveXIndex = moveXIndex;
         lastMoveYIndex = moveYIndex;
         if (isPlayer) {
@@ -65,79 +68,97 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
         }
     }
 
-    private void CheckForCombination(bool isPlayer) {
+    private bool CheckForCombination(bool isPlayer) {
         if (isPlayer) {
             if (markableSlots[0][0].GetMark() == 1 && markableSlots[0][1].GetMark() == 1 && markableSlots[0][2].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[1][0].GetMark() == 1 && markableSlots[1][1].GetMark() == 1 && markableSlots[1][2].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[2][0].GetMark() == 1 && markableSlots[2][1].GetMark() == 1 && markableSlots[2][2].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[0][0].GetMark() == 1 && markableSlots[1][0].GetMark() == 1 && markableSlots[2][0].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[0][1].GetMark() == 1 && markableSlots[1][1].GetMark() == 1 && markableSlots[2][1].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[0][2].GetMark() == 1 && markableSlots[1][2].GetMark() == 1 && markableSlots[2][2].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[0][0].GetMark() == 1 && markableSlots[1][1].GetMark() == 1 && markableSlots[2][2].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else if (markableSlots[0][2].GetMark() == 1 && markableSlots[1][1].GetMark() == 1 && markableSlots[2][0].GetMark() == 1) {
                 CheckResultOfMiniGame(1);
+                return true;
             }
             else {
                 foreach (var slots in markableSlots) {
                     foreach (var markableSlot in slots) {
                         if (!markableSlot.IsMarked()) {
-                            return;
+                            return false;
                         }
                     }
                 }
 
                 CheckResultOfMiniGame(0);
+                return true;
             }
         }
         else {
             if (markableSlots[0][0].GetMark() == -1 && markableSlots[0][1].GetMark() == -1 && markableSlots[0][2].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[1][0].GetMark() == -1 && markableSlots[1][1].GetMark() == -1 && markableSlots[1][2].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[2][0].GetMark() == -1 && markableSlots[2][1].GetMark() == -1 && markableSlots[2][2].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[0][0].GetMark() == -1 && markableSlots[1][0].GetMark() == -1 && markableSlots[2][0].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[0][1].GetMark() == -1 && markableSlots[1][1].GetMark() == -1 && markableSlots[2][1].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[0][2].GetMark() == -1 && markableSlots[1][2].GetMark() == -1 && markableSlots[2][2].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[0][0].GetMark() == -1 && markableSlots[1][1].GetMark() == -1 && markableSlots[2][2].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else if (markableSlots[0][2].GetMark() == -1 && markableSlots[1][1].GetMark() == -1 && markableSlots[2][0].GetMark() == -1) {
                 CheckResultOfMiniGame(-1);
+                return true;
             }
             else {
                 foreach (var slots in markableSlots) {
                     foreach (var markableSlot in slots) {
                         if (!markableSlot.IsMarked()) {
-                            return;
+                            return false;
                         }
                     }
                 }
 
                 CheckResultOfMiniGame(0);
+                return true;
             }
         }
     }
@@ -224,6 +245,7 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
                     case 0:
                         Debug.Log("Answer is yes1");
                         StartMiniGame();
+                        isEnding = false;
                         break;
                     case 1:
                         Debug.Log("Answer is no1");
@@ -240,17 +262,18 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
     }
 
     public void ChangeSprite(string spriteID) {
-        return;
+        talker.ChangeSprite(spriteID);
     }
 
     public void UponExit()
     {
-        if (gameEnded) {
+        if (gameEnded && !isEnding) {
             passedCount++;
             if (passedCount < PassCount) {
                 StartMiniGame();
             }
             else {
+                isEnding = true;
                 Talk(MGEndInkJSON[Random.Range(0, MGEndInkJSON.Length)]);
             }
         }

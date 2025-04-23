@@ -66,12 +66,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\UTess.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Renderer2DData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\RendererLighting.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\LayerUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawRenderer2DPass.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\Providers\ShadowShape2DProvider_Collider.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DAuthoring.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\GlobalPropertiesPass.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawNormal2DPass.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\IEdgeStore.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\CinemachineUniversalPixelPerfect.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\PixelPerfectCamera.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowCasterGroup2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DBlendStyle.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Renderer2DDataAuthoring.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\PlanarGraph.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Render2DLightingPass.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\CompositeShadowCaster2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowRendering.cs" />
@@ -80,45 +90,35 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Clipper.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\Providers\ShadowShape2DProvider_SpriteSkin.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2D.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\Light2DLookupTexture.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShapeProviderUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawShadow2DPass.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowEdge.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowCasterGroup2DManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowCaster2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\RendererFeatures\ScriptableRenderPass2D.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\EdgeDictionary.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DManager.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\Providers\ShadowShapeProvider2D_Utility.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\ArraySlice.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\IRenderPass2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Renderer2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\UpscalePass.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\CopyCameraSortingLayerPass.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowMesh2D.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowShape2D.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\Renderer2DRendergraph.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DShape.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\PixelPerfectBackgroundPass.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\Tessellator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\LightBatch.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\RendererLighting.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\Providers\ShadowShape2DProvider_Collider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\GlobalPropertiesPass.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawNormal2DPass.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\IEdgeStore.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\PixelPerfectCamera.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowCasterGroup2D.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Renderer2DDataAuthoring.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\PlanarGraph.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\Light2DLookupTexture.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawShadow2DPass.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowCaster2D.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\EdgeDictionary.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DManager.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\IRenderPass2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DCullResult.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowMesh2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\PixelPerfectCameraInternal.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\Providers\ShadowShape2DProvider_SpriteShape.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\DrawLight2DPass.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowShape2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowUtility.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Rendergraph\Renderer2DRendergraph.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DShape.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\VertexDictionary.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\PixelPerfectBackgroundPass.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\UTess2D\Tessellator.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Light2DPoint.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Passes\Utility\LightBatch.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal\Runtime\2D\Shadows\ShadowProvider\ShadowShape2DProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -601,10 +601,6 @@
       <HintPath>D:\Unity\Editor\6000.0.25f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -631,18 +627,6 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>Library\PackageCache\com.unity.visualscripting\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

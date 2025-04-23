@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float hpRegenDelay;
     [SerializeField] private float lpRegenWaitTime;
     [SerializeField] private float lpRegenDelay;
+    
 
     private bool canRegenHP;
     private int isHPRegenBlocked;
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         playerData = new PlayerData();
-        playerData.SetScene(SceneManager.GetActiveScene().name);
+        playerData = SaveLoadManager.GetDirectData();
+        //playerData.SetScene(SceneManager.GetActiveScene().name);
         if (lamp != null) {
             lamp.SetActive(false);
         }
@@ -45,7 +47,23 @@ public class GameManager : MonoBehaviour
         SaveLoadManager.Save();
     }
 
+    public void SetCheckPoint(int newCheckPoint, string level, bool withLamp, bool withFlashlight, bool hasHP, bool hasLP) {
+        playerData.SetCheckPoint(newCheckPoint);
+        playerData.currentScene = level;
+        playerData.hasLamp = withLamp;
+        playerData.hasFlashlight = withFlashlight;
+        playerData.hasHP = hasHP;
+        playerData.hasLP = hasLP;
+        SaveLoadManager.Save();
+    }
+
     public IEnumerator Respawn(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
+        if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullEnable();
+        }
+        else if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullEnable();
+        }
         if (fadeOut) {
             Fader.GetInstance().FadeOut(faderColor, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
@@ -54,7 +72,9 @@ public class GameManager : MonoBehaviour
         foreach (var point in points) {
             if (point.id == playerData.GetCheckPoint()) {
                 gameObject.transform.position = point.getPoint().position;
-                gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
+                if (gameObject.GetComponent<Rigidbody>() != null) {
+                    gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
+                }
                 if (playerData.hasLamp && lamp != null) {
                     lamp.SetActive(true);
                 }
@@ -94,7 +114,9 @@ public class GameManager : MonoBehaviour
         foreach (var point in points) {
             if (point.id == playerData.GetCheckPoint()) {
                 gameObject.transform.position = point.getPoint().position;
-                gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
+                if (gameObject.GetComponent<Rigidbody>() != null) {
+                    gameObject.GetComponent<Rigidbody>().position = point.getPoint().position;
+                }
                 if (playerData.hasLamp && lamp != null) {
                     lamp.SetActive(true);
                 }
@@ -126,11 +148,21 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator CallGameOver(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
+        if (FindFirstObjectByType<Day5Manager>() != null) {
+            FindFirstObjectByType<Day5Manager>().GameOver();
+            yield break;
+        }
         if (fadeOut) {
             Fader.GetInstance().FadeOut(faderColor, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
         }
-        SceneManager.LoadScene("GameOverScreen");
+        if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullDisable();
+        }
+        else if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullDisable();
+        }
+        SaveLoadManager.Load();
         if (fadeIn) {
             Fader.GetInstance().FadeIn(faderColor, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
@@ -147,7 +179,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadData(PlayerData loadData) {
         playerData = loadData;
-        Respawn(Color.black, 5f, false, false);
+        StartCoroutine(Respawn(Color.black, 5f, false, false));
+        if (FindFirstObjectByType<Dream4Manager>()) {
+            FindFirstObjectByType<Dream4Manager>().StartDream4();
+        }
     }
 
     public PlayerData GetData() {
@@ -164,8 +199,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void GiveFlashlight() {
-        playerData.hasFlashlight = true;
         flashlight.SetActive(true);
+        playerData.hasFlashlight = true;
     }
 
     public void TakeFlashlight() {
@@ -174,6 +209,14 @@ public class GameManager : MonoBehaviour
 
     public void SetHP(float newHP) {
         hp = newHP;
+    }
+
+    public void SetMaxHP(float newMaxHP) {
+        maxHP = newMaxHP;
+    }
+
+    public float GetMaxHP() {
+        return maxHP;
     }
 
     public void SetLP(float newLP) {
@@ -216,7 +259,7 @@ public class GameManager : MonoBehaviour
         else {
             hp = 0;
             hpBar.UpdateHP();
-            Respawn(Color.black, 1, true, true);
+            StartCoroutine(CallGameOver(Color.black, 1, true, true));
             return 1;
         }
     }
@@ -315,8 +358,16 @@ public class GameManager : MonoBehaviour
         playerData.SetMaxMood(playerData.GetMaxMood() + number);
     }
 
+    public int GetMaxMood() {
+        return playerData.GetMaxMood();
+    }
+
     public void DoubtedAnswer() {
         playerData.doubtedBio = true;
+    }
+
+    public void QuestionedOnD4() {
+        playerData.questionedD4 = true;
     }
 
     public bool IsCrystal1Activated() {
@@ -357,5 +408,25 @@ public class GameManager : MonoBehaviour
 
     public bool GetKyleSp1Par() {
         return playerData.spokeToKyle1;
+    }
+
+    public void SetChoice1(bool choice) {
+        playerData.choice1 = choice;
+    }
+
+    public bool GetChoice1() {
+        return playerData.choice1;
+    }
+
+    public void SetChoice2(bool choice) {
+        playerData.choice2 = choice;
+    }
+
+    public bool GetChoice2() {
+        return playerData.choice2;
+    }
+
+    public void BeatDay5() {
+        playerData.beatDay5 = true;
     }
 }

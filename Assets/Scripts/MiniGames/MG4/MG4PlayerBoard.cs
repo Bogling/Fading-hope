@@ -126,6 +126,7 @@ public class MG4PlayerBoard : MonoBehaviour
         foreach (var slots in markableSlots) {
             foreach (var markableSlot in slots) {
                 markableSlot.UnSeal();
+                markableSlot.UnLock();
             }
         }
     }
@@ -145,6 +146,7 @@ public class MG4PlayerBoard : MonoBehaviour
         foreach (var slots in markableSlots) {
             foreach (var markableSlot in slots) {
                 markableSlot.ResetMark();
+                markableSlot.UnLock();
             }
         }
 

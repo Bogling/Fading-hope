@@ -1,1 +1,1 @@
-﻿{"inkVersion":21,"root":[["^The time is ","ev",{"VAR?":"time"},"out","/ev","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev","str","^","/str",{"VAR=":"time"},"/ev","end",null],"#f":1}],"listDefs":{}}
+﻿{"inkVersion":21,"root":[["^The time is ","ev",{"VAR?":"time"},"out","/ev","^ ","#","^color:ffffff ","/#","#","^sound:1","/#","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev","str","^","/str",{"VAR=":"time"},"/ev","end",null],"#f":1}],"listDefs":{}}

@@ -1,1 +1,1 @@
-It was the other one this time. #color:d4821e #image:isad
+I won this time. #color:d4821e #image:isstate #sound:0

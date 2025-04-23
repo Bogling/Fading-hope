@@ -85,6 +85,7 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
 
     public void ResetMark() {
         isMarked = false;
+        containsPart = false;
         spriteRenderer.sprite = emptySprite;
     }
 
@@ -131,6 +132,10 @@ public class MiniGame4MarkableSlot : MonoBehaviour, Interactable
             spriteRenderer.sprite = markedLockedSprite;
         }
         isLocked = true;
+    }
+
+    public void UnLock() {
+        isLocked = false;
     }
 
     public void Seal() {

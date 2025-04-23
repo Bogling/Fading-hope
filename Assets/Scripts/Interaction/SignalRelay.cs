@@ -11,6 +11,8 @@ public class SignalRelay : MonoBehaviour, Interactable
             if (signalDestination.GetComponent<Interactable>() == null) continue;
             signalDestination.GetComponent<Interactable>().Interact();
         }
+
+        foreach (var signalDestination in signalDestinations) {}
     }
 
     public void InteractionCanceled()

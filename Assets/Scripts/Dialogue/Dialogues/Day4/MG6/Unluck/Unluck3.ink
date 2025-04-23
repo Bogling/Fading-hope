@@ -1,0 +1,1 @@
+How unfortunate, you have the queen. #color:d4821e #image:isholdingc1 #sound:0

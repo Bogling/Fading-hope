@@ -30,6 +30,7 @@ public class GreenCrystal : MonoBehaviour, IDamageable
         fader.FadeOut(fadeColor, 1f);
         yield return new WaitForSeconds(1.1f);
         player.transform.position = teleportPoint.transform.position;
+        player.GetComponent<Rigidbody>().position = teleportPoint.transform.position;
         fader.FadeIn(fadeColor, 1f);
         yield return new WaitForSeconds(1f);
     }

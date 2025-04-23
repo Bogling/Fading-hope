@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
 {
@@ -10,16 +11,27 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
     [SerializeField] private Fader fader;
     [SerializeField] private Transform position;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private SpriteRenderer secondSpriteRenderer;
+    [SerializeField] private int fakeAppearLookNeedad;
+    [SerializeField] private Transform firstPos;
+    [SerializeField] private Transform focusPos;
+    private Transform focusPosCurrent;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
+    private int lookAwayCount = 0;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
 
     private bool acceptedMG = false;
     private bool d1end = false;
     private bool d2end = false;
+    private bool isLookingAway = false;
+    private bool d0end = false;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
+        Lock();
     }
 
     private bool isLocked = false;
@@ -30,6 +42,30 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
         }
         else {
             return true;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (!isLocked || d0end) {
+            return;
+        }
+        
+        if (!GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(FindFirstObjectByType<PlayerCam>().GetComponent<Camera>()), GetComponent<BoxCollider>().bounds)) {
+            if (!isLookingAway) {   
+                isLookingAway = true;
+                lookAwayCount++;
+            }
+        }
+        else {
+            if (lookAwayCount >= fakeAppearLookNeedad && isLocked) {
+                Unlock();
+                spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("iside2");
+                secondSpriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite("iksidedefault");
+                focusPosCurrent = firstPos;
+                Interact();
+            }
+            isLookingAway = false;
         }
     }
  
@@ -55,27 +91,33 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
 
     public void Talk(TextAsset inkJSON)
     {
+        Focus();
         dialogueController.EnterDialogue(inkJSON, this);
     }
 
     public void Focus() {
-        FindFirstObjectByType<PlayerCam>().LookAtPosition(transform, 2);
+        FindFirstObjectByType<PlayerCam>().LookAtPosition(focusPosCurrent, 2);
+    }
+    
+    private void Questioned() {
+        FindFirstObjectByType<GameManager>().QuestionedOnD4();
     }
 
     public void OperateChoice(int qID, int cID) {
-        /*switch (qID) {
+        switch (qID) {
             case 0:
+                //audioSource.clip = audioClips[0];
+                //audioSource.Play();
+                break;
+            case 1:
                 switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no");
-                        gameManager.DoubtedAnswer();
+                    case 2:
+                        Debug.Log("Answer is yes1");
+                        Questioned();
                         break;
                 }
                 break;
-            case 1:
+            case 2:
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes1");
@@ -87,27 +129,7 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
                         break;
                 }
                 break;
-            case 2:
-                switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes2");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no2");
-                        break;
-                }
-                break;
-            case 3:
-                switch (cID) {
-                    case 0:
-                        Debug.Log("Answer is yes2");
-                        break;
-                    case 1:
-                        Debug.Log("Answer is no2");
-                        break;
-                }
-                break;
-        }*/
+        }
     }
 
     public void Lock() {
@@ -119,9 +141,19 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public async void UponExit() {
-        // TEMPORARY || DELETE LATER //
-        acceptedMG = true;
-        if (!d1end) {
+        if (!d0end) {
+            secondSpriteRenderer.sprite = null;
+            focusPosCurrent = focusPos;
+            fader.FadeOut(Color.black, 1f);
+            await Task.Delay(2000);
+            gameObject.transform.position = position.position;
+            await Task.Delay(1000);
+            Interact();
+            fader.FadeIn(Color.black, 1f);
+            d0end = true;
+            return;
+        }
+        else if (!d1end) {
             Lock();
             //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
@@ -130,6 +162,10 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
                 ChangeSprite("idefault");
                 //fader.FadeIn(Color.black, 1f);
                 MiniGame5Manager.GetInstance().StartMiniGame();
+                var t = audioSource.time;
+                audioSource.clip = audioClips[1];
+                audioSource.time = t;
+                audioSource.Play();
             }
             else {
                 fader.FadeIn(Color.black, 1f);
@@ -148,7 +184,11 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
             //transform.position = position.position;
                 ChangeSprite("idefault");
                 //fader.FadeIn(Color.black, 1f);
-                MiniGame4Manager.GetInstance().StartMiniGame();
+                MiniGame6Manager.GetInstance().StartMiniGame();
+                var t = audioSource.time;
+                audioSource.clip = audioClips[2];
+                audioSource.time = t;
+                audioSource.Play();
             }
             else {
                 fader.FadeIn(Color.black, 1f);
@@ -169,6 +209,11 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public void ChangeSprite(string spriteID) {
-        spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
+        if (spriteID == "iksidedefault" || spriteID == "iksidedisapp") {
+            secondSpriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
+        }
+        else {
+            spriteRenderer.sprite = MiraSpritesData.GetInstance().GetSprite(spriteID);
+        }
     }
 }
