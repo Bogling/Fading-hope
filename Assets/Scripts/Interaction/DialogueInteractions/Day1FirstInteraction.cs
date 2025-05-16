@@ -43,11 +43,11 @@ public class Day1FirstInteraction : MonoBehaviour, Interactable, ITalkable
     }
 
     public void OnHover() {
-        //Debug.Log("Hovered");
+        return;
     }
 
     public void OnHoverStop() {
-        Debug.Log("Released");
+        return;
     }
 
     public void Talk(TextAsset inkJSON)

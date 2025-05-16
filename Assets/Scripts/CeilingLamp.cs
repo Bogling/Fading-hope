@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CeilingLamp : MonoBehaviour, Interactable
@@ -8,6 +7,7 @@ public class CeilingLamp : MonoBehaviour, Interactable
     [SerializeField] private float TimeToFade;
     [SerializeField] private int LightTimes;
     [SerializeField] private float LoopDelay;
+    [SerializeField] private float afterDelay;
     [SerializeField] private bool IsDeactivating;
     [SerializeField] private CeilingLamp nextLamp;
     [SerializeField] private Animator animator;
@@ -19,11 +19,12 @@ public class CeilingLamp : MonoBehaviour, Interactable
             yield return new WaitForSeconds(TimeToLight);
             Activate();
             yield return new WaitForSeconds(TimeToFade);
-            if (IsDeactivating) {
-                Deactivate();
-            }
             if (nextLamp != null) {
                 StartCoroutine(nextLamp.LightUp());
+            }
+            if (IsDeactivating) {
+                yield return new WaitForSeconds(afterDelay);
+                Deactivate();
             }
             temp--;
             yield return new WaitForSeconds(LoopDelay);

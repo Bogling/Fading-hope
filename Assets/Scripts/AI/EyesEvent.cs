@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -27,8 +26,6 @@ public class EyesEvent : Day5Event
         gameManager = FindFirstObjectByType<GameManager>();
         animator = gameObject.GetComponent<Animator>();
         playerRay = FindFirstObjectByType<PlayerRay>();
-        //meshRenderer = GetComponent<MeshRenderer>();
-        //emissionMeshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     public override void EndEvent()
@@ -56,7 +53,6 @@ public class EyesEvent : Day5Event
 
     public override void StartEvent()
     {
-        //animator.SetTrigger("Activate");
         meshRenderer.enabled = true;
         emissionMeshRenderer.enabled = true;
         Activate();

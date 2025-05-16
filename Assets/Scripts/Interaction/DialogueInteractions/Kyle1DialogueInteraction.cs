@@ -48,28 +48,19 @@ public class Kyle1DialogueInteraction : MonoBehaviour, Interactable, ITalkable
                 lastRotation = kyleHead.rotation;
                 kyleHead.forward = kyleHead.forward;
             }
-            //lastRotation = kyleHead.rotation;
-
 
             Quaternion targetRotation = Quaternion.LookRotation(kyleHead.position - player.position);
             targetRotation.x += (targetRotation.x >= 0) ? -initHeadRotation.x : initHeadRotation.x;
             targetRotation.z += (targetRotation.z >= 0) ? -initHeadRotation.z : initHeadRotation.z;
             lastRotation = Quaternion.Slerp(lastRotation, targetRotation, lookSpeed * Time.deltaTime);
             kyleHead.rotation = lastRotation;
-            
-            //targetRotation = Quaternion.LookRotation(player.position - kyleHead.position) * initHoodRotation;
-            //lastRotation = Quaternion.Slerp(lastRotation, targetRotation, lookSpeed * Time.deltaTime);
-            //kyleHood.rotation = lastRotation;
             headResetTimer = 3f;
         }
         else if (!returns) {
             lastRotation = Quaternion.Slerp(lastRotation, headForward.rotation, lookSpeed * Time.deltaTime);
             kyleHead.rotation = lastRotation;
-            //kyleHood.rotation = lastRotation;
             headResetTimer -= Time.deltaTime;
             if (headResetTimer <= 0) {
-                //kyleHead.rotation = headForward.rotation;
-                //kyleHood.rotation = headForward.rotation;
                 returns = true;
             }
         }

@@ -142,7 +142,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.981982
+      - time: 0.93863225
         functionName: Activate
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -178,7 +178,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.36436886
+      - time: 0.845157
         functionName: Disappear
         data: 
         objectReferenceParameter: {instanceID: 0}

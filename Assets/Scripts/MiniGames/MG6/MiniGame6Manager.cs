@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
 public class MiniGame6Manager : MonoBehaviour, ITalkable
 {
@@ -366,7 +365,7 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
 
     public void Focus()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void Talk(TextAsset inkJSON)
@@ -382,11 +381,9 @@ public class MiniGame6Manager : MonoBehaviour, ITalkable
                 switch (cID)
                 {
                     case 0:
-                        Debug.Log("Answer is yes");
                         StartMiniGame();
                         break;
                     case 1:
-                        Debug.Log("Answer is no");
                         QuitMiniGame();
                         break;
                 }

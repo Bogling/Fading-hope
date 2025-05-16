@@ -10,6 +10,7 @@ public class DreamPlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float speed = 11f;
     [SerializeField] private float groundDrag = 11f;
+    [SerializeField] private float airDrag = 5f;
     [SerializeField] private bool isJumpLocked = false;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
@@ -21,15 +22,19 @@ public class DreamPlayerController : MonoBehaviour
     [SerializeField] private LayerMask Ground;
     GameManager gameManager;
 
+    [Header("Player Step Climb")]
+    [SerializeField] private float stepHeight = 0.3f;
+    [SerializeField] private float stepSmooth = 0.1f;
+    [SerializeField] private float stepDistL = 0.2f;
+    [SerializeField] private float stepDistH = 0.3f;
+    [SerializeField] private float stepVal = 0.1f;
     private Vector2 horizontalInput;
-    private Vector3 moveDirection;
     private bool grounded;
     private Interactable currentInteractable;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        //audioSource = GetComponent<AudioSource>();
         stepSoundManager = GetComponent<StepSoundManager>();
         gameManager = FindFirstObjectByType<GameManager>();
     }
@@ -41,7 +46,7 @@ public class DreamPlayerController : MonoBehaviour
             rb.linearDamping = groundDrag;
         }
         else {
-            rb.linearDamping = 0;
+            rb.linearDamping = airDrag;
         }
     }
 
@@ -50,14 +55,11 @@ public class DreamPlayerController : MonoBehaviour
     }
     
     public void interact() {
-        Debug.Log("IntStart");
         if (playerRay.objectOnRay != null && playerRay.isInRange() && playerRay.objectOnRay.IsCurrentlyInteractable() && !DreamDialogueController.GetInstance().dialogueIsPlaying) {
             playerRay.objectOnRay.Interact();
             currentInteractable = playerRay.objectOnRay;
-            Debug.Log("InteractDef");
         }
         else if (!DreamDialogueController.GetInstance().dialogueIsPlaying && gameManager.GetData().hasFlashlight) {
-            Debug.Log("InteractFlash");
             FindFirstObjectByType<FlashlightManager>().Flash();
         }
     }
@@ -92,11 +94,10 @@ public class DreamPlayerController : MonoBehaviour
 
         if (grounded) {
             rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
-            //rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.fixedDeltaTime);
-            //rb.linearVelocity = new Vector3(moveDirection.normalized.x * speed * airMultiplier, rb.linearVelocity.y, moveDirection.normalized.z * speed * airMultiplier);
             if (moveDirection != Vector3.zero) {
                 stepSoundManager.CheckGround();
                 if (!audioSource.isPlaying) {
+                    audioSource.pitch = Random.Range(0.85f, 1.1f);
                     audioSource.Play();
                 }
             }
@@ -106,9 +107,6 @@ public class DreamPlayerController : MonoBehaviour
         }
         else {
             rb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
-            //rb.MovePosition(rb.position + moveDirection.normalized * speed * Time.fixedDeltaTime * airMultiplier);
-            //rb.linearVelocity = new Vector3(moveDirection.normalized.x * speed * airMultiplier, rb.linearVelocity.y, moveDirection.normalized.z * speed * airMultiplier);
-            //rb.p
             audioSource.Stop();
         }
     }
@@ -116,6 +114,7 @@ public class DreamPlayerController : MonoBehaviour
     private void Jump() {
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         stepSoundManager.CheckGround();
+        jumpAudioSource.pitch = Random.Range(0.85f, 1.1f);
         jumpAudioSource.Play();
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }

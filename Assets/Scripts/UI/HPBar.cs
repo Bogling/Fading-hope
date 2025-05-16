@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using Image = UnityEngine.UI.Image;
 using TMPro;
 using UnityEngine;
-using Unity.Jobs;
 
 public class HPBar : MonoBehaviour
 {
@@ -35,15 +32,15 @@ public class HPBar : MonoBehaviour
             }
             else if (hp <= 75 && hp > 50) {
                 image.sprite = sprites[1];
-                image.color = Color.black;
+                image.color = Color.white;
             }
             else if (hp <= 50 && hp > 25) {
                 image.sprite = sprites[2];
-                image.color = Color.black;
+                image.color = Color.white;
             }
             else if (hp <= 25 && hp > 0) {
                 image.sprite = sprites[3];
-                image.color = Color.black;
+                image.color = Color.white;
             }
         }
     }

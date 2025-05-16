@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 public class PlayerData
 {
     public string currentScene;
@@ -15,8 +12,6 @@ public class PlayerData
     public int MaxMoodPoints = 10;
     public bool doubtedBio = false;
     public bool questionedD4 = false;
-    
-    //level variables
     public bool activatedCrystal1 = false;
     public bool activatedCrystal2 = false;
     public bool activatedCrystal3 = false;

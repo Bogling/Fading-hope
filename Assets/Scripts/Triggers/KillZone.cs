@@ -8,6 +8,7 @@ public class KillZone : MonoBehaviour
     [SerializeField] private bool fadeIn;
     [SerializeField] private float fadeOutDuration = 3f;
     [SerializeField] private bool fadeOut;
+    [SerializeField] private bool isGameOver = false;
     private GameManager gameManager;
 
     private void Start() {
@@ -15,7 +16,12 @@ public class KillZone : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject == player) {
-            StartCoroutine(gameManager.Respawn(resColor, fadeInDuration, fadeIn, fadeOutDuration, fadeOut));
+            if (isGameOver) {
+                StartCoroutine(gameManager.CallGameOver(resColor, fadeInDuration, fadeIn, fadeOut));
+            }
+            else {
+                StartCoroutine(gameManager.Respawn(resColor, fadeInDuration, fadeIn, fadeOutDuration, fadeOut));
+            }
         }
     }
 }

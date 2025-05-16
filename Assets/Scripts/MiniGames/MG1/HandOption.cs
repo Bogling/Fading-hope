@@ -9,7 +9,6 @@ public class HandOption : MonoBehaviour, Interactable
  
     public void Interact() {
         MiniGame1Manager.GetInstance().SelectOption(option);
-        //Talk(inkJSON);
     }
     
     public void InteractionCanceled() {
@@ -17,10 +16,10 @@ public class HandOption : MonoBehaviour, Interactable
     }
 
     public void OnHover() {
-        //Debug.Log("Hovered");
+        return;
     }
 
     public void OnHoverStop() {
-        Debug.Log("Released");
+        return;
     }
 }

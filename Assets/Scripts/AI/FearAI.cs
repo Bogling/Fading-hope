@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -148,7 +147,6 @@ public class FearAI : MonoBehaviour, IDamageable
         }
         animator.SetTrigger("Attack");
         isAttacking = true;
-        //gameManager.Respawn(Color.black, 1f, true, true);
     }
 
     public void KillPlayer() {
@@ -161,6 +159,7 @@ public class FearAI : MonoBehaviour, IDamageable
     }
 
     public void Die() {
+        if (isDead) return;
         isDead = true;
         isActive = false;
         agent.speed = 0;

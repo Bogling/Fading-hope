@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +9,7 @@ public class DayEnding : MonoBehaviour
     [SerializeField] private Color faderColor;
     [SerializeField] private float fadeDuration;
     [SerializeField] private GameObject notifier;
+    private bool dend = false;
 
     private void Update() {
         if (isLocked) {
@@ -22,6 +21,8 @@ public class DayEnding : MonoBehaviour
     }
 
     private async void EndDay() {
+        if (dend) return;
+        dend = true;
         Fader.GetInstance().FadeOut(faderColor, fadeDuration);
         notifier.SetActive(false);
         await Task.Delay((int)(fadeDuration * 1000));
@@ -31,13 +32,8 @@ public class DayEnding : MonoBehaviour
         else if (FindFirstObjectByType<PlayerInputController>() != null) {
             FindFirstObjectByType<PlayerInputController>().FullDisable();
         }
+        SaveLoadManager.Save();
         SceneManager.LoadScene(nextLevel);
-        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
-            FindFirstObjectByType<DreamPlayerInputController>().FullEnable();
-        }
-        else if (FindFirstObjectByType<PlayerInputController>() != null) {
-            FindFirstObjectByType<PlayerInputController>().FullEnable();
-        }
     }
 
     public void Unlock() {

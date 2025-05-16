@@ -54,10 +54,11 @@ public class KyleD2Trigger : MonoBehaviour, ITalkable
                 switch (cID) {
                     case 0:
                         choice = false;
-                        kyleAnimator.SetTrigger("D2T");
+                        kyleAnimator.SetTrigger("D2TS");
                         break;
                     case 1:
                         choice = true;
+                        kyleAnimator.SetTrigger("D2TR");
                         break;
                 }
                 break;
@@ -73,9 +74,13 @@ public class KyleD2Trigger : MonoBehaviour, ITalkable
     public void UponExit()
     {
         if (choice == false) {
+            FindFirstObjectByType<GameManager>().SetChoice1(false);
+            SaveLoadManager.Save();
             StartCoroutine(ChangeScene("Ending"));
         }
         else {
+            FindFirstObjectByType<GameManager>().SetChoice1(true);
+            SaveLoadManager.Save();
             StartCoroutine(ChangeScene("Day5"));
         }
     }    

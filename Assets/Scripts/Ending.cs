@@ -8,6 +8,8 @@ public class Ending : MonoBehaviour
     void Start()
     {
         PlayerData playerData = SaveLoadManager.GetDirectData();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (playerData.choice1 == false) {
             textMeshPro1.text = "Ending: C";

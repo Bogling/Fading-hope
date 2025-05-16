@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
 {
@@ -82,11 +79,11 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public void OnHover() {
-        //Debug.Log("Hovered");
+        return;
     }
 
     public void OnHoverStop() {
-        Debug.Log("Released");
+        return;
     }
 
     public void Talk(TextAsset inkJSON)
@@ -106,13 +103,10 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
     public void OperateChoice(int qID, int cID) {
         switch (qID) {
             case 0:
-                //audioSource.clip = audioClips[0];
-                //audioSource.Play();
                 break;
             case 1:
                 switch (cID) {
                     case 2:
-                        Debug.Log("Answer is yes1");
                         Questioned();
                         break;
                 }
@@ -120,11 +114,9 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
             case 2:
                 switch (cID) {
                     case 0:
-                        Debug.Log("Answer is yes1");
                         acceptedMG = true;
                         break;
                     case 1:
-                        Debug.Log("Answer is no1");
                         acceptedMG = false;
                         break;
                 }
@@ -142,11 +134,11 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
 
     public async void UponExit() {
         if (!d0end) {
-            secondSpriteRenderer.sprite = null;
             focusPosCurrent = focusPos;
             fader.FadeOut(Color.black, 1f);
             await Task.Delay(2000);
             gameObject.transform.position = position.position;
+            secondSpriteRenderer.sprite = null;
             await Task.Delay(1000);
             Interact();
             fader.FadeIn(Color.black, 1f);
@@ -155,12 +147,9 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
         }
         else if (!d1end) {
             Lock();
-            //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             if (acceptedMG) {
-            //transform.position = position.position;
                 ChangeSprite("idefault");
-                //fader.FadeIn(Color.black, 1f);
                 MiniGame5Manager.GetInstance().StartMiniGame();
                 var t = audioSource.time;
                 audioSource.clip = audioClips[1];
@@ -168,9 +157,10 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
                 audioSource.Play();
             }
             else {
-                fader.FadeIn(Color.black, 1f);
+                fader.FadeOut(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
+                gameManager.ChangeMaxMood(-2);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
             }
@@ -178,12 +168,9 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
         }
         else if (!d2end) {
             Lock();
-            //fader.FadeOut(Color.black, 1f);
             await Task.Delay(1000);
             if (acceptedMG) {
-            //transform.position = position.position;
                 ChangeSprite("idefault");
-                //fader.FadeIn(Color.black, 1f);
                 MiniGame6Manager.GetInstance().StartMiniGame();
                 var t = audioSource.time;
                 audioSource.clip = audioClips[2];
@@ -191,9 +178,10 @@ public class Day4DialogueManager : MonoBehaviour, Interactable, ITalkable
                 audioSource.Play();
             }
             else {
-                fader.FadeIn(Color.black, 1f);
+                fader.FadeOut(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
+                gameManager.ChangeMaxMood(-1);
                 FindFirstObjectByType<DayEnding>().Unlock();
                 fader.FadeIn(Color.black, 1f);
             }

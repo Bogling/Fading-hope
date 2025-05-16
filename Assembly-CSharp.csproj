@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\OptionsMenu.cs" />
+    <Compile Include="Assets\Scripts\ImageAnimator.cs" />
     <Compile Include="Assets\Scripts\Ending.cs" />
     <Compile Include="Assets\Scripts\CeilingLamp.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day4DialogueManager.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Interaction\Lamp.cs" />
     <Compile Include="Assets\Scripts\LightBridge.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MG3\MiniGame3Manager.cs" />
+    <Compile Include="Assets\Scripts\TextureList.cs" />
     <Compile Include="Assets\Scripts\UI\MMContinueButton.cs" />
     <Compile Include="Assets\Scripts\Interaction\DialogueInteractions\Day2DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Triggers\ChangeAmbientTrigger.cs" />

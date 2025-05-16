@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class FallingBlock : MonoBehaviour
@@ -22,6 +21,5 @@ public class FallingBlock : MonoBehaviour
         meshRenderer.enabled = false;
         destroyParticles.Play();
         audioSource.Play();
-        //gameObject.SetActive(false);
     }
 }

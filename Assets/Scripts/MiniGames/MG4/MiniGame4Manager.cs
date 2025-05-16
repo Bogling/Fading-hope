@@ -262,7 +262,7 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
     }
 
     private void TypeTurn(TextAsset inkJSON, SlotPosition slotPosition) {
-        string text = horizontalPositions[^(slotPosition.YIndex + 1)] + verticalPositions[^(slotPosition.XIndex + 1)];
+        string text = horizontalPositions[^(slotPosition.XIndex + 1)] + verticalPositions[^(slotPosition.YIndex + 1)];
         dialogueController.EnterDialogue(inkJSON, this, "markPoint", text);
     }
 
@@ -272,12 +272,10 @@ public class MiniGame4Manager : MonoBehaviour, ITalkable, Interactable
             case 0:
                 switch (cID) {
                     case 0:
-                        Debug.Log("Answer is yes");
                         isEnding = false;
                         StartMiniGame();
                         break;
                     case 1:
-                        Debug.Log("Answer is no");
                         QuitMiniGame();
                         break;
                 }

@@ -9,6 +9,7 @@ public class LSM : HPBar
         gameManager = FindFirstObjectByType<GameManager>();
         hp = gameManager.GetHP();
         animator = gameObject.GetComponent<Animator>();
+        gameObject.SetActive(true);
     }
     
     public override void UpdateHP() {

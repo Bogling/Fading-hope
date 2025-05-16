@@ -21,9 +21,6 @@ public class Dream4Manager : MonoBehaviour
     [SerializeField] private Door waterLabDoor1;
     [SerializeField] private LightReceiver bigDoorReceiver2;
     [SerializeField] private Door waterLabDoor2;
-    private void Start()
-    {
-    }
 
     public void StartDream4() {
         int checkPoint = FindFirstObjectByType<GameManager>().GetCheckPoint();
@@ -84,18 +81,20 @@ public class Dream4Manager : MonoBehaviour
             }
         }
 
-        if (bigGreenCrystal.GetCrystalStates()[0] == true) {
+        if (FindFirstObjectByType<GameManager>().IsCrystal1Activated()) {
             crystal1Door.Close();
             crystal1Door.Lock();
         }
-        if (bigGreenCrystal.GetCrystalStates()[1] == true) {
+        if (FindFirstObjectByType<GameManager>().IsCrystal2Activated()) {
             crystal2Door.Close();
             crystal2Door.Lock();
         }
-        if (bigGreenCrystal.GetCrystalStates()[2] == true) {
+        if (FindFirstObjectByType<GameManager>().IsCrystal3Activated()) {
             crystal3Door.Close();
             crystal3Door.Lock();
         }
+
+        bigGreenCrystal.SetCrystalStates(new bool[] {FindFirstObjectByType<GameManager>().IsCrystal1Activated(), FindFirstObjectByType<GameManager>().IsCrystal2Activated(), FindFirstObjectByType<GameManager>().IsCrystal3Activated()});
 
         switch (FindFirstObjectByType<GameManager>().GetBigDoorStage()) {
             case 0:

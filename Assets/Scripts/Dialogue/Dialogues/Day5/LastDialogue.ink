@@ -3,7 +3,7 @@ You are still here! #color:d4821e #image:ihappy #sound:0
 I am so glad you are alive! #color:d4821e #image:ihappy #sound:0
 When I were transferred to this world I saw all that outside and... #color:d4821e #image:ifrightened #sound:0
 I thought that you are...  #color:d4821e #image:ifrightened #sound:0
-Oh, I said... #color:d4821e #image:ischeerful #sound:0
+Oh, I said... #color:d4821e #image:icheerful #sound:0
 Wait... That pendant... #color:d4821e #image:idefault #sound:0
 That means... you met him... #color:d4821e #image:idefault #sound:0
 I guess you already know everything... #color:d4821e #image:iser #sound:0

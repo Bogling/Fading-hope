@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 public class Day5Manager : MonoBehaviour, ITalkable
@@ -203,6 +201,9 @@ public class Day5Manager : MonoBehaviour, ITalkable
 
         audioSource.Stop();
         FindFirstObjectByType<Fader>().FadeOut(Color.white, 0.1f);
+        if (pendant.IsUp()) {
+            pendant.Interact();
+        }
         yield return new WaitForSeconds(5f);
         Talk(inkJSON[1]);
         audioSource.clip = audioClip2;

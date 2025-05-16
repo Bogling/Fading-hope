@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class BasicDialogueScript : MonoBehaviour, Interactable, ITalkable

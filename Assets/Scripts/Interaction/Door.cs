@@ -6,7 +6,7 @@ public class Door : MonoBehaviour, Interactable
     [SerializeField] protected Lever[] levers;
     [SerializeField] protected Animator animator;
 
-    private bool isOpened;
+    protected bool isOpened;
     [SerializeField] private SkinnedMeshRenderer[] meshRenderer;
     [SerializeField] private int[] outlineIndexes;
     [SerializeField] private Material invisibleMaterial;
@@ -17,7 +17,7 @@ public class Door : MonoBehaviour, Interactable
     private bool isHovered = false;
 
 
-    public void Interact()
+    public virtual void Interact()
     {
         if (isLocked || isOpened) return;
         if (levers.Length > 0) {
@@ -41,9 +41,9 @@ public class Door : MonoBehaviour, Interactable
         return;
     }
 
-    public bool IsCurrentlyInteractable()
+    public virtual bool IsCurrentlyInteractable()
     {
-        return true;
+        return !(isLocked || isOpened);
     }
 
     public void OnHover()

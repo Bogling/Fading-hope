@@ -44,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 2
   simulationSpeed: 4
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -3803,13 +3803,14 @@ ParticleSystem:
   TriggerModule:
     enabled: 0
     serializedVersion: 2
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 3345283425009443681}
   SubModule:
     serializedVersion: 2
     enabled: 0

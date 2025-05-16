@@ -897,6 +897,7 @@ Are you sure about that?
     + [No]
         -> choice
 === c2 ===
+Are you sure about that?
     + [Yes]
         -> c21
     + [No]

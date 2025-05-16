@@ -51,7 +51,6 @@ public class DreamPlayerInputController : MonoBehaviour
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj) {
-        Debug.Log("Inter");
         playerController.interact();
     }
 
@@ -60,7 +59,6 @@ public class DreamPlayerInputController : MonoBehaviour
     }
 
     private void AltActionPerformed(InputAction.CallbackContext obj) {
-        Debug.Log("Alt");
         playerController.AltAction();
     }
 

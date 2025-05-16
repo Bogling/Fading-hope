@@ -36,7 +36,7 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
         instance = this;
         gameManager = FindFirstObjectByType<GameManager>();
     }
-    // Start is called before the first frame update
+   
     void Start()
     {
         gameObject.SetActive(false);
@@ -44,7 +44,6 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
 
     public void StartMiniGame() {
-        //a
         talker.Lock();
         gameObject.SetActive(true);
         Talk(StartInkJSON[Random.Range(0, StartInkJSON.Length)]);
@@ -52,18 +51,15 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
     public void SelectOption(bool option) {
         if (option == rightOption) {
-            Debug.Log("++++");
             Talk(OnRightInkJSON[Random.Range(0, OnRightInkJSON.Length)]);
         }
         else {
-            Debug.Log("----");
             Talk(OnWrongInkJSON[Random.Range(0, OnWrongInkJSON.Length)]);
         }
         pendingCoin = false;
     }
 
     private void EndMiniGame() {
-        //b
         passedCount++;
         if (passedCount < PassCount) {
             dend = false;
@@ -76,11 +72,8 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
     public void SetOption(bool option) {
         rightOption = option;
-        //ChangeSprite("ithrow3");
         Talk(QuestionInkJSON[Random.Range(0, QuestionInkJSON.Length)]);
     }
-
-    // Talking Code
 
     public void Talk(TextAsset inkJSON)
     {
@@ -99,11 +92,9 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
             case 1:
                 switch (cID) {
                     case 0:
-                        Debug.Log("Answer is yes1");
                         StartMiniGame();
                         break;
                     case 1:
-                        Debug.Log("Answer is no1");
                         QuitMiniGame();
                         break;
                 }
@@ -131,9 +122,7 @@ public class MiniGame2Manager : MonoBehaviour, ITalkable
 
         if (!coinFlipped && !pendingCoin && !coinLocked && !isStarting) {
             Lock();
-            //talker.ChangeSprite(0);
             coin.Flip();
-            //ChangeSprite("ithrow2");
             pendingCoin = true;
             coinLocked = true;
         }

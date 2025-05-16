@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class FlashlightManager : MonoBehaviour
 {
@@ -23,14 +20,12 @@ public class FlashlightManager : MonoBehaviour
 
     public void Flash() {
         if (!gameManager.isLPFull() || isLocked) {return;}
-        Debug.Log("Flash");
         animator.SetTrigger("Flash");
         gameManager.RefreshLP();
         flashPosition.rotation = transform.rotation;
         flashClip.Stop();
         flashClip.Play();
         var newProjectile = Instantiate(projectile, flashPosition.position, flashPosition.rotation);
-        //newProjectile.transform.parent = null;
         newProjectile.Launch(flashPosition.right);
     }
 

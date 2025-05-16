@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
-using UnityEngine.SearchService;
 
 public class DreamDialogueController : MonoBehaviour
 {
@@ -254,7 +253,6 @@ private void ExitDialogue() {
         currentStory.ChooseChoiceIndex(choiceIndex);
         choicesPresent = false;
         DisplayNextParagraph(currentInkJSON);
-        Debug.Log(currentStory.variablesState);
     }
 
     private IEnumerator Delay(int time) {

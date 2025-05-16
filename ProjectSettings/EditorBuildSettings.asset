@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day5.unity
     guid: d5d7c24517e2c46419c37489da3820c5
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: bb5d0bf69f0f62543a53ba9917eeaf62
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0febba43750855142ae0c642ef291952, type: 3}
   m_UseUCBPForAssetBundles: 0

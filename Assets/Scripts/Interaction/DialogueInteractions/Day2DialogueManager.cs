@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -37,7 +35,6 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
  
     public void Interact() {
-        Debug.Log("Hoba1");
         if (IsCurrentlyInteractable()) {
             Talk(inkJSON[currentInk]);
             currentInk++;
@@ -49,11 +46,11 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public void OnHover() {
-        //Debug.Log("Hovered");
+        return;
     }
 
     public void OnHoverStop() {
-        Debug.Log("Released");
+        return;
     }
 
     public void Talk(TextAsset inkJSON)
@@ -76,10 +73,13 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 switch (cID) {
                     case 0:
                         Debug.Log("Answer is yes");
+                        gameManager.DoubtedAnswer(false);
+                        SaveLoadManager.Save();
                         break;
                     case 1:
                         Debug.Log("Answer is no");
-                        gameManager.DoubtedAnswer();
+                        gameManager.DoubtedAnswer(true);
+                        SaveLoadManager.Save();
                         break;
                 }
                 break;
@@ -142,7 +142,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 MiniGame1Manager.GetInstance().StartMiniGame();
             }
             else {
-                fader.FadeIn(Color.black, 1f);
+                fader.FadeOut(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
                 FindFirstObjectByType<DayEnding>().Unlock();
@@ -151,7 +151,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 audioSource.clip = audioClips[0];
                 audioSource.time = t;
                 audioSource.Play();
-                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 2);
+                gameManager.ChangeMaxMood(-2);
             }
             d1end = true;
         }
@@ -166,7 +166,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 audioSource.Play();
             }
             else {
-                fader.FadeIn(Color.black, 1f);
+                fader.FadeOut(Color.black, 1f);
                 await Task.Delay(1000);
                 gameObject.SetActive(false);
                 FindFirstObjectByType<DayEnding>().Unlock();
@@ -175,7 +175,7 @@ public class Day2DialogueManager : MonoBehaviour, Interactable, ITalkable
                 audioSource.clip = audioClips[0];
                 audioSource.time = t;
                 audioSource.Play();
-                gameManager.ChangeMaxMood(gameManager.GetMaxMood() - 1);
+                gameManager.ChangeMaxMood(-1);
             }
             d2end = true;
         }

@@ -981,6 +981,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3216467416618366784, guid: ef103f1840ff1504d81714590fe54f87, type: 3}
+      propertyPath: hasHP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216467416618366784, guid: ef103f1840ff1504d81714590fe54f87, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
@@ -2289,7 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 5a697f25f4262cf42a0a9df9c8f3eb59, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3607,11 +3611,6 @@ MonoBehaviour:
 --- !u!23 &1254473316 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2406707543167664338, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
-  m_PrefabInstance: {fileID: 6368975742384869210}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1318025019 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6479768765199031420, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
   m_PrefabInstance: {fileID: 6368975742384869210}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1326207793
@@ -5571,7 +5570,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press button to go to sleep
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4fabe4a6da231c346a02e21714b88501, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5637,7 +5636,7 @@ MonoBehaviour:
   m_margin: {x: -251.388, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2070291307
@@ -6791,7 +6790,7 @@ PrefabInstance:
     - target: {fileID: 8858551435528269084, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 1318025019}
+      objectReference: {fileID: 6368975742384869211}
     - target: {fileID: 8858551435528269084, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
       propertyPath: focusPosition
       value: 
@@ -6833,6 +6832,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
+--- !u!23 &6368975742384869211 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3571482035937016852, guid: 0cd26d557264aff4b800839c5eb6349d, type: 3}
+  m_PrefabInstance: {fileID: 6368975742384869210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

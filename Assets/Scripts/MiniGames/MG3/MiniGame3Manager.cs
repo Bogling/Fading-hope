@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class MiniGame3Manager : MonoBehaviour, ITalkable
@@ -234,7 +233,7 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
 
     public void Focus()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OperateChoice(int qID, int cID)
@@ -243,12 +242,10 @@ public class MiniGame3Manager : MonoBehaviour, ITalkable
             case 0:
                 switch (cID) {
                     case 0:
-                        Debug.Log("Answer is yes1");
                         StartMiniGame();
                         isEnding = false;
                         break;
                     case 1:
-                        Debug.Log("Answer is no1");
                         QuitMiniGame();
                         break;
                 }

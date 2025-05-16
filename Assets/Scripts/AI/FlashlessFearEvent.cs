@@ -1,6 +1,4 @@
 using System.Collections;
-using NUnit.Framework;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class FlashlessFearEvent : Day5Event
@@ -82,6 +80,7 @@ public class FlashlessFearEvent : Day5Event
             if (pendant.IsUp()) {
                 gameManager.DealDamage(damage);
                 StartCoroutine("MoveUp");
+                isWaiting = false;
                 yield return new WaitForSeconds(delay);
             }
             else {
@@ -126,6 +125,7 @@ public class FlashlessFearEvent : Day5Event
     }
 
     private IEnumerator WaitForLeave() {
+        if (isWaiting) {yield break;}
         isWaiting = true;
         yield return new WaitForSeconds(timeToLeave);
         Deactivate();

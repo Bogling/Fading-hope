@@ -10,7 +10,15 @@ public class TempleDoor : Door, IDamageable
 
     public void DealDamage(float damage) {
         if (isLightable && !isActivated) {
-            Activate();
+            if (levers.Length > 0) {
+                foreach (var lever in levers) {
+                    if (!lever.isActivated) return;
+                }
+                Activate();
+            }
+            else {
+                Activate();
+            }
         }
     }
 
@@ -18,6 +26,26 @@ public class TempleDoor : Door, IDamageable
         ActivationIndicator.SetActive(true);
         isActivated = true;
         Open();
+    }
+
+    public override bool IsCurrentlyInteractable()
+    {
+        return false;
+    }
+
+    
+
+    public override void Interact()
+    {
+        if (levers.Length > 0) {
+            foreach (var lever in levers) {
+                if (!lever.isActivated) return;
+            }
+            Activate();
+        }
+        else {
+            Activate();
+        }
     }
 
     public void Deactivate() {

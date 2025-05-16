@@ -21,39 +21,20 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2100000, guid: 5f9c77bf23d5d834498f55c60bd04d4f, type: 2}
+      value: {fileID: 21300000, guid: ba247a6f9a71bf94298acab27810a8b0, type: 3}
     - time: 0.16666667
-      value: {fileID: 2100000, guid: b350ce582b5676c4caffcf596d450da0, type: 2}
+      value: {fileID: 21300000, guid: 05bc2462eed70bb4683e5ba9bfe54faf, type: 3}
     - time: 0.33333334
-      value: {fileID: 2100000, guid: a29f01310e990fe40959df2082cd6c21, type: 2}
+      value: {fileID: 21300000, guid: deecd9b13f1f89944989be966432cb2a, type: 3}
     - time: 0.5
-      value: {fileID: 2100000, guid: 90fa33c7d1dcb784e8320ee436bdb391, type: 2}
+      value: {fileID: 21300000, guid: 39d2def70b1a0924a81bb84843312964, type: 3}
     - time: 0.6666667
-      value: {fileID: 2100000, guid: 83d79ffe16e9be546bb5f7e8509f6306, type: 2}
+      value: {fileID: 21300000, guid: 24e0a90c76e57f845b406859ad13c737, type: 3}
     - time: 0.8333333
-      value: {fileID: 2100000, guid: 5f9c77bf23d5d834498f55c60bd04d4f, type: 2}
-    attribute: 'm_Materials.Array.data[0]'
-    path: 
-    classID: 23
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 2100000, guid: 1b657085261d52f45bd495fb7eb57b2e, type: 2}
-    - time: 0.16666667
-      value: {fileID: 2100000, guid: 735bd39c3ce28c143812cc3819b15057, type: 2}
-    - time: 0.33333334
-      value: {fileID: 2100000, guid: 90040821488cd93419d5db3462a75d8c, type: 2}
-    - time: 0.5
-      value: {fileID: 2100000, guid: 14cb7c675d3de104a8e5e9c7ac8c948d, type: 2}
-    - time: 0.6666667
-      value: {fileID: 2100000, guid: 811e9f1d311de3e42848799753821a5f, type: 2}
-    - time: 0.8333333
-      value: {fileID: 2100000, guid: 1b657085261d52f45bd495fb7eb57b2e, type: 2}
-    attribute: 'm_Materials.Array.data[0]'
+      value: {fileID: 21300000, guid: ba247a6f9a71bf94298acab27810a8b0, type: 3}
+    attribute: m_Sprite
     path: LSM (1)
-    classID: 23
+    classID: 212
     script: {fileID: 0}
     flags: 2
   m_SampleRate: 60
@@ -64,36 +45,21 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 23
-      customType: 21
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
       path: 641532266
       attribute: 0
       script: {fileID: 0}
-      typeID: 23
-      customType: 21
+      typeID: 212
+      customType: 23
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2100000, guid: 5f9c77bf23d5d834498f55c60bd04d4f, type: 2}
-    - {fileID: 2100000, guid: b350ce582b5676c4caffcf596d450da0, type: 2}
-    - {fileID: 2100000, guid: a29f01310e990fe40959df2082cd6c21, type: 2}
-    - {fileID: 2100000, guid: 90fa33c7d1dcb784e8320ee436bdb391, type: 2}
-    - {fileID: 2100000, guid: 83d79ffe16e9be546bb5f7e8509f6306, type: 2}
-    - {fileID: 2100000, guid: 5f9c77bf23d5d834498f55c60bd04d4f, type: 2}
-    - {fileID: 2100000, guid: 1b657085261d52f45bd495fb7eb57b2e, type: 2}
-    - {fileID: 2100000, guid: 735bd39c3ce28c143812cc3819b15057, type: 2}
-    - {fileID: 2100000, guid: 90040821488cd93419d5db3462a75d8c, type: 2}
-    - {fileID: 2100000, guid: 14cb7c675d3de104a8e5e9c7ac8c948d, type: 2}
-    - {fileID: 2100000, guid: 811e9f1d311de3e42848799753821a5f, type: 2}
-    - {fileID: 2100000, guid: 1b657085261d52f45bd495fb7eb57b2e, type: 2}
+    - {fileID: 21300000, guid: ba247a6f9a71bf94298acab27810a8b0, type: 3}
+    - {fileID: 21300000, guid: 05bc2462eed70bb4683e5ba9bfe54faf, type: 3}
+    - {fileID: 21300000, guid: deecd9b13f1f89944989be966432cb2a, type: 3}
+    - {fileID: 21300000, guid: 39d2def70b1a0924a81bb84843312964, type: 3}
+    - {fileID: 21300000, guid: 24e0a90c76e57f845b406859ad13c737, type: 3}
+    - {fileID: 21300000, guid: ba247a6f9a71bf94298acab27810a8b0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

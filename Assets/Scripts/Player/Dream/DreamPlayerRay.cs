@@ -8,19 +8,11 @@ public class DreamPlayerRay : MonoBehaviour
     [SerializeField] private float rayLength = 5f;
 
     private RaycastHit raycastHit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward*100f, Color.red);
 
-        //RaycastHit raycastHit;
         Physics.Raycast(ray, out raycastHit);
         if (raycastHit.collider == null) {
             if (objectOnRay != null) {

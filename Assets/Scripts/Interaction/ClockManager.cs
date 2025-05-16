@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ClockManager : MonoBehaviour, Interactable, ITalkable
@@ -26,7 +27,7 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     private void Start()
     {
         dialogueController = DialogueController.GetInstance();
-        currentTime = initialTime;
+        currentTime = initialTime.ToArray().ToList();
 
         SetRotation();
         if (FindFirstObjectByType<Day5Manager>() != null) {
@@ -95,8 +96,8 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
         int wholeTime = 0;
 
         wholeTime += Mathf.Abs(endTime[0] - initialTime[0]) * 3600;
-        wholeTime += (60 + endTime[1] - initialTime[1]) * 60;
-        wholeTime += 60 + endTime[2] - initialTime[2];
+        wholeTime += (endTime[1] - initialTime[1] >= 0 ? endTime[1] - initialTime[1] : 60 + endTime[1] - initialTime[1]) * 60;
+        wholeTime += endTime[2] - initialTime[2] >= 0 ? endTime[2] - initialTime[2] : 60 + endTime[2] - initialTime[2];
 
         return wholeTime;
     }
@@ -110,7 +111,7 @@ public class ClockManager : MonoBehaviour, Interactable, ITalkable
     }
 
     public void StopClock() {
-        Day5Manager.GetInstance().EndDay();
+        StartCoroutine(Day5Manager.GetInstance().EndDay());
     }
 
     public bool IsCurrentlyInteractable()

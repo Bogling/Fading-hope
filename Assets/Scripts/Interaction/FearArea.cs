@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class FearArea : MonoBehaviour
@@ -21,6 +19,7 @@ public class FearArea : MonoBehaviour
     }
     
     private void OnTriggerEnter(Collider other) {
+        if (other.gameObject != player) return;
         isPlayerInRange = true;
         if (isDeactivated) {
             return;
@@ -29,34 +28,17 @@ public class FearArea : MonoBehaviour
         StartCoroutine(DealDamage());
     }
 
-    private void OnTriggerExit() {
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject != player) return;
         isPlayerInRange = false;
         StopDamage();
     }
 
-    /*private async void DealDamage() {
-        while (true) {
-            if (isStopped) {
-                gameManager.StartHPRegen();
-                break;
-            }
-            gameManager.StopHPRegen();
-            bool temp = gameManager.DealDamage(damage);
-            if (temp) {
-                StopDamage();
-                break;
-            }
-            await Task.Delay((int)(delay * 1000));
-        }
-    } */
-
     private IEnumerator DealDamage() {
         while (true) {
             if (isStopped) {
-                //gameManager.StartHPRegen();
                 break;
             }
-            //gameManager.StopHPRegen();
             if (gameManager.GetHP() - damage <= 0 && isFake) {
                 StopDamage();
                 break;
@@ -77,7 +59,6 @@ public class FearArea : MonoBehaviour
     public void Deactivate() {
         isDeactivated = true;
         StopDamage();
-        //gameManager.StartHPRegen();
     }
 
     public void Activate() {

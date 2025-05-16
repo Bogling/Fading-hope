@@ -11,27 +11,25 @@ public class SignalRelay : MonoBehaviour, Interactable
             if (signalDestination.GetComponent<Interactable>() == null) continue;
             signalDestination.GetComponent<Interactable>().Interact();
         }
-
-        foreach (var signalDestination in signalDestinations) {}
     }
 
     public void InteractionCanceled()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public bool IsCurrentlyInteractable()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public void OnHover()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnHoverStop()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

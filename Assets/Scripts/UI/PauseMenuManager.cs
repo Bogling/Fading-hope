@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private DreamPlayerInputController dreamPlayerInputController;
     [SerializeField] private PlayerInputController playerInputController;
     [SerializeField] private OptionsMenu optionsMenu;
+    private bool isQuitting = false;
 
     private void Awake() {
         instance = this;
@@ -18,12 +18,12 @@ public class PauseMenuManager : MonoBehaviour
     
 
     public void Pause() {
+        if (isQuitting) return;
         if (dreamPlayerInputController != null) {
             dreamPlayerInputController.DisableInput();
         }
         if (playerInputController != null) {
             playerInputController.DisableInput();
-            // Not implemented
         }
         var s = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
         foreach (AudioSource audioSource in s) {
@@ -38,6 +38,7 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void UnPause() {
+        if (isQuitting) return;
         if (dreamPlayerInputController != null) {
             dreamPlayerInputController.EnableInput();
         }
@@ -58,22 +59,31 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void OptionsButtonPressed() {
+        if (isQuitting) return;
         gameObject.SetActive(false);
         optionsMenu.gameObject.SetActive(true);
     }
 
     public void ExitToTitleButtonPressed() {
+        if (isQuitting) return;
         SaveLoadManager.Save();
         ToTitle(Color.black, 5f);
         
     }
 
     private async void ToTitle(Color faderColor, float fadeDuration) {
+        isQuitting = true;
         UnPause();
         Fader.GetInstance().FadeOut(faderColor, fadeDuration);
         await Task.Delay((int)(fadeDuration * 1000));
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (FindFirstObjectByType<DreamPlayerInputController>() != null) {
+            FindFirstObjectByType<DreamPlayerInputController>().FullDisable();
+        }
+        else if (FindFirstObjectByType<PlayerInputController>() != null) {
+            FindFirstObjectByType<PlayerInputController>().FullDisable();
+        }
         SceneManager.LoadScene("MainMenu");
     }
 

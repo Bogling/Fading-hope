@@ -49,6 +49,17 @@ public class BigGreenCrystal : MonoBehaviour, IDamageable
                 pointLights[i].SetActive(true);
             }
         }
+
+        if (crystals[0].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal1();
+        }
+        if (crystals[1].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal2();
+        }
+        if (crystals[2].IsActivated()) {
+            FindFirstObjectByType<GameManager>().ActivatedCrystal3();
+        }
+        SaveLoadManager.Save();
     }
 
     public bool[] GetCrystalStates() {

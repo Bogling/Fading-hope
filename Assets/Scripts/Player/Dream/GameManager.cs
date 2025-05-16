@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,7 +26,6 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         playerData = new PlayerData();
         playerData = SaveLoadManager.GetDirectData();
-        //playerData.SetScene(SceneManager.GetActiveScene().name);
         if (lamp != null) {
             lamp.SetActive(false);
         }
@@ -55,6 +52,23 @@ public class GameManager : MonoBehaviour
         playerData.hasHP = hasHP;
         playerData.hasLP = hasLP;
         SaveLoadManager.Save();
+        if (hpBar != null) {
+            if (!hasHP) {
+                hpBar.gameObject.SetActive(false);
+            }
+            else {
+                hpBar.gameObject.SetActive(true);
+            }
+        }
+
+        if (lpBar != null) {
+            if (!hasLP) {
+                lpBar.gameObject.SetActive(false);
+            }
+            else {
+                lpBar.gameObject.SetActive(true);
+            }
+        }
     }
 
     public IEnumerator Respawn(Color faderColor, float fadeDuration, bool fadeIn, bool fadeOut) {
@@ -200,6 +214,12 @@ public class GameManager : MonoBehaviour
 
     public void GiveFlashlight() {
         flashlight.SetActive(true);
+        if (lpBar != null) {
+            lpBar.gameObject.SetActive(true);
+        }
+        else {
+            lpBar.gameObject.SetActive(false);
+        }
         playerData.hasFlashlight = true;
     }
 
@@ -229,6 +249,10 @@ public class GameManager : MonoBehaviour
 
     public float GetLP() {
         return lp;
+    }
+
+    public float GetMaxLP() {
+        return maxLP;
     }
 
     public bool isLPFull() {
@@ -282,26 +306,6 @@ public class GameManager : MonoBehaviour
         if (isHPRegenBlocked > 0) {yield break;}
         StartHPRegen();
     }
-
-    /*public async void RegenerateHP() {
-        await Task.Delay((int)(hpRegenWaitTime * 1000));
-        if (!canRegenHP) {return;}
-        while (true) {
-            await Task.Delay((int)(hpRegenDelay * 1000));
-            if (!canRegenHP) {break;}
-            if (hp < maxHP) {
-                if (hp + maxHP * 5 / 100 <= maxHP) {
-                    hp += maxHP * 5 / 100;
-                    hpBar.UpdateHP();
-                }
-                else {
-                    hp = maxHP;
-                    hpBar.UpdateHP();
-                    StopHPRegen();
-                }
-            }
-        }
-    }*/
 
     public void RefreshLP() {
         lp = 0;
@@ -362,8 +366,8 @@ public class GameManager : MonoBehaviour
         return playerData.GetMaxMood();
     }
 
-    public void DoubtedAnswer() {
-        playerData.doubtedBio = true;
+    public void DoubtedAnswer(bool state) {
+        playerData.doubtedBio = state;
     }
 
     public void QuestionedOnD4() {

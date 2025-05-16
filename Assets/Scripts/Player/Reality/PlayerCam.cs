@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 
@@ -83,4 +82,10 @@ public class PlayerCam : MonoBehaviour
         }
     }
 
+    public void InterruptLook() {
+        if (c != null) {
+            StopCoroutine(c);
+            c = null;
+        }
+    }
 }
