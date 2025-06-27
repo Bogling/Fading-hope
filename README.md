@@ -1,2 +1,0 @@
-# Fading hope
- A game
